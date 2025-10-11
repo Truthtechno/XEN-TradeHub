@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .form-group { margin: 10px 0; }
+        label { display: block; margin-bottom: 5px; }
+        input { padding: 8px; width: 200px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 10px; background: #f8f9fa; border: 1px solid #dee2e6; }
+    </style>
+</head>
+<body>
+    <h1>Admin Login Test</h1>
+    <form id="loginForm">
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" value="test@example.com" required>
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" id="password" value="password" required>
+        </div>
+        <button type="submit">Login as Admin</button>
+    </form>
+    
+    <div id="result" class="result" style="display: none;"></div>
+    
+    <div id="actions" style="display: none; margin-top: 20px;">
+        <button onclick="testAdminPage()">Test Admin Page</button>
+        <button onclick="window.open('/admin/trade', '_blank')">Open Admin Trade Page</button>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const resultDiv = document.getElementById('result');
+            const actionsDiv = document.getElementById('actions');
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.innerHTML = '✅ Login successful! Token: ' + data.token.substring(0, 20) + '...';
+                    resultDiv.style.display = 'block';
+                    actionsDiv.style.display = 'block';
+                } else {
+                    const error = await response.text();
+                    resultDiv.innerHTML = '❌ Login failed: ' + error;
+                    resultDiv.style.display = 'block';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '❌ Error: ' + error.message;
+                resultDiv.style.display = 'block';
+            }
+        });
+        
+        async function testAdminPage() {
+            try {
+                const response = await fetch('/api/admin/trade/registrations', {
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('result').innerHTML = '✅ Admin API working! Found ' + data.registrations.length + ' registrations';
+                } else {
+                    document.getElementById('result').innerHTML = '❌ Admin API failed: ' + response.status;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = '❌ Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

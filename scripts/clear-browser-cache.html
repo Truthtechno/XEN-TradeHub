@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Browser Cache - XEN Forex</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #10b981;
+        }
+        .info {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #3b82f6;
+        }
+        .credentials {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        .cred-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .cred-item:last-child {
+            border-bottom: none;
+        }
+        .cred-email {
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #60a5fa;
+        }
+        .cred-password {
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #fbbf24;
+        }
+        .button {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button:hover {
+            opacity: 0.9;
+        }
+        .instructions {
+            text-align: left;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">XEN FOREX</div>
+        
+        <div class="status success">
+            ✅ Login System Restored Successfully!
+        </div>
+        
+        <div class="status info">
+            🔧 If you're still having login issues, follow these steps:
+        </div>
+        
+        <div class="instructions">
+            <h3>Browser Cache Clear Instructions:</h3>
+            <ol>
+                <li><strong>Hard Refresh:</strong> Press <code>Cmd+Shift+R</code> (Mac) or <code>Ctrl+Shift+R</code> (Windows)</li>
+                <li><strong>Clear Cookies:</strong> Go to Developer Tools → Application → Storage → Clear All</li>
+                <li><strong>Incognito Mode:</strong> Try logging in using an incognito/private window</li>
+                <li><strong>Clear Cache:</strong> Go to Settings → Privacy → Clear Browsing Data</li>
+            </ol>
+        </div>
+        
+        <div class="credentials">
+            <h3>🔑 Restored Login Credentials:</h3>
+            <div class="cred-item">
+                <span>Super Admin:</span>
+                <span><span class="cred-email">admin@xenforex.com</span> / <span class="cred-password">admin123</span></span>
+            </div>
+            <div class="cred-item">
+                <span>Analyst:</span>
+                <span><span class="cred-email">analyst@xenforex.com</span> / <span class="cred-password">analyst123</span></span>
+            </div>
+            <div class="cred-item">
+                <span>Editor:</span>
+                <span><span class="cred-email">editor@xenforex.com</span> / <span class="cred-password">editor123</span></span>
+            </div>
+        </div>
+        
+        <div class="status success">
+            🚀 All systems are operational and ready for use!
+        </div>
+        
+        <a href="http://localhost:3000/auth/signin" class="button">Go to Login Page</a>
+        <a href="http://localhost:3000/admin" class="button">Go to Admin Panel</a>
+        
+        <div style="margin-top: 30px; font-size: 0.9rem; color: #94a3b8;">
+            <p>If you continue to have issues, try:</p>
+            <p>1. Restarting your browser completely</p>
+            <p>2. Using a different browser</p>
+            <p>3. Checking the browser console for errors</p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-clear any existing auth cookies
+        document.cookie = "auth-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+        document.cookie = "next-auth.session-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+        
+        console.log('🔧 Browser cache cleared for XEN Forex login');
+        console.log('✅ Ready to login with restored credentials');
+    </script>
+</body>
+</html>

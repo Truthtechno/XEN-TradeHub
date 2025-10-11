@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .registration { border: 1px solid #ccc; margin: 10px 0; padding: 15px; border-radius: 5px; }
+        .email { font-weight: bold; color: #0066cc; }
+        .name { color: #333; }
+        .date { color: #666; font-size: 0.9em; }
+        .status { padding: 3px 8px; border-radius: 3px; font-size: 0.8em; }
+        .pending { background: #fff3cd; color: #856404; }
+        .verified { background: #d4edda; color: #155724; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 10px 0; }
+        button:hover { background: #0056b3; }
+        .loading { color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel Test - Your Submissions</h1>
+    <button onclick="loadData()">Refresh Data</button>
+    <div id="loading" class="loading" style="display: none;">Loading...</div>
+    <div id="registrations"></div>
+
+    <script>
+        async function loadData() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('registrations').innerHTML = '';
+            
+            try {
+                const response = await fetch('/api/admin/trade/registrations?t=' + Date.now(), {
+                    headers: {
+                        'Cookie': 'auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtZ2t6bXJ5MzAwMDBmdzc3bDNkdWliN3kiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJuYW1lIjoiVGVzdCBBZG1pbiBVc2VyIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzYwMTE2MDQ4LCJleHAiOjE3NjA3MjA4NDh9.bWv-ybP36u5_AKw1y0eKYJG7SMqKfWi5-JZcs1mBowQ'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Total registrations:', data.registrations.length);
+                    
+                    // Filter for your submissions
+                    const yourSubmissions = data.registrations.filter(reg => 
+                        reg.verificationData && 
+                        (reg.verificationData.email.includes('brian') || reg.verificationData.email.includes('hotmail') || reg.verificationData.email.includes('xen-hub'))
+                    );
+                    
+                    console.log('Your submissions:', yourSubmissions.length);
+                    
+                    if (yourSubmissions.length > 0) {
+                        let html = '<h2>Your Submissions (' + yourSubmissions.length + ')</h2>';
+                        yourSubmissions.forEach(reg => {
+                            html += `
+                                <div class="registration">
+                                    <div class="email">${reg.verificationData.email}</div>
+                                    <div class="name">${reg.verificationData.fullName}</div>
+                                    <div class="date">Submitted: ${new Date(reg.createdAt).toLocaleString()}</div>
+                                    <div class="status ${reg.verified ? 'verified' : 'pending'}">
+                                        ${reg.verified ? 'VERIFIED' : 'PENDING'}
+                                    </div>
+                                    ${reg.verificationData.phoneNumber ? '<div>Phone: ' + reg.verificationData.phoneNumber + '</div>' : ''}
+                                    ${reg.verificationData.exnessAccountId ? '<div>Exness ID: ' + reg.verificationData.exnessAccountId + '</div>' : ''}
+                                </div>
+                            `;
+                        });
+                        document.getElementById('registrations').innerHTML = html;
+                    } else {
+                        document.getElementById('registrations').innerHTML = '<p>No submissions found. Try refreshing the page.</p>';
+                    }
+                } else {
+                    document.getElementById('registrations').innerHTML = '<p>Error loading data: ' + response.status + '</p>';
+                }
+            } catch (error) {
+                document.getElementById('registrations').innerHTML = '<p>Error: ' + error.message + '</p>';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+        
+        // Load data on page load
+        loadData();
+    </script>
+</body>
+</html>

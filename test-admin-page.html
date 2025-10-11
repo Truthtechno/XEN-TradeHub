@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page Test</title>
+</head>
+<body>
+    <h1>Admin Page Test</h1>
+    <div id="status">Loading...</div>
+    <div id="data"></div>
+
+    <script>
+        async function testAdminPage() {
+            try {
+                // Test authentication
+                console.log('Testing authentication...');
+                const authResponse = await fetch('/api/auth/me', {
+                    credentials: 'include'
+                });
+                
+                if (!authResponse.ok) {
+                    document.getElementById('status').innerHTML = '❌ Authentication failed: ' + authResponse.status;
+                    return;
+                }
+                
+                const authData = await authResponse.json();
+                console.log('Auth data:', authData);
+                document.getElementById('status').innerHTML = '✅ Authenticated as: ' + authData.user.name;
+
+                // Test registrations API
+                console.log('Testing registrations API...');
+                const regResponse = await fetch('/api/admin/trade/registrations', {
+                    credentials: 'include'
+                });
+                
+                if (!regResponse.ok) {
+                    document.getElementById('data').innerHTML = '❌ Registrations API failed: ' + regResponse.status;
+                    return;
+                }
+                
+                const regData = await regResponse.json();
+                console.log('Registrations data:', regData);
+                document.getElementById('data').innerHTML = '✅ Found ' + regData.registrations.length + ' registrations';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('status').innerHTML = '❌ Error: ' + error.message;
+            }
+        }
+
+        testAdminPage();
+    </script>
+</body>
+</html>

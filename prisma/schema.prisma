@@ -1,0 +1,655 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                        String                     @id @default(cuid())
+  email                     String                     @unique
+  name                      String?
+  password                  String?
+  image                     String?
+  role                      String                     @default("STUDENT")
+  lastLoginAt               DateTime?
+  createdAt                 DateTime                   @default(now())
+  updatedAt                 DateTime                   @updatedAt
+  academyClassRegistrations AcademyClassRegistration[]
+  adminProfile              AdminProfile?
+  affiliateClicks           AffiliateClick[]
+  auditLogs                 AuditLog[]
+  bookings                  Booking[]
+  brokerAccount             BrokerAccount?
+  brokerRegistrations       BrokerRegistration[]
+  courseEnrollments         CourseEnrollment[]
+  dismissedBanners          DismissedBanner[]
+  eventRegistrations        EventRegistration[]
+  mentorshipPayments        MentorshipPayment[]
+  mentorshipRegistrations   MentorshipRegistration[]
+  newNotifications          NewNotification[]
+  notifications             Notification[]
+  orders                    Order[]
+  pollVotes                 PollVote[]
+  resourcePurchases         ResourcePurchase[]
+  subscription              Subscription?
+  courses                   UserCourse[]
+  userForecastComments      UserForecastComment[]
+  userForecastLikes         UserForecastLike[]
+  profile                   UserProfile?
+  userResourceLikes         UserResourceLike[]
+  userSignalComments        UserSignalComment[]
+  userSignalLikes           UserSignalLike[]
+  signals                   UserSignal[]
+
+  @@map("users")
+}
+
+model UserProfile {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  firstName      String?
+  lastName       String?
+  phone          String?
+  whatsappNumber String?
+  country        String?
+  timezone       String?
+  experience     String?
+  tradingStyle   String?
+  goals          String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
+
+model AdminProfile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  country   String?
+  phone     String?
+  telegram  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("admin_profiles")
+}
+
+model Subscription {
+  id                 String    @id @default(cuid())
+  userId             String    @unique
+  plan               String
+  status             String
+  stripeId           String?
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+model BrokerAccount {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  brokerName String?
+  accountId  String?
+  status     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("broker_accounts")
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Float
+  currency  String
+  status    String
+  stripeId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+model Course {
+  id               String             @id @default(cuid())
+  title            String
+  slug             String             @unique @default("")
+  description      String?
+  shortDescription String?
+  priceUSD         Float              @default(0)
+  level            String             @default("BEGINNER")
+  status           String             @default("DRAFT")
+  instructor       String             @default("CoreFX")
+  coverUrl         String?
+  isFree           Boolean            @default(false)
+  duration         Int                @default(0)
+  totalLessons     Int                @default(0)
+  views            Int                @default(0)
+  rating           Float?
+  tags             String[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  enrollments      CourseEnrollment[]
+  lessons          Lesson[]
+  users            UserCourse[]
+
+  @@map("courses")
+}
+
+model Lesson {
+  id           String   @id @default(cuid())
+  courseId     String
+  title        String
+  description  String?
+  videoUrl     String?
+  durationSec  Int      @default(0)
+  order        Int      @default(1)
+  isPreview    Boolean  @default(false)
+  isPublished  Boolean  @default(true)
+  thumbnailUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  course       Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@map("lessons")
+}
+
+model CourseEnrollment {
+  id         String   @id @default(cuid())
+  userId     String
+  courseId   String
+  progress   Float    @default(0)
+  completed  Boolean  @default(false)
+  enrolledAt DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@map("course_enrollments")
+}
+
+model UserCourse {
+  id         String   @id @default(cuid())
+  userId     String
+  courseId   String
+  enrolledAt DateTime @default(now())
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@map("user_courses")
+}
+
+model Signal {
+  id           String              @id @default(cuid())
+  title        String
+  description  String?
+  symbol       String
+  action       String
+  direction    String?
+  entry        Float?
+  entryPrice   Float?
+  sl           Float?
+  stopLoss     Float?
+  tp           Float?
+  takeProfit   Float?
+  notes        String?
+  imageUrl     String?
+  visibility   String              @default("PRIVATE")
+  status       String              @default("ACTIVE")
+  publishedAt  DateTime?
+  isActive     Boolean             @default(true)
+  likes        Int                 @default(0)
+  comments     Int                 @default(0)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  userComments UserSignalComment[]
+  userLikes    UserSignalLike[]
+  users        UserSignal[]
+
+  @@map("signals")
+}
+
+model UserSignal {
+  id         String   @id @default(cuid())
+  userId     String
+  signalId   String
+  receivedAt DateTime @default(now())
+  signal     Signal   @relation(fields: [signalId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, signalId])
+  @@map("user_signals")
+}
+
+model Booking {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  date      DateTime
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("bookings")
+}
+
+model BrokerLink {
+  id            String               @id @default(cuid())
+  name          String
+  url           String
+  isActive      Boolean              @default(true)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  registrations BrokerRegistration[]
+
+  @@map("broker_links")
+}
+
+model BrokerRegistration {
+  id               String     @id @default(cuid())
+  userId           String
+  linkId           String
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @default(now()) @updatedAt
+  verificationData Json?
+  verified         Boolean    @default(false)
+  verifiedAt       DateTime?
+  link             BrokerLink @relation(fields: [linkId], references: [id], onDelete: Cascade)
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("broker_registrations")
+}
+
+model Poll {
+  id        String     @id @default(cuid())
+  question  String
+  options   String[]
+  isActive  Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  votes     PollVote[]
+
+  @@map("polls")
+}
+
+model PollVote {
+  id        String   @id @default(cuid())
+  userId    String
+  pollId    String
+  option    String
+  createdAt DateTime @default(now())
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, pollId])
+  @@map("poll_votes")
+}
+
+model AffiliateClick {
+  id        String   @id @default(cuid())
+  userId    String
+  link      String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("affiliate_clicks")
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String
+  action    String
+  entity    String
+  entityId  String
+  diff      Json?
+  createdAt DateTime @default(now())
+  actor     User     @relation(fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@map("audit_logs")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String
+  isRead    Boolean  @default(false)
+  actionUrl String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+model NewNotification {
+  id               String            @id @default(cuid())
+  userId           String
+  title            String
+  message          String
+  type             String
+  pagePath         String?
+  description      String?
+  isActive         Boolean           @default(true)
+  isRead           Boolean           @default(false)
+  expiresAt        DateTime?
+  color            String?           @default("blue")
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime?         @updatedAt
+  dismissedBanners DismissedBanner[]
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("new_notifications")
+}
+
+model MentorshipRegistration {
+  id           String                  @id @default(cuid())
+  userId       String
+  name         String
+  email        String
+  phone        String
+  country      String
+  experience   String
+  goals        String
+  status       String                  @default("PENDING")
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+  appointments MentorshipAppointment[]
+  user         User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("mentorship_registrations")
+}
+
+model MentorshipPayment {
+  id             String   @id @default(cuid())
+  userId         String
+  amount         Float
+  currency       String
+  status         String
+  stripeId       String?
+  registrationId String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("mentorship_payments")
+}
+
+model MentorshipAppointment {
+  id             String                 @id @default(cuid())
+  registrationId String
+  title          String
+  description    String?
+  scheduledAt    DateTime
+  duration       Int                    @default(60)
+  status         String                 @default("SCHEDULED")
+  meetingLink    String?
+  notes          String?
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  registration   MentorshipRegistration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+
+  @@map("mentorship_appointments")
+}
+
+model Resource {
+  id          String             @id @default(cuid())
+  title       String
+  slug        String             @unique
+  description String?
+  type        String
+  category    String?
+  url         String?
+  thumbnail   String?
+  duration    Int?
+  isPremium   Boolean            @default(false)
+  priceUSD    Float?
+  tags        String[]
+  likes       Int                @default(0)
+  publishedAt DateTime?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  purchases   ResourcePurchase[]
+  userLikes   UserResourceLike[]
+
+  @@map("resources")
+}
+
+model ResourcePurchase {
+  id         String   @id @default(cuid())
+  userId     String
+  resourceId String
+  amountUSD  Float
+  status     String
+  stripeId   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("resource_purchases")
+}
+
+model Forecast {
+  id           String                @id @default(cuid())
+  title        String
+  description  String
+  pair         String?
+  chartImage   String?
+  imageUrl     String?
+  isPublic     Boolean               @default(true)
+  likes        Int                   @default(0)
+  comments     Int                   @default(0)
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+  userComments UserForecastComment[]
+  userLikes    UserForecastLike[]
+
+  @@map("forecasts")
+}
+
+model UserForecastLike {
+  id         String   @id @default(cuid())
+  userId     String
+  forecastId String
+  createdAt  DateTime @default(now())
+  forecast   Forecast @relation(fields: [forecastId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, forecastId])
+  @@map("user_forecast_likes")
+}
+
+model UserForecastComment {
+  id         String   @id @default(cuid())
+  userId     String
+  forecastId String
+  content    String
+  isAdmin    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  forecast   Forecast @relation(fields: [forecastId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_forecast_comments")
+}
+
+model UserSignalLike {
+  id        String   @id @default(cuid())
+  userId    String
+  signalId  String
+  createdAt DateTime @default(now())
+  signal    Signal   @relation(fields: [signalId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, signalId])
+  @@map("user_signal_likes")
+}
+
+model UserSignalComment {
+  id        String   @id @default(cuid())
+  userId    String
+  signalId  String
+  content   String
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  signal    Signal   @relation(fields: [signalId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_signal_comments")
+}
+
+model UserResourceLike {
+  id         String   @id @default(cuid())
+  userId     String
+  resourceId String
+  createdAt  DateTime @default(now())
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, resourceId])
+  @@map("user_resource_likes")
+}
+
+model Event {
+  id            String              @id @default(cuid())
+  title         String
+  description   String?
+  type          String              @default("WORKSHOP")
+  price         Float               @default(0)
+  currency      String              @default("USD")
+  startDate     DateTime
+  endDate       DateTime?
+  location      String?
+  maxAttendees  Int?
+  isPublished   Boolean             @default(false)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  registrations EventRegistration[]
+
+  @@map("events")
+}
+
+model EventRegistration {
+  id                    String   @id @default(cuid())
+  eventId               String
+  userId                String?
+  fullName              String
+  email                 String
+  phone                 String?
+  company               String?
+  jobTitle              String?
+  dietaryRequirements   String?
+  specialRequests       String?
+  emergencyContact      String?
+  emergencyPhone        String?
+  amountUSD             Float    @default(0)
+  currency              String   @default("USD")
+  status                String   @default("PENDING")
+  paymentStatus         String   @default("PENDING")
+  stripePaymentIntentId String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  event                 Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user                  User?    @relation(fields: [userId], references: [id])
+
+  @@map("event_registrations")
+}
+
+model Settings {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  category  String   @default("general")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model AcademyClass {
+  id            String                     @id @default(cuid())
+  title         String
+  description   String
+  price         Float
+  currency      String                     @default("USD")
+  duration      String
+  level         String
+  maxStudents   Int
+  instructor    String
+  location      String
+  nextSession   DateTime
+  status        String                     @default("UPCOMING")
+  isPublished   Boolean                    @default(true)
+  createdAt     DateTime                   @default(now())
+  updatedAt     DateTime                   @updatedAt
+  registrations AcademyClassRegistration[]
+
+  @@map("academy_classes")
+}
+
+model AcademyClassRegistration {
+  id                    String       @id @default(cuid())
+  classId               String
+  userId                String?
+  fullName              String
+  email                 String
+  phone                 String?
+  experience            String?
+  goals                 String?
+  amountUSD             Float        @default(0)
+  currency              String       @default("USD")
+  status                String       @default("PENDING")
+  paymentStatus         String       @default("PENDING")
+  stripePaymentIntentId String?
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
+  academyClass          AcademyClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+  user                  User?        @relation(fields: [userId], references: [id])
+
+  @@map("academy_class_registrations")
+}
+
+model Enquiry {
+  id          String    @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  subject     String
+  message     String
+  enquiryType String
+  status      String    @default("NEW")
+  responseAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("enquiries")
+}
+
+model DismissedBanner {
+  id          String          @id @default(cuid())
+  userId      String
+  bannerId    String
+  dismissedAt DateTime        @default(now())
+  banner      NewNotification @relation(fields: [bannerId], references: [id], onDelete: Cascade)
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bannerId])
+  @@map("dismissed_banners")
+}

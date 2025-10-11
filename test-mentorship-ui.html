@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship System Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        .btn {
+            background-color: #dc2626;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .btn:hover {
+            background-color: #b91c1c;
+        }
+        .btn-secondary {
+            background-color: #6b7280;
+        }
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+        .btn-success {
+            background-color: #059669;
+        }
+        .btn-success:hover {
+            background-color: #047857;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .result.success {
+            background-color: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+        }
+        .result.error {
+            background-color: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+        }
+        .result.info {
+            background-color: #dbeafe;
+            border: 1px solid #3b82f6;
+            color: #1e40af;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        .status.success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .status.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .status.pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Mentorship System Test Interface</h1>
+    <p>Test both student and admin functionalities for the mentorship system.</p>
+
+    <div class="grid">
+        <!-- Student Tests -->
+        <div class="test-section">
+            <h3>👨‍🎓 Student Tests</h3>
+            
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="studentEmail" value="test.student@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="studentPassword" value="testpassword123">
+            </div>
+            
+            <button class="btn" onclick="testStudentLogin()">Test Student Login</button>
+            <button class="btn btn-secondary" onclick="testStudentRegistration()">Test Registration</button>
+            <button class="btn btn-success" onclick="testStudentPayment()">Test Payment</button>
+            <button class="btn btn-secondary" onclick="testStudentAccess()">Check Access</button>
+            
+            <div id="studentResult" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Admin Tests -->
+        <div class="test-section">
+            <h3>👨‍💼 Admin Tests</h3>
+            
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="adminEmail" value="admin@corefx.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="adminPassword" value="adminpassword123">
+            </div>
+            
+            <button class="btn" onclick="testAdminLogin()">Test Admin Login</button>
+            <button class="btn btn-secondary" onclick="testAdminViewRegistrations()">View Registrations</button>
+            <button class="btn btn-success" onclick="testAdminAddRegistration()">Add Registration</button>
+            <button class="btn btn-secondary" onclick="testAdminScheduleAppointment()">Schedule Appointment</button>
+            
+            <div id="adminResult" class="result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="test-section">
+        <h3>📝 Test Registration Form</h3>
+        
+        <div class="grid">
+            <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" id="firstName" value="John">
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label>
+                <input type="text" id="lastName" value="Doe">
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="regEmail" value="john.doe@example.com">
+            </div>
+            <div class="form-group">
+                <label>Phone:</label>
+                <input type="tel" id="phone" value="+1234567890">
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="form-group">
+                <label>Country Code:</label>
+                <select id="countryCode">
+                    <option value="+1">+1 (US/CA)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <option value="+49">+49 (DE)</option>
+                    <option value="+33">+33 (FR)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Country:</label>
+                <input type="text" id="country" value="United States">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Experience Level:</label>
+            <select id="experience">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Scheduling Preferences:</label>
+            <textarea id="schedulingPreferences" placeholder="When would you prefer to have your sessions?">Weekend mornings preferred</textarea>
+        </div>
+        
+        <button class="btn" onclick="testRegistrationForm()">Test Registration Form</button>
+        <div id="registrationResult" class="result" style="display: none;"></div>
+    </div>
+
+    <!-- Appointment Form -->
+    <div class="test-section">
+        <h3>📅 Test Appointment Form</h3>
+        
+        <div class="form-group">
+            <label>Title:</label>
+            <input type="text" id="appointmentTitle" value="Initial Strategy Session">
+        </div>
+        
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea id="appointmentDescription">Discuss trading goals and current strategy</textarea>
+        </div>
+        
+        <div class="grid">
+            <div class="form-group">
+                <label>Date & Time:</label>
+                <input type="datetime-local" id="appointmentDateTime">
+            </div>
+            <div class="form-group">
+                <label>Duration (minutes):</label>
+                <input type="number" id="appointmentDuration" value="60">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>Meeting Link:</label>
+            <input type="url" id="meetingLink" value="https://zoom.us/j/123456789">
+        </div>
+        
+        <div class="form-group">
+            <label>Notes:</label>
+            <textarea id="appointmentNotes">Focus on risk management</textarea>
+        </div>
+        
+        <button class="btn" onclick="testAppointmentForm()">Test Appointment Form</button>
+        <div id="appointmentResult" class="result" style="display: none;"></div>
+    </div>
+
+    <!-- Run All Tests -->
+    <div class="test-section">
+        <h3>🚀 Run All Tests</h3>
+        <p>This will run a comprehensive test suite covering all functionality.</p>
+        <button class="btn btn-success" onclick="runAllTests()">Run All Tests</button>
+        <div id="allTestsResult" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:3000'
+        let studentToken = null
+        let adminToken = null
+        let currentRegistrationId = null
+        let currentAppointmentId = null
+
+        // Helper function to make API requests
+        async function makeRequest(url, options = {}) {
+            try {
+                const response = await fetch(`${BASE_URL}${url}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                })
+                
+                const data = await response.json()
+                return { response, data }
+            } catch (error) {
+                console.error('Request failed:', error)
+                return { response: null, data: { error: error.message } }
+            }
+        }
+
+        // Helper function to show results
+        function showResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId)
+            element.style.display = 'block'
+            element.className = `result ${type}`
+            element.textContent = message
+        }
+
+        // Student test functions
+        async function testStudentLogin() {
+            const email = document.getElementById('studentEmail').value
+            const password = document.getElementById('studentPassword').value
+            
+            const { response, data } = await makeRequest('/api/auth/login', {
+                method: 'POST',
+                body: JSON.stringify({ email, password })
+            })
+            
+            if (response?.ok && data.success) {
+                studentToken = data.token
+                showResult('studentResult', `✅ Student login successful\nToken: ${data.token.substring(0, 20)}...`, 'success')
+            } else {
+                showResult('studentResult', `❌ Student login failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        async function testStudentRegistration() {
+            if (!studentToken) {
+                showResult('studentResult', '❌ Please login first', 'error')
+                return
+            }
+
+            const registrationData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('regEmail').value,
+                phone: document.getElementById('phone').value,
+                countryCode: document.getElementById('countryCode').value,
+                country: document.getElementById('country').value,
+                experience: document.getElementById('experience').value,
+                schedulingPreferences: document.getElementById('schedulingPreferences').value
+            }
+
+            const { response, data } = await makeRequest('/api/mentorship/register', {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${studentToken}` },
+                body: JSON.stringify(registrationData)
+            })
+            
+            if (response?.ok && data.success) {
+                currentRegistrationId = data.data.id
+                showResult('studentResult', `✅ Student registration successful\nRegistration ID: ${data.data.id}\nStatus: ${data.data.status}`, 'success')
+            } else {
+                showResult('studentResult', `❌ Student registration failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        async function testStudentPayment() {
+            if (!studentToken || !currentRegistrationId) {
+                showResult('studentResult', '❌ Please register first', 'error')
+                return
+            }
+
+            const { response, data } = await makeRequest('/api/mentorship/payment', {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${studentToken}` },
+                body: JSON.stringify({
+                    registrationId: currentRegistrationId,
+                    amount: 1500,
+                    currency: 'USD'
+                })
+            })
+            
+            if (response?.ok && data.success) {
+                showResult('studentResult', `✅ Student payment successful\nPayment ID: ${data.data.payment.id}\nPremium Access: ${data.data.access?.subscriptionType === 'PREMIUM' ? 'Yes' : 'No'}`, 'success')
+            } else {
+                showResult('studentResult', `❌ Student payment failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        async function testStudentAccess() {
+            if (!studentToken) {
+                showResult('studentResult', '❌ Please login first', 'error')
+                return
+            }
+
+            const { response, data } = await makeRequest('/api/user/access', {
+                method: 'GET',
+                headers: { Authorization: `Bearer ${studentToken}` }
+            })
+            
+            if (response?.ok && data.success) {
+                showResult('studentResult', `✅ Student access check successful\nSubscription Type: ${data.data.subscriptionType}\nMentorship Access: ${data.data.mentorship ? 'Yes' : 'No'}\nPremium Signals: ${data.data.premiumSignals ? 'Yes' : 'No'}`, 'success')
+            } else {
+                showResult('studentResult', `❌ Student access check failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        // Admin test functions
+        async function testAdminLogin() {
+            const email = document.getElementById('adminEmail').value
+            const password = document.getElementById('adminPassword').value
+            
+            const { response, data } = await makeRequest('/api/auth/login', {
+                method: 'POST',
+                body: JSON.stringify({ email, password })
+            })
+            
+            if (response?.ok && data.success) {
+                adminToken = data.token
+                showResult('adminResult', `✅ Admin login successful\nToken: ${data.token.substring(0, 20)}...`, 'success')
+            } else {
+                showResult('adminResult', `❌ Admin login failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        async function testAdminViewRegistrations() {
+            if (!adminToken) {
+                showResult('adminResult', '❌ Please login as admin first', 'error')
+                return
+            }
+
+            const { response, data } = await makeRequest('/api/admin/mentorship', {
+                method: 'GET',
+                headers: { Authorization: `Bearer ${adminToken}` }
+            })
+            
+            if (response?.ok && data.success) {
+                showResult('adminResult', `✅ Admin view registrations successful\nTotal Registrations: ${data.data.stats.totalRegistrations}\nTotal Revenue: $${data.data.stats.totalRevenue}\nCompleted Payments: ${data.data.stats.completedPayments}`, 'success')
+            } else {
+                showResult('adminResult', `❌ Admin view registrations failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        async function testAdminAddRegistration() {
+            if (!adminToken) {
+                showResult('adminResult', '❌ Please login as admin first', 'error')
+                return
+            }
+
+            const { response, data } = await makeRequest('/api/admin/mentorship', {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${adminToken}` },
+                body: JSON.stringify({
+                    name: 'Jane Smith',
+                    email: 'jane.smith@example.com',
+                    phone: '+1987654321',
+                    country: 'Canada',
+                    experience: 'Intermediate',
+                    goals: 'Learn advanced strategies'
+                })
+            })
+            
+            if (response?.ok && data.success) {
+                currentRegistrationId = data.data.id
+                showResult('adminResult', `✅ Admin add registration successful\nRegistration ID: ${data.data.id}\nStatus: ${data.data.status}`, 'success')
+            } else {
+                showResult('adminResult', `❌ Admin add registration failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        async function testAdminScheduleAppointment() {
+            if (!adminToken || !currentRegistrationId) {
+                showResult('adminResult', '❌ Please login as admin and add a registration first', 'error')
+                return
+            }
+
+            const appointmentData = {
+                registrationId: currentRegistrationId,
+                title: document.getElementById('appointmentTitle').value,
+                description: document.getElementById('appointmentDescription').value,
+                scheduledAt: document.getElementById('appointmentDateTime').value || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+                duration: parseInt(document.getElementById('appointmentDuration').value),
+                meetingLink: document.getElementById('meetingLink').value,
+                notes: document.getElementById('appointmentNotes').value
+            }
+
+            const { response, data } = await makeRequest('/api/admin/mentorship/appointments', {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${adminToken}` },
+                body: JSON.stringify(appointmentData)
+            })
+            
+            if (response?.ok && data.success) {
+                currentAppointmentId = data.data.id
+                showResult('adminResult', `✅ Admin schedule appointment successful\nAppointment ID: ${data.data.id}\nScheduled: ${new Date(data.data.scheduledAt).toLocaleString()}`, 'success')
+            } else {
+                showResult('adminResult', `❌ Admin schedule appointment failed: ${data.message || 'Unknown error'}`, 'error')
+            }
+        }
+
+        // Form test functions
+        async function testRegistrationForm() {
+            showResult('registrationResult', '📝 Registration form data collected:\n' + 
+                `Name: ${document.getElementById('firstName').value} ${document.getElementById('lastName').value}\n` +
+                `Email: ${document.getElementById('regEmail').value}\n` +
+                `Phone: ${document.getElementById('countryCode').value}${document.getElementById('phone').value}\n` +
+                `Country: ${document.getElementById('country').value}\n` +
+                `Experience: ${document.getElementById('experience').value}\n` +
+                `Preferences: ${document.getElementById('schedulingPreferences').value}`, 'info')
+        }
+
+        async function testAppointmentForm() {
+            showResult('appointmentResult', '📅 Appointment form data collected:\n' + 
+                `Title: ${document.getElementById('appointmentTitle').value}\n` +
+                `Description: ${document.getElementById('appointmentDescription').value}\n` +
+                `Date/Time: ${document.getElementById('appointmentDateTime').value || 'Not set'}\n` +
+                `Duration: ${document.getElementById('appointmentDuration').value} minutes\n` +
+                `Meeting Link: ${document.getElementById('meetingLink').value}\n` +
+                `Notes: ${document.getElementById('appointmentNotes').value}`, 'info')
+        }
+
+        // Run all tests
+        async function runAllTests() {
+            showResult('allTestsResult', '🚀 Starting comprehensive test suite...', 'info')
+            
+            const results = []
+            
+            try {
+                // Test student login
+                await testStudentLogin()
+                if (studentToken) results.push('✅ Student Login')
+                
+                // Test student registration
+                await testStudentRegistration()
+                if (currentRegistrationId) results.push('✅ Student Registration')
+                
+                // Test student payment
+                await testStudentPayment()
+                results.push('✅ Student Payment')
+                
+                // Test student access
+                await testStudentAccess()
+                results.push('✅ Student Access Check')
+                
+                // Test admin login
+                await testAdminLogin()
+                if (adminToken) results.push('✅ Admin Login')
+                
+                // Test admin view registrations
+                await testAdminViewRegistrations()
+                results.push('✅ Admin View Registrations')
+                
+                // Test admin add registration
+                await testAdminAddRegistration()
+                if (currentRegistrationId) results.push('✅ Admin Add Registration')
+                
+                // Test admin schedule appointment
+                await testAdminScheduleAppointment()
+                if (currentAppointmentId) results.push('✅ Admin Schedule Appointment')
+                
+                const passedTests = results.length
+                const totalTests = 8
+                
+                showResult('allTestsResult', 
+                    `🎯 Test Results:\n${results.join('\n')}\n\n` +
+                    `Tests Passed: ${passedTests}/${totalTests}\n` +
+                    `Success Rate: ${Math.round((passedTests / totalTests) * 100)}%\n\n` +
+                    (passedTests === totalTests ? '🎉 All tests passed!' : '⚠️ Some tests failed. Check individual results above.'), 
+                    passedTests === totalTests ? 'success' : 'error')
+                    
+            } catch (error) {
+                showResult('allTestsResult', `❌ Test suite error: ${error.message}`, 'error')
+            }
+        }
+
+        // Set default appointment date to 7 days from now
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date()
+            now.setDate(now.getDate() + 7)
+            const dateTimeString = now.toISOString().slice(0, 16)
+            document.getElementById('appointmentDateTime').value = dateTimeString
+        })
+    </script>
+</body>
+</html>

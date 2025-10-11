@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broker Registration Flow Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .test-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .pending {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        .test-results {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background: #f8f9fa;
+        }
+        .step h3 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.pending { background: #fff3cd; color: #856404; }
+        .status.verified { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Broker Registration Flow Test Suite</h1>
+    <p>This test suite verifies the complete broker registration flow from user click to admin verification tracking.</p>
+
+    <div class="test-container">
+        <h2>Test 1: New User Registration Flow</h2>
+        <div class="step">
+            <h3>Step 1: Simulate User Clicking "REGISTER ON EXNESS"</h3>
+            <button class="test-button" onclick="testUserRegistration('new')" id="test1-btn">
+                Click to Register (New Account)
+            </button>
+            <div id="test1-result" class="test-results" style="display: none;"></div>
+        </div>
+        
+        <div class="step">
+            <h3>Step 2: Simulate User Verification</h3>
+            <button class="test-button" onclick="testUserVerification('test1@example.com', 'Test User 1')" id="test1-verify-btn" disabled>
+                Submit Verification
+            </button>
+            <div id="test1-verify-result" class="test-results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 2: Existing User Registration Flow</h2>
+        <div class="step">
+            <h3>Step 1: Simulate User Clicking "REGISTER ON EXNESS"</h3>
+            <button class="test-button" onclick="testUserRegistration('existing')" id="test2-btn">
+                Click to Register (Existing Account)
+            </button>
+            <div id="test2-result" class="test-results" style="display: none;"></div>
+        </div>
+        
+        <div class="step">
+            <h3>Step 2: Simulate User Verification</h3>
+            <button class="test-button" onclick="testUserVerification('test2@example.com', 'Test User 2')" id="test2-verify-btn" disabled>
+                Submit Verification
+            </button>
+            <div id="test2-verify-result" class="test-results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 3: Double-Tap Protection Test</h2>
+        <div class="step">
+            <h3>Test Rapid Clicking (Should Prevent Duplicates)</h3>
+            <button class="test-button" onclick="testDoubleTap()" id="double-tap-btn">
+                Rapid Click Test
+            </button>
+            <div id="double-tap-result" class="test-results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 4: Admin Dashboard Verification</h2>
+        <div class="step">
+            <h3>Check Admin Panel for Registrations</h3>
+            <button class="test-button" onclick="checkAdminPanel()" id="admin-check-btn">
+                Check Admin Panel
+            </button>
+            <div id="admin-check-result" class="test-results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test Results Summary</h2>
+        <div id="summary" class="test-results">
+            <p>Run the tests above to see results...</p>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            test1: { registration: null, verification: null },
+            test2: { registration: null, verification: null },
+            doubleTap: null,
+            adminPanel: null
+        };
+
+        async function testUserRegistration(accountType) {
+            const testId = accountType === 'new' ? 'test1' : 'test2';
+            const button = document.getElementById(`${testId}-btn`);
+            const resultDiv = document.getElementById(`${testId}-result`);
+            
+            button.disabled = true;
+            button.textContent = 'Registering...';
+            
+            try {
+                // Simulate the registration process
+                const response = await fetch('/api/broker/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        broker: 'EXNESS',
+                        accountType: accountType,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    testResults[testId].registration = result;
+                    resultDiv.innerHTML = `
+                        <div class="success">✅ Registration Created Successfully!</div>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                    resultDiv.style.display = 'block';
+                    
+                    // Enable verification button
+                    document.getElementById(`${testId}-verify-btn`).disabled = false;
+                } else {
+                    throw new Error(result.error || 'Registration failed');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">❌ Registration Failed: ${error.message}</div>
+                `;
+                resultDiv.style.display = 'block';
+            } finally {
+                button.disabled = false;
+                button.textContent = `Click to Register (${accountType === 'new' ? 'New' : 'Existing'} Account)`;
+            }
+        }
+
+        async function testUserVerification(email, fullName) {
+            const testId = email === 'test1@example.com' ? 'test1' : 'test2';
+            const button = document.getElementById(`${testId}-verify-btn`);
+            const resultDiv = document.getElementById(`${testId}-verify-result`);
+            
+            button.disabled = true;
+            button.textContent = 'Verifying...';
+            
+            try {
+                // Simulate the verification process
+                const response = await fetch('/api/broker/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        broker: 'EXNESS',
+                        accountType: 'new',
+                        verificationData: {
+                            email: email,
+                            fullName: fullName,
+                            phoneNumber: '+1234567890'
+                        }
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    testResults[testId].verification = result;
+                    resultDiv.innerHTML = `
+                        <div class="success">✅ Verification Completed Successfully!</div>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                    resultDiv.style.display = 'block';
+                } else {
+                    throw new Error(result.error || 'Verification failed');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">❌ Verification Failed: ${error.message}</div>
+                `;
+                resultDiv.style.display = 'block';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Submit Verification';
+            }
+        }
+
+        async function testDoubleTap() {
+            const button = document.getElementById('double-tap-btn');
+            const resultDiv = document.getElementById('double-tap-result');
+            
+            button.disabled = true;
+            button.textContent = 'Testing...';
+            
+            let results = [];
+            let successCount = 0;
+            let errorCount = 0;
+            
+            // Simulate rapid clicking
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch('/api/broker/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            broker: 'EXNESS',
+                            accountType: 'new',
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        successCount++;
+                        results.push(`Click ${i + 1}: ✅ Success`);
+                    } else {
+                        errorCount++;
+                        results.push(`Click ${i + 1}: ❌ ${result.error || 'Failed'}`);
+                    }
+                } catch (error) {
+                    errorCount++;
+                    results.push(`Click ${i + 1}: ❌ ${error.message}`);
+                }
+            }
+            
+            testResults.doubleTap = { successCount, errorCount, results };
+            
+            resultDiv.innerHTML = `
+                <div class="${successCount > 0 ? 'success' : 'error'}">
+                    Double-tap test completed: ${successCount} successful, ${errorCount} errors
+                </div>
+                <ul>${results.map(r => `<li>${r}</li>`).join('')}</ul>
+            `;
+            resultDiv.style.display = 'block';
+            
+            button.disabled = false;
+            button.textContent = 'Rapid Click Test';
+        }
+
+        async function checkAdminPanel() {
+            const button = document.getElementById('admin-check-btn');
+            const resultDiv = document.getElementById('admin-check-result');
+            
+            button.disabled = true;
+            button.textContent = 'Checking...';
+            
+            try {
+                // Check broker links
+                const linksResponse = await fetch('/api/admin/trade/links');
+                const linksData = await linksResponse.json();
+                
+                // Check registrations
+                const registrationsResponse = await fetch('/api/admin/trade/registrations');
+                const registrationsData = await registrationsResponse.json();
+                
+                testResults.adminPanel = { links: linksData, registrations: registrationsData };
+                
+                const pendingCount = registrationsData.registrations?.filter(r => !r.verified).length || 0;
+                const verifiedCount = registrationsData.registrations?.filter(r => r.verified).length || 0;
+                
+                resultDiv.innerHTML = `
+                    <div class="success">✅ Admin Panel Data Retrieved</div>
+                    <div class="step">
+                        <h4>Broker Links:</h4>
+                        <pre>${JSON.stringify(linksData, null, 2)}</pre>
+                    </div>
+                    <div class="step">
+                        <h4>Registrations Summary:</h4>
+                        <p>Total: ${registrationsData.registrations?.length || 0}</p>
+                        <p>Pending: <span class="status pending">${pendingCount}</span></p>
+                        <p>Verified: <span class="status verified">${verifiedCount}</span></p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">❌ Admin Panel Check Failed: ${error.message}</div>
+                `;
+                resultDiv.style.display = 'block';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Check Admin Panel';
+            }
+        }
+
+        // Update summary periodically
+        setInterval(updateSummary, 1000);
+
+        function updateSummary() {
+            const summary = document.getElementById('summary');
+            let summaryHtml = '<h3>Test Results Summary</h3>';
+            
+            // Test 1 Summary
+            if (testResults.test1.registration || testResults.test1.verification) {
+                summaryHtml += '<div class="step"><h4>Test 1 (New User):</h4>';
+                if (testResults.test1.registration) {
+                    summaryHtml += '<p>✅ Registration: Created</p>';
+                }
+                if (testResults.test1.verification) {
+                    summaryHtml += '<p>✅ Verification: Completed</p>';
+                }
+                summaryHtml += '</div>';
+            }
+            
+            // Test 2 Summary
+            if (testResults.test2.registration || testResults.test2.verification) {
+                summaryHtml += '<div class="step"><h4>Test 2 (Existing User):</h4>';
+                if (testResults.test2.registration) {
+                    summaryHtml += '<p>✅ Registration: Created</p>';
+                }
+                if (testResults.test2.verification) {
+                    summaryHtml += '<p>✅ Verification: Completed</p>';
+                }
+                summaryHtml += '</div>';
+            }
+            
+            // Double-tap Summary
+            if (testResults.doubleTap) {
+                summaryHtml += `<div class="step"><h4>Double-tap Test:</h4>
+                    <p>✅ Successes: ${testResults.doubleTap.successCount}</p>
+                    <p>❌ Errors: ${testResults.doubleTap.errorCount}</p>
+                </div>`;
+            }
+            
+            // Admin Panel Summary
+            if (testResults.adminPanel) {
+                const pendingCount = testResults.adminPanel.registrations.registrations?.filter(r => !r.verified).length || 0;
+                const verifiedCount = testResults.adminPanel.registrations.registrations?.filter(r => r.verified).length || 0;
+                summaryHtml += `<div class="step"><h4>Admin Panel:</h4>
+                    <p>Total Registrations: ${testResults.adminPanel.registrations.registrations?.length || 0}</p>
+                    <p>Pending: <span class="status pending">${pendingCount}</span></p>
+                    <p>Verified: <span class="status verified">${verifiedCount}</span></p>
+                </div>`;
+            }
+            
+            summary.innerHTML = summaryHtml;
+        }
+    </script>
+</body>
+</html>

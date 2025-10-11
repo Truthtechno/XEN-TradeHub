@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Debug</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'theme-primary': {
+                            50: 'var(--color-primary-50)',
+                            100: 'var(--color-primary-100)',
+                            200: 'var(--color-primary-200)',
+                            300: 'var(--color-primary-300)',
+                            400: 'var(--color-primary-400)',
+                            500: 'var(--color-primary-500)',
+                            600: 'var(--color-primary-600)',
+                            700: 'var(--color-primary-700)',
+                            800: 'var(--color-primary-800)',
+                            900: 'var(--color-primary-900)',
+                            950: 'var(--color-primary-950)',
+                            DEFAULT: 'var(--color-primary)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: #6279c7;
+            --color-primary-50: #f0f4ff;
+            --color-primary-100: #e0e9ff;
+            --color-primary-200: #c7d6ff;
+            --color-primary-300: #a5b8ff;
+            --color-primary-400: #7c94ff;
+            --color-primary-500: #6279c7;
+            --color-primary-600: #4c63b8;
+            --color-primary-700: #3d4f9a;
+            --color-primary-800: #34417c;
+            --color-primary-900: #2d3665;
+            --color-primary-950: #1c2240;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white p-8">
+    <h1 class="text-2xl font-bold mb-4">CSS Variable Debug</h1>
+    
+    <div class="space-y-4">
+        <div class="p-4 bg-theme-primary text-white rounded">
+            Primary Color Test
+        </div>
+        <div class="p-4 bg-theme-primary-100 text-theme-primary-800 rounded">
+            Primary 100 Test
+        </div>
+        <div class="p-4 bg-blue-500 text-white rounded">
+            Standard Blue Test
+        </div>
+    </div>
+    
+    <div class="mt-8">
+        <h2 class="text-xl font-bold mb-2">CSS Variables:</h2>
+        <div class="text-sm space-y-1">
+            <div>--color-primary: <span id="primary"></span></div>
+            <div>--color-primary-100: <span id="primary100"></span></div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <h2 class="text-xl font-bold mb-2">Computed Styles:</h2>
+        <div class="text-sm space-y-1">
+            <div>Primary div background: <span id="primaryBg"></span></div>
+            <div>Primary 100 div background: <span id="primary100Bg"></span></div>
+        </div>
+    </div>
+    
+    <script>
+        // Display CSS variable values
+        const root = document.documentElement;
+        document.getElementById('primary').textContent = getComputedStyle(root).getPropertyValue('--color-primary');
+        document.getElementById('primary100').textContent = getComputedStyle(root).getPropertyValue('--color-primary-100');
+        
+        // Display computed styles
+        const primaryDiv = document.querySelector('.bg-theme-primary');
+        const primary100Div = document.querySelector('.bg-theme-primary-100');
+        
+        document.getElementById('primaryBg').textContent = getComputedStyle(primaryDiv).backgroundColor;
+        document.getElementById('primary100Bg').textContent = getComputedStyle(primary100Div).backgroundColor;
+    </script>
+</body>
+</html>

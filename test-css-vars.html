@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'theme-primary': 'var(--color-primary)',
+                        'theme-success': 'var(--color-success)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white p-8">
+    <h1 class="text-2xl font-bold mb-4">CSS Variables Test</h1>
+    
+    <div class="space-y-4">
+        <div class="p-4 bg-theme-primary text-white rounded">
+            Primary Color Test
+        </div>
+        <div class="p-4 bg-theme-success text-white rounded">
+            Success Color Test
+        </div>
+        <div class="p-4 bg-blue-500 text-white rounded">
+            Standard Blue Test
+        </div>
+    </div>
+    
+    <div class="mt-8">
+        <h2 class="text-xl font-bold mb-2">CSS Variables:</h2>
+        <div class="text-sm space-y-1">
+            <div>--color-primary: <span id="primary"></span></div>
+            <div>--color-success: <span id="success"></span></div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <h2 class="text-xl font-bold mb-2">Computed Styles:</h2>
+        <div class="text-sm space-y-1">
+            <div>Primary div background: <span id="primaryBg"></span></div>
+            <div>Success div background: <span id="successBg"></span></div>
+        </div>
+    </div>
+    
+    <script>
+        // Set CSS variables
+        const root = document.documentElement;
+        root.style.setProperty('--color-primary', '#6279c7');
+        root.style.setProperty('--color-success', '#58cea7');
+        
+        // Display CSS variable values
+        document.getElementById('primary').textContent = getComputedStyle(root).getPropertyValue('--color-primary');
+        document.getElementById('success').textContent = getComputedStyle(root).getPropertyValue('--color-success');
+        
+        // Display computed styles
+        const primaryDiv = document.querySelector('.bg-theme-primary');
+        const successDiv = document.querySelector('.bg-theme-success');
+        
+        document.getElementById('primaryBg').textContent = getComputedStyle(primaryDiv).backgroundColor;
+        document.getElementById('successBg').textContent = getComputedStyle(successDiv).backgroundColor;
+    </script>
+</body>
+</html>

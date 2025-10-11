@@ -1,0 +1,5136 @@
+{
+  "pi_test_1759562153724_auziovnlm": {
+    "id": "pi_test_1759562153724_auziovnlm",
+    "client_secret": "pi_test_pi_test_1759562153724_auziovnlm_secret_qoe63ev1s",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "test_user",
+      "userEmail": "test@example.com",
+      "testCard": "4242424242424242",
+      "testName": "Success Card"
+    },
+    "created": 1759562153,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_test_1759562153724",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_test_1759562156352_kqqasluob": {
+    "id": "pi_test_1759562156352_kqqasluob",
+    "client_secret": "pi_test_pi_test_1759562156352_kqqasluob_secret_ynuckr8nc",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "payment_failed",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "test_user",
+      "userEmail": "test@example.com",
+      "testCard": "4000000000000002",
+      "testName": "Declined Card"
+    },
+    "created": 1759562156,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "last_payment_error": {
+      "type": "card_error",
+      "code": "card_declined",
+      "message": "Your card was declined.",
+      "decline_code": "generic_decline"
+    }
+  },
+  "pi_test_1759562159037_f9xqv6vwi": {
+    "id": "pi_test_1759562159037_f9xqv6vwi",
+    "client_secret": "pi_test_pi_test_1759562159037_f9xqv6vwi_secret_bbd67srug",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "payment_failed",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "test_user",
+      "userEmail": "test@example.com",
+      "testCard": "4000000000009995",
+      "testName": "Insufficient Funds"
+    },
+    "created": 1759562159,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "last_payment_error": {
+      "type": "card_error",
+      "code": "card_declined",
+      "message": "Your card has insufficient funds.",
+      "decline_code": "insufficient_funds"
+    }
+  },
+  "pi_mock_1759562162095_67agv0zks": {
+    "id": "pi_mock_1759562162095_67agv0zks",
+    "client_secret": "pi_mock_pi_mock_1759562162095_67agv0zks_secret_2a55apfcd",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759562162095",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562162,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759562165556",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759562251037_6iy4h9sz1": {
+    "id": "pi_mock_1759562251037_6iy4h9sz1",
+    "client_secret": "pi_mock_pi_mock_1759562251037_6iy4h9sz1_secret_vu3g0kfn1",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "2",
+      "courseTitle": "THE GOAT STRATEGY",
+      "userId": "mock_user_1759562251037",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562251,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759562251038_6w513zbyt": {
+    "id": "pi_mock_1759562251038_6w513zbyt",
+    "client_secret": "pi_mock_pi_mock_1759562251038_6w513zbyt_secret_8fsmgb0ot",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "payment_failed",
+    "metadata": {
+      "courseId": "2",
+      "courseTitle": "THE GOAT STRATEGY",
+      "userId": "mock_user_1759562251037",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562251,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "last_payment_error": {
+      "type": "card_error",
+      "code": "card_declined",
+      "message": "Your card was declined.",
+      "decline_code": "generic_decline"
+    }
+  },
+  "pi_mock_1759562391441_i140d0159": {
+    "id": "pi_mock_1759562391441_i140d0159",
+    "client_secret": "pi_mock_pi_mock_1759562391441_i140d0159_secret_bh8j5s8l8",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759562391440",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562391,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759562394566",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759562398041_ytj3x30wk": {
+    "id": "pi_mock_1759562398041_ytj3x30wk",
+    "client_secret": "pi_mock_pi_mock_1759562398041_ytj3x30wk_secret_wrcf55hb9",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "payment_failed",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759562398041",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562398,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "last_payment_error": {
+      "type": "card_error",
+      "code": "card_declined",
+      "message": "Your card was declined.",
+      "decline_code": "generic_decline"
+    }
+  },
+  "pi_mock_1759562441126_rw30bmji7": {
+    "id": "pi_mock_1759562441126_rw30bmji7",
+    "client_secret": "pi_mock_pi_mock_1759562441126_rw30bmji7_secret_mht36d2pr",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759562441125",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562441,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759562441159",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759562441178_10gvs4z0i": {
+    "id": "pi_mock_1759562441178_10gvs4z0i",
+    "client_secret": "pi_mock_pi_mock_1759562441178_10gvs4z0i_secret_h5s7lxdai",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "payment_failed",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759562441178",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562441,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "last_payment_error": {
+      "type": "card_error",
+      "code": "card_declined",
+      "message": "Your card was declined.",
+      "decline_code": "generic_decline"
+    }
+  },
+  "pi_mock_1759562441218_bkedas8bs": {
+    "id": "pi_mock_1759562441218_bkedas8bs",
+    "client_secret": "pi_mock_pi_mock_1759562441218_bkedas8bs_secret_gli629y78",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "payment_failed",
+    "metadata": {
+      "courseId": "test-course-123",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759562441218",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562441,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "last_payment_error": {
+      "type": "card_error",
+      "code": "card_declined",
+      "message": "Your card has insufficient funds.",
+      "decline_code": "insufficient_funds"
+    }
+  },
+  "pi_mock_1759562456307_531y0p9u0": {
+    "id": "pi_mock_1759562456307_531y0p9u0",
+    "client_secret": "pi_mock_pi_mock_1759562456307_531y0p9u0_secret_8vniqgv5l",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "course-goat-strategy",
+      "courseTitle": "THE GOAT STRATEGY",
+      "userId": "mock_user_1759562456307",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562456,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759562456334",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759562557355_na8f0fcn5": {
+    "id": "pi_mock_1759562557355_na8f0fcn5",
+    "client_secret": "pi_mock_pi_mock_1759562557355_na8f0fcn5_secret_3bm0917q2",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759562557354",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562557,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759562580912",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759562557356_878vh5vl1": {
+    "id": "pi_mock_1759562557356_878vh5vl1",
+    "client_secret": "pi_mock_pi_mock_1759562557356_878vh5vl1_secret_kj7oa1ekf",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759562557354",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759562557,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759563050613_sz4hcp3b0": {
+    "id": "pi_mock_1759563050613_sz4hcp3b0",
+    "client_secret": "pi_mock_pi_mock_1759563050613_sz4hcp3b0_secret_3vhzu9tkk",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "signals-subscription",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759563050612",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759563050,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759563050614_9cmtl3mc2": {
+    "id": "pi_mock_1759563050614_9cmtl3mc2",
+    "client_secret": "pi_mock_pi_mock_1759563050614_9cmtl3mc2_secret_49rstupye",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "signals-subscription",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759563050613",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759563050,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759563076509",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759585898140_n256fbk7d": {
+    "id": "pi_mock_1759585898140_n256fbk7d",
+    "client_secret": "pi_mock_pi_mock_1759585898140_n256fbk7d_secret_f8zx015w6",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "signals-subscription",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759585898139",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759585898,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759585898142_m88vluljy": {
+    "id": "pi_mock_1759585898142_m88vluljy",
+    "client_secret": "pi_mock_pi_mock_1759585898142_m88vluljy_secret_tcyelxm13",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "signals-subscription",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759585898139",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759585898,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759585917676",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759586375389_hy9edlrs2": {
+    "id": "pi_mock_1759586375389_hy9edlrs2",
+    "client_secret": "pi_mock_pi_mock_1759586375389_hy9edlrs2_secret_x38bdbo8z",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "signals-subscription",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759586375389",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759586375,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759586375391_2mr0ejsax": {
+    "id": "pi_mock_1759586375391_2mr0ejsax",
+    "client_secret": "pi_mock_pi_mock_1759586375391_2mr0ejsax_secret_ru8c1c4ne",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "signals-subscription",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759586375389",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759586375,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759586398282",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759739052910_ycp1a7ocv": {
+    "id": "pi_mock_1759739052910_ycp1a7ocv",
+    "client_secret": "pi_mock_pi_mock_1759739052910_ycp1a7ocv_secret_hp9eenr2b",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759739052909",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759739052,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759739053229",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759739185702_f5ub9mf81": {
+    "id": "pi_mock_1759739185702_f5ub9mf81",
+    "client_secret": "pi_mock_pi_mock_1759739185702_f5ub9mf81_secret_26f2gyups",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgeuzjx70000ubd4lelc1609",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759739185702",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759739185,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759739185703_t2ujjhd64": {
+    "id": "pi_mock_1759739185703_t2ujjhd64",
+    "client_secret": "pi_mock_pi_mock_1759739185703_t2ujjhd64_secret_g9jp909mi",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgeuzjx70000ubd4lelc1609",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759739185702",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759739185,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759739211953",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759743038191_qwe49s21t": {
+    "id": "pi_mock_1759743038191_qwe49s21t",
+    "client_secret": "pi_mock_pi_mock_1759743038191_qwe49s21t_secret_sqdd602q4",
+    "amount": 79999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgeumud10000c0bs7fvoqbdu",
+      "courseTitle": "Advanced Trading Strategies",
+      "userId": "mock_user_1759743038191",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759743038,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759743038194_ck504y6np": {
+    "id": "pi_mock_1759743038194_ck504y6np",
+    "client_secret": "pi_mock_pi_mock_1759743038194_ck504y6np_secret_5stkdxj04",
+    "amount": 79999,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgeumud10000c0bs7fvoqbdu",
+      "courseTitle": "Advanced Trading Strategies",
+      "userId": "mock_user_1759743038191",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759743038,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759743062812",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759744424037_ldzd87xxu": {
+    "id": "pi_mock_1759744424037_ldzd87xxu",
+    "client_secret": "pi_mock_pi_mock_1759744424037_ldzd87xxu_secret_az3gnyi28",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgeuzjx70000ubd4lelc1609",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759744424037",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759744424,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759744424039_ohlbcbd4s": {
+    "id": "pi_mock_1759744424039_ohlbcbd4s",
+    "client_secret": "pi_mock_pi_mock_1759744424039_ohlbcbd4s_secret_pm3abb9g1",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgeuzjx70000ubd4lelc1609",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759744424037",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759744424,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759744450180",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759744988471_0r43lpidv": {
+    "id": "pi_mock_1759744988471_0r43lpidv",
+    "client_secret": "pi_mock_pi_mock_1759744988471_0r43lpidv_secret_bfp3ap8ty",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgeuzjx70000ubd4lelc1609",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759744988470",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759744988,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759744988472_fhpz2zav5": {
+    "id": "pi_mock_1759744988472_fhpz2zav5",
+    "client_secret": "pi_mock_pi_mock_1759744988472_fhpz2zav5_secret_g275fgypq",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgeuzjx70000ubd4lelc1609",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759744988470",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759744988,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759745007160",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759745313704_bvt7bmy59": {
+    "id": "pi_mock_1759745313704_bvt7bmy59",
+    "client_secret": "pi_mock_pi_mock_1759745313704_bvt7bmy59_secret_hey15t03c",
+    "amount": 14999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgeuzjx70000ubd4lelc1609",
+      "courseTitle": "Complete Flow Test Course - UPDATED",
+      "userId": "mock_user_1759745313704",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759745313,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759752847762_d4uz1gh5g": {
+    "id": "pi_mock_1759752847762_d4uz1gh5g",
+    "client_secret": "pi_mock_pi_mock_1759752847762_d4uz1gh5g_secret_i2mcryw4w",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgf3dud6000cpfs2m32fpq6h",
+      "courseTitle": "Forex Trading Course",
+      "userId": "mock_user_1759752847741",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759752847,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759752847870_wssvuqb74": {
+    "id": "pi_mock_1759752847870_wssvuqb74",
+    "client_secret": "pi_mock_pi_mock_1759752847870_wssvuqb74_secret_5kym0fje5",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgf3dud6000cpfs2m32fpq6h",
+      "courseTitle": "Forex Trading Course",
+      "userId": "mock_user_1759752847741",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759752847,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759752869142",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759752902754_u5484nw58": {
+    "id": "pi_mock_1759752902754_u5484nw58",
+    "client_secret": "pi_mock_pi_mock_1759752902754_u5484nw58_secret_2bwf0pbca",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgf3dud6000cpfs2m32fpq6h",
+      "courseTitle": "Forex Trading Course",
+      "userId": "mock_user_1759752902754",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759752902,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759752902756_b2v8543pg": {
+    "id": "pi_mock_1759752902756_b2v8543pg",
+    "client_secret": "pi_mock_pi_mock_1759752902756_b2v8543pg_secret_a94ysp4qm",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgf3dud6000cpfs2m32fpq6h",
+      "courseTitle": "Forex Trading Course",
+      "userId": "mock_user_1759752902754",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759752902,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759752923350",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759753604289_rowd8o3qj": {
+    "id": "pi_mock_1759753604289_rowd8o3qj",
+    "client_secret": "pi_mock_pi_mock_1759753604289_rowd8o3qj_secret_twwmvcrrj",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgf3dud6000cpfs2m32fpq6h",
+      "courseTitle": "Forex Trading Course",
+      "userId": "mock_user_1759753604288",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759753604,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759753604291_mwvlab9xw": {
+    "id": "pi_mock_1759753604291_mwvlab9xw",
+    "client_secret": "pi_mock_pi_mock_1759753604291_mwvlab9xw_secret_ti3xugy8p",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgf3dud6000cpfs2m32fpq6h",
+      "courseTitle": "Forex Trading Course",
+      "userId": "mock_user_1759753604288",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759753604,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759753621999",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759754103674_yr8dm8eue": {
+    "id": "pi_mock_1759754103674_yr8dm8eue",
+    "client_secret": "pi_mock_pi_mock_1759754103674_yr8dm8eue_secret_ihtr17n6o",
+    "amount": 29900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgeobxn00000wmzkgg4lzkuc",
+      "courseTitle": "Complete Video Lessons Test",
+      "userId": "mock_user_1759754103673",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759754103,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759754122266",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759754103676_f723o4cpu": {
+    "id": "pi_mock_1759754103676_f723o4cpu",
+    "client_secret": "pi_mock_pi_mock_1759754103676_f723o4cpu_secret_7ci075y37",
+    "amount": 29900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgeobxn00000wmzkgg4lzkuc",
+      "courseTitle": "Complete Video Lessons Test",
+      "userId": "mock_user_1759754103674",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759754103,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759773564013_ug1nbi576": {
+    "id": "pi_mock_1759773564013_ug1nbi576",
+    "client_secret": "pi_mock_pi_mock_1759773564013_ug1nbi576_secret_d5n9wegqa",
+    "amount": 9999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "test-course",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759773564013",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759773564,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759773878047_8n8voaoxh": {
+    "id": "pi_mock_1759773878047_8n8voaoxh",
+    "client_secret": "pi_mock_pi_mock_1759773878047_8n8voaoxh_secret_p55tu9rtk",
+    "amount": 9999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "test-course",
+      "courseTitle": "Test Course",
+      "userId": "mock_user_1759773878045",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759773878,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759846117022_3p92k9dka": {
+    "id": "pi_mock_1759846117022_3p92k9dka",
+    "client_secret": "pi_mock_pi_mock_1759846117022_3p92k9dka_secret_6an5c4t9b",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759846117022",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759846117,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759846117024_vfkv1l0dg": {
+    "id": "pi_mock_1759846117024_vfkv1l0dg",
+    "client_secret": "pi_mock_pi_mock_1759846117024_vfkv1l0dg_secret_3dwtzi0pw",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759846117022",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759846117,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759846138480",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759846977808_7b9x8nzwl": {
+    "id": "pi_mock_1759846977808_7b9x8nzwl",
+    "client_secret": "pi_mock_pi_mock_1759846977808_7b9x8nzwl_secret_mnhh7lxtu",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759846977808",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759846977,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759846977809_wgr1vye4i": {
+    "id": "pi_mock_1759846977809_wgr1vye4i",
+    "client_secret": "pi_mock_pi_mock_1759846977809_wgr1vye4i_secret_kjc2h2prv",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription",
+      "userId": "mock_user_1759846977808",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759846977,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759847206733",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759847748564_3pvbzu3r5": {
+    "id": "pi_mock_1759847748564_3pvbzu3r5",
+    "client_secret": "pi_mock_pi_mock_1759847748564_3pvbzu3r5_secret_f8ufgrfxe",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg336n40002nscu1wv7xxn3",
+      "userEmail": "analyst@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759847748,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759847748614",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759847778031_sufx15he4": {
+    "id": "pi_mock_1759847778031_sufx15he4",
+    "client_secret": "pi_mock_pi_mock_1759847778031_sufx15he4_secret_ek9691u0z",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg336ul0004nscu7jbgvnv1",
+      "userEmail": "editor@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759847778,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759847778079",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759847874551_r133xg89n": {
+    "id": "pi_mock_1759847874551_r133xg89n",
+    "client_secret": "pi_mock_pi_mock_1759847874551_r133xg89n_secret_jzq94dola",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg336fd0000nscusupxq2p1",
+      "userEmail": "admin@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759847874,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759847874741",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759847901824_vk41848gg": {
+    "id": "pi_mock_1759847901824_vk41848gg",
+    "client_secret": "pi_mock_pi_mock_1759847901824_vk41848gg_secret_hxw2d8p4j",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg336fd0000nscusupxq2p1",
+      "userEmail": "admin@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759847901,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759847901841",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759847962827_ozjuvftwc": {
+    "id": "pi_mock_1759847962827_ozjuvftwc",
+    "client_secret": "pi_mock_pi_mock_1759847962827_ozjuvftwc_secret_ylp5xth7g",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg336fd0000nscusupxq2p1",
+      "userEmail": "admin@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759847962,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759847962843",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759847998344_5uvfcu5ik": {
+    "id": "pi_mock_1759847998344_5uvfcu5ik",
+    "client_secret": "pi_mock_pi_mock_1759847998344_5uvfcu5ik_secret_24atm8uqp",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg336fd0000nscusupxq2p1",
+      "userEmail": "admin@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759847998,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759847998361",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759848020786_qjxu9truy": {
+    "id": "pi_mock_1759848020786_qjxu9truy",
+    "client_secret": "pi_mock_pi_mock_1759848020786_qjxu9truy_secret_ufeqvhket",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg336fd0000nscusupxq2p1",
+      "userEmail": "admin@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759848020,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759848020805",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759848326231_0o560yaxv": {
+    "id": "pi_mock_1759848326231_0o560yaxv",
+    "client_secret": "pi_mock_pi_mock_1759848326231_0o560yaxv_secret_6i0jmqhdc",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "cmgg45sak0000h9ha2e61a4pq",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759848326,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759848326233_37ttygand": {
+    "id": "pi_mock_1759848326233_37ttygand",
+    "client_secret": "pi_mock_pi_mock_1759848326233_37ttygand_secret_2u0syphxq",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg45sak0000h9ha2e61a4pq",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759848326,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759848349827",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759848665509_ihu90rfqv": {
+    "id": "pi_mock_1759848665509_ihu90rfqv",
+    "client_secret": "pi_mock_pi_mock_1759848665509_ihu90rfqv_secret_bi8zkc6ac",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggoggu60000rk7e9k9o4uy4",
+      "userEmail": "completepaymenttest@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759848665,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759848665926",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849173857_3rew5okx6": {
+    "id": "pi_mock_1759849173857_3rew5okx6",
+    "client_secret": "pi_mock_pi_mock_1759849173857_3rew5okx6_secret_rgc0l7ixn",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849173856",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849173,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849180583",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849218105_bc0b1smk7": {
+    "id": "pi_mock_1759849218105_bc0b1smk7",
+    "client_secret": "pi_mock_pi_mock_1759849218105_bc0b1smk7_secret_figy5jqe6",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759849218104",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849218,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759849218107_sd5og5fix": {
+    "id": "pi_mock_1759849218107_sd5og5fix",
+    "client_secret": "pi_mock_pi_mock_1759849218107_sd5og5fix_secret_qfhon68sh",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849218104",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849218,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849246644",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849439680_l8u2re9md": {
+    "id": "pi_mock_1759849439680_l8u2re9md",
+    "client_secret": "pi_mock_pi_mock_1759849439680_l8u2re9md_secret_jhn6dmd6m",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849439679",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849439,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849439704",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849441755_mdnknrnzn": {
+    "id": "pi_mock_1759849441755_mdnknrnzn",
+    "client_secret": "pi_mock_pi_mock_1759849441755_mdnknrnzn_secret_1kexz49dn",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849441754",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849441,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849441775",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849443815_cqhhd45sp": {
+    "id": "pi_mock_1759849443815_cqhhd45sp",
+    "client_secret": "pi_mock_pi_mock_1759849443815_cqhhd45sp_secret_1z5uluv3q",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849443814",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849443,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849443833",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849475454_07n2mktyk": {
+    "id": "pi_mock_1759849475454_07n2mktyk",
+    "client_secret": "pi_mock_pi_mock_1759849475454_07n2mktyk_secret_452sdk7ye",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849475454",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849475,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849475501",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849477545_6tiehj2mm": {
+    "id": "pi_mock_1759849477545_6tiehj2mm",
+    "client_secret": "pi_mock_pi_mock_1759849477545_6tiehj2mm_secret_fknum7gjs",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849477545",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849477,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849477563",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849479603_3p5pq3gx2": {
+    "id": "pi_mock_1759849479603_3p5pq3gx2",
+    "client_secret": "pi_mock_pi_mock_1759849479603_3p5pq3gx2_secret_8wnpd1jzj",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849479602",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849479,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849479623",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849583010_4yjbksujn": {
+    "id": "pi_mock_1759849583010_4yjbksujn",
+    "client_secret": "pi_mock_pi_mock_1759849583010_4yjbksujn_secret_r3akt4j2t",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849583009",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849583,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849583035",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849601543_wyrga3x9g": {
+    "id": "pi_mock_1759849601543_wyrga3x9g",
+    "client_secret": "pi_mock_pi_mock_1759849601543_wyrga3x9g_secret_mhpj1m0ui",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849601543",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849601,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849601590",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849615847_08cwy5wz9": {
+    "id": "pi_mock_1759849615847_08cwy5wz9",
+    "client_secret": "pi_mock_pi_mock_1759849615847_08cwy5wz9_secret_2thvzagw9",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849615847",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849615,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849615887",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849651020_71z7jyqya": {
+    "id": "pi_mock_1759849651020_71z7jyqya",
+    "client_secret": "pi_mock_pi_mock_1759849651020_71z7jyqya_secret_gzpa793kr",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849651020",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849651,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849651070",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849671113_u70qbi8g3": {
+    "id": "pi_mock_1759849671113_u70qbi8g3",
+    "client_secret": "pi_mock_pi_mock_1759849671113_u70qbi8g3_secret_xnbsic3w0",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849671113",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849671,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849671137",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849700377_v2sw3imug": {
+    "id": "pi_mock_1759849700377_v2sw3imug",
+    "client_secret": "pi_mock_pi_mock_1759849700377_v2sw3imug_secret_cfjc7zrt5",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849700377",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849700,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849700401",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849709569_wc4a6x6w2": {
+    "id": "pi_mock_1759849709569_wc4a6x6w2",
+    "client_secret": "pi_mock_pi_mock_1759849709569_wc4a6x6w2_secret_adyte3z84",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849709568",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849709,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849709594",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849711678_f8uv5a1u7": {
+    "id": "pi_mock_1759849711678_f8uv5a1u7",
+    "client_secret": "pi_mock_pi_mock_1759849711678_f8uv5a1u7_secret_4szkie71c",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849711678",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849711,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849711699",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849713771_xm3zinrv6": {
+    "id": "pi_mock_1759849713771_xm3zinrv6",
+    "client_secret": "pi_mock_pi_mock_1759849713771_xm3zinrv6_secret_mdxp1n6cx",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759849713771",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849713,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849713792",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849779684_baxho9ayq": {
+    "id": "pi_mock_1759849779684_baxho9ayq",
+    "client_secret": "pi_mock_pi_mock_1759849779684_baxho9ayq_secret_h2305gqp7",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp4cl50000mpd4gypnwcju",
+      "userEmail": "test1@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849779,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849779709",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849782348_8wm7dg16e": {
+    "id": "pi_mock_1759849782348_8wm7dg16e",
+    "client_secret": "pi_mock_pi_mock_1759849782348_8wm7dg16e_secret_ao0pjmlsp",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp4ent0001mpd4lzvhw14f",
+      "userEmail": "test2@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849782,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849782390",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849784451_wzly0n1bj": {
+    "id": "pi_mock_1759849784451_wzly0n1bj",
+    "client_secret": "pi_mock_pi_mock_1759849784451_wzly0n1bj_secret_54dy5mvv4",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp4ga10004mpd4mnpf6zm3",
+      "userEmail": "test3@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849784,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849784469",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849801394_eyemip3oj": {
+    "id": "pi_mock_1759849801394_eyemip3oj",
+    "client_secret": "pi_mock_pi_mock_1759849801394_eyemip3oj_secret_cp8a00y3m",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp4tc10000obkwzk11z6fu",
+      "userEmail": "test1@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849801,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849801434",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849803555_zwfte5q87": {
+    "id": "pi_mock_1759849803555_zwfte5q87",
+    "client_secret": "pi_mock_pi_mock_1759849803555_zwfte5q87_secret_tmeeogci9",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp4v0w0001obkwhxlne3vi",
+      "userEmail": "test2@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849803,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849803571",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849805622_vjx1uhapt": {
+    "id": "pi_mock_1759849805622_vjx1uhapt",
+    "client_secret": "pi_mock_pi_mock_1759849805622_vjx1uhapt_secret_6jfni0afp",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp4wm40004obkwqf5l7t9l",
+      "userEmail": "test3@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849805,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849805642",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849829493_4nknrlmky": {
+    "id": "pi_mock_1759849829493_4nknrlmky",
+    "client_secret": "pi_mock_pi_mock_1759849829493_4nknrlmky_secret_z8m4485vq",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp5f0g0000rj6emp7zvszh",
+      "userEmail": "test1@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849829,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849829544",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849831695_k1p693wgz": {
+    "id": "pi_mock_1759849831695_k1p693wgz",
+    "client_secret": "pi_mock_pi_mock_1759849831695_k1p693wgz_secret_k7znb2czx",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp5gql0001rj6ejei47dpg",
+      "userEmail": "test2@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849831,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849831712",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849833775_xeuu1oe40": {
+    "id": "pi_mock_1759849833775_xeuu1oe40",
+    "client_secret": "pi_mock_pi_mock_1759849833775_xeuu1oe40_secret_3qkmzp9iw",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp5ic30004rj6et83yih4a",
+      "userEmail": "test3@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849833,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849833796",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849937039_q122demks": {
+    "id": "pi_mock_1759849937039_q122demks",
+    "client_secret": "pi_mock_pi_mock_1759849937039_q122demks_secret_zz26zz0r0",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp7q070000emk1xef1jm0f",
+      "userEmail": "student1@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849937,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849937066",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849942174_8fius6vru": {
+    "id": "pi_mock_1759849942174_8fius6vru",
+    "client_secret": "pi_mock_pi_mock_1759849942174_8fius6vru_secret_u7fav48h5",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp7tzf0001emk1ty71rgpp",
+      "userEmail": "student2@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849942,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849942195",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759849947281_3r9d8jgqw": {
+    "id": "pi_mock_1759849947281_3r9d8jgqw",
+    "client_secret": "pi_mock_pi_mock_1759849947281_3r9d8jgqw_secret_dxiwxf2ox",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggp7xxd0002emk1ckiwadok",
+      "userEmail": "student3@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759849947,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759849947297",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759850278563_nlgswvmwn": {
+    "id": "pi_mock_1759850278563_nlgswvmwn",
+    "client_secret": "pi_mock_pi_mock_1759850278563_nlgswvmwn_secret_d10jklnc1",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759850278561",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850278,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759850278564_p9ted0snu": {
+    "id": "pi_mock_1759850278564_p9ted0snu",
+    "client_secret": "pi_mock_pi_mock_1759850278564_p9ted0snu_secret_mqtr5vt3g",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759850278562",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850278,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759850298130",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759850348729_n25lmao14": {
+    "id": "pi_mock_1759850348729_n25lmao14",
+    "client_secret": "pi_mock_pi_mock_1759850348729_n25lmao14_secret_k31by6tzd",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759850348728",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850348,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759850348731_0q4p869ia": {
+    "id": "pi_mock_1759850348731_0q4p869ia",
+    "client_secret": "pi_mock_pi_mock_1759850348731_0q4p869ia_secret_ffcuylvun",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759850348728",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850348,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759850962393",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759850613535_d207e353w": {
+    "id": "pi_mock_1759850613535_d207e353w",
+    "client_secret": "pi_mock_pi_mock_1759850613535_d207e353w_secret_01j1uhwzx",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759850613534",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850613,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759850614042",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759850655226_warhx675b": {
+    "id": "pi_mock_1759850655226_warhx675b",
+    "client_secret": "pi_mock_pi_mock_1759850655226_warhx675b_secret_5bo5fur4a",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759850655226",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850655,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759850655259",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759850673292_usm7w3ut2": {
+    "id": "pi_mock_1759850673292_usm7w3ut2",
+    "client_secret": "pi_mock_pi_mock_1759850673292_usm7w3ut2_secret_yr67yy8j4",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "test-user-1759850673291",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850673,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759850673551",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759850704061_ng7047x26": {
+    "id": "pi_mock_1759850704061_ng7047x26",
+    "client_secret": "pi_mock_pi_mock_1759850704061_ng7047x26_secret_s6z33abh1",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759850704061",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850704,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759850719981_qwsnevu28": {
+    "id": "pi_mock_1759850719981_qwsnevu28",
+    "client_secret": "pi_mock_pi_mock_1759850719981_qwsnevu28_secret_09p0r9lvi",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759850719980",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850719,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759850740895_ahpn0eqvr": {
+    "id": "pi_mock_1759850740895_ahpn0eqvr",
+    "client_secret": "pi_mock_pi_mock_1759850740895_ahpn0eqvr_secret_w8oke3l7x",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759850740894",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850740,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759850752330_b2uzi54ij": {
+    "id": "pi_mock_1759850752330_b2uzi54ij",
+    "client_secret": "pi_mock_pi_mock_1759850752330_b2uzi54ij_secret_jarqer75z",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759850752330",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850752,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759850782298_lpurhirjv": {
+    "id": "pi_mock_1759850782298_lpurhirjv",
+    "client_secret": "pi_mock_pi_mock_1759850782298_lpurhirjv_secret_00k3s490d",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "test-user-1759850782298",
+      "userEmail": "test@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850782,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759850824817_z2d95o8q6": {
+    "id": "pi_mock_1759850824817_z2d95o8q6",
+    "client_secret": "pi_mock_pi_mock_1759850824817_z2d95o8q6_secret_3kfc2jpj4",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggpqr0d0000eg1849j2zytg",
+      "userEmail": "paymentauthtest@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759850824,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759850825258",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759851005111_vlxual7g7": {
+    "id": "pi_mock_1759851005111_vlxual7g7",
+    "client_secret": "pi_mock_pi_mock_1759851005111_vlxual7g7_secret_hs7sztbk2",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "cmgg45sak0000h9ha2e61a4pq",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759851005,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759851005113_wns2rhw53": {
+    "id": "pi_mock_1759851005113_wns2rhw53",
+    "client_secret": "pi_mock_pi_mock_1759851005113_wns2rhw53_secret_yn7b5b2mh",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg45sak0000h9ha2e61a4pq",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759851005,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759851024615",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759851488281_fb538smbv": {
+    "id": "pi_mock_1759851488281_fb538smbv",
+    "client_secret": "pi_mock_pi_mock_1759851488281_fb538smbv_secret_fcaogc79b",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg45sak0000h9ha2e61a4pq",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759851488,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759851488301",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759851537149_5h12pu7ad": {
+    "id": "pi_mock_1759851537149_5h12pu7ad",
+    "client_secret": "pi_mock_pi_mock_1759851537149_5h12pu7ad_secret_xaqiwpqc6",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgg45sak0000h9ha2e61a4pq",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759851537,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759851537191",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759851572242_4evvcejab": {
+    "id": "pi_mock_1759851572242_4evvcejab",
+    "client_secret": "pi_mock_pi_mock_1759851572242_4evvcejab_secret_di8ew6l2p",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggq6ro10000y9tbeqzlakfy",
+      "userEmail": "newstudent@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759851572,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759851572276",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759851772104_hi9a6nsup": {
+    "id": "pi_mock_1759851772104_hi9a6nsup",
+    "client_secret": "pi_mock_pi_mock_1759851772104_hi9a6nsup_secret_btkfl0frq",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmggqb1w6000c5ff1cmuzupgt",
+      "userEmail": "signuptest1759851771684@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759851772,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759851772547",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759855577843_06uprt1v8": {
+    "id": "pi_mock_1759855577843_06uprt1v8",
+    "client_secret": "pi_mock_pi_mock_1759855577843_06uprt1v8_secret_6gfz2n9id",
+    "amount": 9900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgg33rac004aeekw8wmgyh3j",
+      "courseTitle": "Trading Basics for Beginners",
+      "userId": "mock_user_1759855577842",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759855577,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759855577845_v4l2zb5on": {
+    "id": "pi_mock_1759855577845_v4l2zb5on",
+    "client_secret": "pi_mock_pi_mock_1759855577845_v4l2zb5on_secret_nxlc32dia",
+    "amount": 9900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgg33rac004aeekw8wmgyh3j",
+      "courseTitle": "Trading Basics for Beginners",
+      "userId": "mock_user_1759855577843",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759855577,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759855597654",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759859539845_2risfldp8": {
+    "id": "pi_mock_1759859539845_2risfldp8",
+    "client_secret": "pi_mock_pi_mock_1759859539845_2risfldp8_secret_ia9vly01z",
+    "amount": 1000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgguwxcc0010fulujjwc4d7g",
+      "courseTitle": "FOREX ABC 2",
+      "userId": "mock_user_1759859539844",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759859539,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759859563965",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759859539847_5fku0xoa9": {
+    "id": "pi_mock_1759859539847_5fku0xoa9",
+    "client_secret": "pi_mock_pi_mock_1759859539847_5fku0xoa9_secret_lnrf8yid6",
+    "amount": 1000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgguwxcc0010fulujjwc4d7g",
+      "courseTitle": "FOREX ABC 2",
+      "userId": "mock_user_1759859539844",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759859539,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759863242818_bdeinlgmc": {
+    "id": "pi_mock_1759863242818_bdeinlgmc",
+    "client_secret": "pi_mock_pi_mock_1759863242818_bdeinlgmc_secret_zwq4sl60z",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmggwhkbf0006sf59ssm53p0v",
+      "courseTitle": "test",
+      "userId": "mock_user_1759863242818",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759863242,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759863981075_5yk9v5nzc": {
+    "id": "pi_mock_1759863981075_5yk9v5nzc",
+    "client_secret": "pi_mock_pi_mock_1759863981075_5yk9v5nzc_secret_lsrs4jcm3",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "test",
+      "courseTitle": "Test Resource",
+      "userId": "mock_user_1759863981075",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759863981,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759891909064_i2dtf5b1p": {
+    "id": "pi_mock_1759891909064_i2dtf5b1p",
+    "client_secret": "pi_mock_pi_mock_1759891909064_i2dtf5b1p_secret_e7wzaf68o",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "test-resource",
+      "courseTitle": "Test Resource",
+      "userId": "mock_user_1759891909064",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759891909,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759891926263_9akl1ger5": {
+    "id": "pi_mock_1759891926263_9akl1ger5",
+    "client_secret": "pi_mock_pi_mock_1759891926263_9akl1ger5_secret_p1karnt8r",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759891926263",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759891926,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759891926568",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759891927082_eaxpp9myn": {
+    "id": "pi_mock_1759891927082_eaxpp9myn",
+    "client_secret": "pi_mock_pi_mock_1759891927082_eaxpp9myn_secret_g2khhh0ly",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759891927081",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759891927,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759891967010_0cx5iptcr": {
+    "id": "pi_mock_1759891967010_0cx5iptcr",
+    "client_secret": "pi_mock_pi_mock_1759891967010_0cx5iptcr_secret_qx1yrslkr",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759891967009",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759891967,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759891986417",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759891967013_chzgj911x": {
+    "id": "pi_mock_1759891967013_chzgj911x",
+    "client_secret": "pi_mock_pi_mock_1759891967013_chzgj911x_secret_kk8dpls9m",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759891967009",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759891967,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759891986492_qoesq1wq6": {
+    "id": "pi_mock_1759891986492_qoesq1wq6",
+    "client_secret": "pi_mock_pi_mock_1759891986492_qoesq1wq6_secret_70zgzh2v8",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759891986492",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759891986,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759892078345_bqyyqotwk": {
+    "id": "pi_mock_1759892078345_bqyyqotwk",
+    "client_secret": "pi_mock_pi_mock_1759892078345_bqyyqotwk_secret_zyffws25n",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759892078345",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892078,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892078841",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759892127478_229z7jvrh": {
+    "id": "pi_mock_1759892127478_229z7jvrh",
+    "client_secret": "pi_mock_pi_mock_1759892127478_229z7jvrh_secret_tbyyxd6d4",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759892127478",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892127,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892127546",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759892151736_151s0ue9z": {
+    "id": "pi_mock_1759892151736_151s0ue9z",
+    "client_secret": "pi_mock_pi_mock_1759892151736_151s0ue9z_secret_d8rw89f2s",
+    "amount": 5600,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghdzaiu001ye3lt3bcmnf2t",
+      "courseTitle": "test",
+      "userId": "mock_user_1759892151736",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892151,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892151780",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759892417382_m7gxwpi3s": {
+    "id": "pi_mock_1759892417382_m7gxwpi3s",
+    "client_secret": "pi_mock_pi_mock_1759892417382_m7gxwpi3s_secret_retoz2zhk",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759892417382",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892417,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759892417385_8sum0wug2": {
+    "id": "pi_mock_1759892417385_8sum0wug2",
+    "client_secret": "pi_mock_pi_mock_1759892417385_8sum0wug2_secret_ftan9jn3m",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759892417382",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892417,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892445380",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759892508471_7eyhbzawx": {
+    "id": "pi_mock_1759892508471_7eyhbzawx",
+    "client_secret": "pi_mock_pi_mock_1759892508471_7eyhbzawx_secret_flqnpmdmy",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759892508470",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892508,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759892508472_hm5ksjg7j": {
+    "id": "pi_mock_1759892508472_hm5ksjg7j",
+    "client_secret": "pi_mock_pi_mock_1759892508472_hm5ksjg7j_secret_otw6cv758",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759892508471",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892508,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759892567731_0twsjokno": {
+    "id": "pi_mock_1759892567731_0twsjokno",
+    "client_secret": "pi_mock_pi_mock_1759892567731_0twsjokno_secret_gvsuidp6p",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759892567731",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892567,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892568044",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759892584852_o62yx6dus": {
+    "id": "pi_mock_1759892584852_o62yx6dus",
+    "client_secret": "pi_mock_pi_mock_1759892584852_o62yx6dus_secret_ex4ml6shj",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759892584852",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892584,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892584901",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759892613929_rxi842t3l": {
+    "id": "pi_mock_1759892613929_rxi842t3l",
+    "client_secret": "pi_mock_pi_mock_1759892613929_rxi842t3l_secret_c1a61ziip",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759892613928",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892613,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892613961",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759892941086_fj6q52wkj": {
+    "id": "pi_mock_1759892941086_fj6q52wkj",
+    "client_secret": "pi_mock_pi_mock_1759892941086_fj6q52wkj_secret_clyrlsk30",
+    "amount": 2599,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghetfuo005le3ltcrpmiadu",
+      "courseTitle": "Test Purchase Resource",
+      "userId": "mock_user_1759892941086",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759892941,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759892941358",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759893196755_sunrmh4pj": {
+    "id": "pi_mock_1759893196755_sunrmh4pj",
+    "client_secret": "pi_mock_pi_mock_1759893196755_sunrmh4pj_secret_0lpm47iax",
+    "amount": 1599,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgheywth006ke3ltesidqxim",
+      "courseTitle": "Debug Test Resource",
+      "userId": "mock_user_1759893196755",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759893196,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759893245641_vkd6o9ss5": {
+    "id": "pi_mock_1759893245641_vkd6o9ss5",
+    "client_secret": "pi_mock_pi_mock_1759893245641_vkd6o9ss5_secret_3lq3a9gjc",
+    "amount": 1599,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgheywth006ke3ltesidqxim",
+      "courseTitle": "Debug Test Resource",
+      "userId": "mock_user_1759893245640",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759893245,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759893264375",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759893245643_hlul0pigw": {
+    "id": "pi_mock_1759893245643_hlul0pigw",
+    "client_secret": "pi_mock_pi_mock_1759893245643_hlul0pigw_secret_6gkeemz82",
+    "amount": 1599,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgheywth006ke3ltesidqxim",
+      "courseTitle": "Debug Test Resource",
+      "userId": "mock_user_1759893245641",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759893245,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759893270151_itpgh8iit": {
+    "id": "pi_mock_1759893270151_itpgh8iit",
+    "client_secret": "pi_mock_pi_mock_1759893270151_itpgh8iit_secret_x56nn16f7",
+    "amount": 2599,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghetfuo005le3ltcrpmiadu",
+      "courseTitle": "Test Purchase Resource",
+      "userId": "mock_user_1759893270151",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759893270,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759893270152_9kivfmgq6": {
+    "id": "pi_mock_1759893270152_9kivfmgq6",
+    "client_secret": "pi_mock_pi_mock_1759893270152_9kivfmgq6_secret_o4yrsmqcr",
+    "amount": 2599,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghetfuo005le3ltcrpmiadu",
+      "courseTitle": "Test Purchase Resource",
+      "userId": "mock_user_1759893270151",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759893270,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759893287442",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759893292502_0532it43w": {
+    "id": "pi_mock_1759893292502_0532it43w",
+    "client_secret": "pi_mock_pi_mock_1759893292502_0532it43w_secret_u57gov7fp",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759893292501",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759893292,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759893292503_axwip7r4b": {
+    "id": "pi_mock_1759893292503_axwip7r4b",
+    "client_secret": "pi_mock_pi_mock_1759893292503_axwip7r4b_secret_6jnzmdrkq",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghefrsn004ge3lteg2e4cn7",
+      "courseTitle": "Forex EBOOK",
+      "userId": "mock_user_1759893292502",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759893292,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759893311959",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759896142593_y4aaqont1": {
+    "id": "pi_mock_1759896142593_y4aaqont1",
+    "client_secret": "pi_mock_pi_mock_1759896142593_y4aaqont1_secret_8l0flteu6",
+    "amount": 19800,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmggt77kt0062oxml3dyvyvm8",
+      "courseTitle": "Advanced Technical Analysis Masterclass",
+      "userId": "mock_user_1759896142593",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759896142,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759896147633",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759896188517_5pl5wp3pb": {
+    "id": "pi_mock_1759896188517_5pl5wp3pb",
+    "client_secret": "pi_mock_pi_mock_1759896188517_5pl5wp3pb_secret_iacekxwr9",
+    "amount": 19800,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmggt77kt0062oxml3dyvyvm8",
+      "courseTitle": "Advanced Technical Analysis Masterclass",
+      "userId": "mock_user_1759896188517",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759896188,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759896221706",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759898673425_guvz861z6": {
+    "id": "pi_mock_1759898673425_guvz861z6",
+    "client_secret": "pi_mock_pi_mock_1759898673425_guvz861z6_secret_7irfix5je",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759898673425",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759898673,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759898673428_03nkzsrcf": {
+    "id": "pi_mock_1759898673428_03nkzsrcf",
+    "client_secret": "pi_mock_pi_mock_1759898673428_03nkzsrcf_secret_zlwbccri1",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759898673425",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759898673,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759898689324",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759898990174_qjv0zbsnd": {
+    "id": "pi_mock_1759898990174_qjv0zbsnd",
+    "client_secret": "pi_mock_pi_mock_1759898990174_qjv0zbsnd_secret_i9gvsq5lf",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759898990174",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759898990,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759898990177_60r899q2j": {
+    "id": "pi_mock_1759898990177_60r899q2j",
+    "client_secret": "pi_mock_pi_mock_1759898990177_60r899q2j_secret_qesa047ir",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759898990174",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759898990,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759899004354",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759899310512_gcpxuurg3": {
+    "id": "pi_mock_1759899310512_gcpxuurg3",
+    "client_secret": "pi_mock_pi_mock_1759899310512_gcpxuurg3_secret_4924mvyd2",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759899310512",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759899310,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759899310515_70tu0k51l": {
+    "id": "pi_mock_1759899310515_70tu0k51l",
+    "client_secret": "pi_mock_pi_mock_1759899310515_70tu0k51l_secret_2bsht6u29",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759899310512",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759899310,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759899330138",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759899660961_zxyb2n7p7": {
+    "id": "pi_mock_1759899660961_zxyb2n7p7",
+    "client_secret": "pi_mock_pi_mock_1759899660961_zxyb2n7p7_secret_9vuqnbslz",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759899660960",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759899660,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759899660963_sbb91nm5i": {
+    "id": "pi_mock_1759899660963_sbb91nm5i",
+    "client_secret": "pi_mock_pi_mock_1759899660963_sbb91nm5i_secret_dz7nqtobl",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759899660961",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759899660,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759899678905",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759900864000_p8n26s2n2": {
+    "id": "pi_mock_1759900864000_p8n26s2n2",
+    "client_secret": "pi_mock_pi_mock_1759900864000_p8n26s2n2_secret_tp5sulnaj",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759900864000",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759900864,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759900864003_fk9vs3xyd": {
+    "id": "pi_mock_1759900864003_fk9vs3xyd",
+    "client_secret": "pi_mock_pi_mock_1759900864003_fk9vs3xyd_secret_y50yd4zxz",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759900864000",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759900864,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759900880232",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759901140653_f7u0fe2jz": {
+    "id": "pi_mock_1759901140653_f7u0fe2jz",
+    "client_secret": "pi_mock_pi_mock_1759901140653_f7u0fe2jz_secret_7oy3fzfnj",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759901140652",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759901140,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759901140655_muymc8yo8": {
+    "id": "pi_mock_1759901140655_muymc8yo8",
+    "client_secret": "pi_mock_pi_mock_1759901140655_muymc8yo8_secret_87lntq0nb",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759901140652",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759901140,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759901157066",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759901181548_94jmwie6s": {
+    "id": "pi_mock_1759901181548_94jmwie6s",
+    "client_secret": "pi_mock_pi_mock_1759901181548_94jmwie6s_secret_gk1bvi4nw",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759901181547",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759901181,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759901181549_egle1667y": {
+    "id": "pi_mock_1759901181549_egle1667y",
+    "client_secret": "pi_mock_pi_mock_1759901181549_egle1667y_secret_0pjrrhgyx",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759901181547",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759901181,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759901195397",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759901551022_rk6xl2bvl": {
+    "id": "pi_mock_1759901551022_rk6xl2bvl",
+    "client_secret": "pi_mock_pi_mock_1759901551022_rk6xl2bvl_secret_cczfyw2a7",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759901551021",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759901551,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759901551024_pfyzj028x": {
+    "id": "pi_mock_1759901551024_pfyzj028x",
+    "client_secret": "pi_mock_pi_mock_1759901551024_pfyzj028x_secret_8jpzs40nn",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghi2oe00000sgwwkzwp9mvz",
+      "courseTitle": "Beginner Forex Course",
+      "userId": "mock_user_1759901551022",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759901551,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759901567452",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759911877206_5l9xzdai7": {
+    "id": "pi_mock_1759911877206_5l9xzdai7",
+    "client_secret": "pi_mock_pi_mock_1759911877206_5l9xzdai7_secret_2lozvag4i",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "cmghmthy700008ccp2v3deaiv",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759911877,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759911877208_qbfadzweg": {
+    "id": "pi_mock_1759911877208_qbfadzweg",
+    "client_secret": "pi_mock_pi_mock_1759911877208_qbfadzweg_secret_jxscfshlz",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "cmghmthy700008ccp2v3deaiv",
+      "userEmail": "brian@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1759911877,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759912055809_v75b7gdfg": {
+    "id": "pi_mock_1759912055809_v75b7gdfg",
+    "client_secret": "pi_mock_pi_mock_1759912055809_v75b7gdfg_secret_g3di74jdn",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghq752a000yjqbshyr29kbo",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "mock_user_1759912055809",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759912055,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759912157947_u6uxdsz7m": {
+    "id": "pi_mock_1759912157947_u6uxdsz7m",
+    "client_secret": "pi_mock_pi_mock_1759912157947_u6uxdsz7m_secret_i6p4ikmcw",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmghq9bvw0010jqbsf64txucj",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "mock_user_1759912157947",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759912157,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759912157948_a7ywp28rl": {
+    "id": "pi_mock_1759912157948_a7ywp28rl",
+    "client_secret": "pi_mock_pi_mock_1759912157948_a7ywp28rl_secret_zjc836u5x",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghq9bvw0010jqbsf64txucj",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "mock_user_1759912157947",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759912157,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759912196994",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759912354755_pt1j509v2": {
+    "id": "pi_mock_1759912354755_pt1j509v2",
+    "client_secret": "pi_mock_pi_mock_1759912354755_pt1j509v2_secret_m9f0l4ymq",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghqdja10016jqbsq4eiqs6b",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "mock_user_1759912354755",
+      "userEmail": "test@example.com"
+    },
+    "created": 1759912354,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759912354922",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759912412081_25l2upobd": {
+    "id": "pi_mock_1759912412081_25l2upobd",
+    "client_secret": "pi_mock_pi_mock_1759912412081_25l2upobd_secret_5fcx2abpg",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghqes2d001ajqbsmocf8fyi",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmghqertd0017jqbsb2zgnj3i",
+      "userEmail": "payment.flow.1759912411424@example.com"
+    },
+    "created": 1759912412,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759912412108",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759912560724_nwhqds0jz": {
+    "id": "pi_mock_1759912560724_nwhqds0jz",
+    "client_secret": "pi_mock_pi_mock_1759912560724_nwhqds0jz_secret_67kqzp4sn",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghqhyrd001ijqbsxte459d0",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmghqhyie001fjqbs4xtyq8rx",
+      "userEmail": "complete.flow.1759912560082@example.com"
+    },
+    "created": 1759912560,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759912560750",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759913117467_ber4til0w": {
+    "id": "pi_mock_1759913117467_ber4til0w",
+    "client_secret": "pi_mock_pi_mock_1759913117467_ber4til0w_secret_fn1oa9uvg",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghqtw5i0024jqbswkvc7exc",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmghqtvua0021jqbs99qrdi7i",
+      "userEmail": "premium.test.1759913116497@example.com"
+    },
+    "created": 1759913117,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759913117588",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759914169995_vsop2tpke": {
+    "id": "pi_mock_1759914169995_vsop2tpke",
+    "client_secret": "pi_mock_pi_mock_1759914169995_vsop2tpke_secret_v0120hwgl",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghrgg6l002yjqbsvmq6re4u",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmghrgfhd002vjqbs0uzivw66",
+      "userEmail": "premium.student.1759914167797@example.com"
+    },
+    "created": 1759914169,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759914170211",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759914206037_0e9tylz9y": {
+    "id": "pi_mock_1759914206037_0e9tylz9y",
+    "client_secret": "pi_mock_pi_mock_1759914206037_0e9tylz9y_secret_e038fu5kv",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmghrh89c0038jqbsla1ijdze",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmghrh7sn0035jqbszhx36q4s",
+      "userEmail": "premium.student.1759914204639@example.com"
+    },
+    "created": 1759914206,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759914206107",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759914209765_d3yomvnzn": {
+    "id": "pi_mock_1759914209765_d3yomvnzn",
+    "client_secret": "pi_mock_pi_mock_1759914209765_d3yomvnzn_secret_5xrresrcy",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmghrhai1003djqbs3yrhw6ao",
+      "userEmail": "signal.student.1759914208322@example.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY"
+    },
+    "created": 1759914209,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759914209823",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1759988680731_u8ml7h5eu": {
+    "id": "pi_mock_1759988680731_u8ml7h5eu",
+    "client_secret": "pi_mock_pi_mock_1759988680731_u8ml7h5eu_secret_fkvs50jb8",
+    "amount": 25000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgixcd9c003nap4pap4z0r93",
+      "courseTitle": "Advanced Technical Analysis",
+      "userId": "cmghmthy700008ccp2v3deaiv",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1759988680,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1759988680733_5sitx0w9a": {
+    "id": "pi_mock_1759988680733_5sitx0w9a",
+    "client_secret": "pi_mock_pi_mock_1759988680733_5sitx0w9a_secret_ze495tryj",
+    "amount": 25000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgixcd9c003nap4pap4z0r93",
+      "courseTitle": "Advanced Technical Analysis",
+      "userId": "cmghmthy700008ccp2v3deaiv",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1759988680,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1759988698598",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760014061587_ktp3e6fvw": {
+    "id": "pi_mock_1760014061587_ktp3e6fvw",
+    "client_secret": "pi_mock_pi_mock_1760014061587_ktp3e6fvw_secret_f51drcvi2",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "cmgjev8s7000gigmu5e9is68f",
+      "userEmail": "signal@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1760014061,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760014061591_pnzc2f61q": {
+    "id": "pi_mock_1760014061591_pnzc2f61q",
+    "client_secret": "pi_mock_pi_mock_1760014061591_pnzc2f61q_secret_g8s54mkdm",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgjev8s7000gigmu5e9is68f",
+      "userEmail": "signal@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1760014061,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760014080391",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076342459_jdfkm1tks": {
+    "id": "pi_mock_1760076342459_jdfkm1tks",
+    "client_secret": "pi_mock_pi_mock_1760076342459_jdfkm1tks_secret_799p1pu1m",
+    "amount": 10000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "test",
+      "courseTitle": "Test Course",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076342,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076346495",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076478497_85p3j49g4": {
+    "id": "pi_mock_1760076478497_85p3j49g4",
+    "client_secret": "pi_mock_pi_mock_1760076478497_85p3j49g4_secret_wg22mxjv3",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "mentorship",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076478,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076478522",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076478562_h18lqv5bf": {
+    "id": "pi_mock_1760076478562_h18lqv5bf",
+    "client_secret": "pi_mock_pi_mock_1760076478562_h18lqv5bf_secret_rttnrzhio",
+    "amount": 25000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Advanced Strategy Workshop",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076478,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076478576",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076478601_yblxs7v4j": {
+    "id": "pi_mock_1760076478601_yblxs7v4j",
+    "client_secret": "pi_mock_pi_mock_1760076478601_yblxs7v4j_secret_p2jrj24pa",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Test Resource",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076478,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076478615",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076478640_0vfisla6r": {
+    "id": "pi_mock_1760076478640_0vfisla6r",
+    "client_secret": "pi_mock_pi_mock_1760076478640_0vfisla6r_secret_p5yrq5nsf",
+    "amount": 10000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Test Event",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076478,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076478653",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076514557_8wbdt5rol": {
+    "id": "pi_mock_1760076514557_8wbdt5rol",
+    "client_secret": "pi_mock_pi_mock_1760076514557_8wbdt5rol_secret_w9f0q33tr",
+    "amount": 4999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgkbo815005pdjpo3dlxsisa",
+      "courseTitle": "Trading For Dummies",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076514,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760076615086_d2sc9nuuu": {
+    "id": "pi_mock_1760076615086_d2sc9nuuu",
+    "client_secret": "pi_mock_pi_mock_1760076615086_d2sc9nuuu_secret_ikt6o1alj",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "mentorship",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076615,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076615113",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076615145_51oboxjc2": {
+    "id": "pi_mock_1760076615145_51oboxjc2",
+    "client_secret": "pi_mock_pi_mock_1760076615145_51oboxjc2_secret_47gnu38sz",
+    "amount": 25000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Advanced Strategy Workshop",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076615,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076615295",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076615348_9zut7p72w": {
+    "id": "pi_mock_1760076615348_9zut7p72w",
+    "client_secret": "pi_mock_pi_mock_1760076615348_9zut7p72w_secret_271bxytuz",
+    "amount": 10000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Test Event",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076615,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076615362",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076615414_0kk8q2wnb": {
+    "id": "pi_mock_1760076615414_0kk8q2wnb",
+    "client_secret": "pi_mock_pi_mock_1760076615414_0kk8q2wnb_secret_cxsyvt2ug",
+    "amount": 2999,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgkbo81a005rdjpo5rno3zoa",
+      "courseTitle": "Risk Management Strategies",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076615,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076615435",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076615490_ik8fwzykj": {
+    "id": "pi_mock_1760076615490_ik8fwzykj",
+    "client_secret": "pi_mock_pi_mock_1760076615490_ik8fwzykj_secret_9supb4zcw",
+    "amount": 10000,
+    "currency": "usd",
+    "status": "payment_failed",
+    "metadata": {
+      "courseId": "test-decline",
+      "courseTitle": "Test Declined Payment",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076615,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "last_payment_error": {
+      "type": "card_error",
+      "code": "card_declined",
+      "message": "Your card was declined.",
+      "decline_code": "generic_decline"
+    }
+  },
+  "pi_mock_1760076718108_k96hcqcok": {
+    "id": "pi_mock_1760076718108_k96hcqcok",
+    "client_secret": "pi_mock_pi_mock_1760076718108_k96hcqcok_secret_ee7m5gune",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "mentorship",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076718,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076718141",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076718183_hhsogflwe": {
+    "id": "pi_mock_1760076718183_hhsogflwe",
+    "client_secret": "pi_mock_pi_mock_1760076718183_hhsogflwe_secret_s6w2w4yie",
+    "amount": 25000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Advanced Strategy Workshop",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076718,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076718201",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076718236_e61bk92no": {
+    "id": "pi_mock_1760076718236_e61bk92no",
+    "client_secret": "pi_mock_pi_mock_1760076718236_e61bk92no_secret_5290yo6wa",
+    "amount": 10000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "1",
+      "courseTitle": "Trading Workshop",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076718,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076718253",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076718283_meouu150x": {
+    "id": "pi_mock_1760076718283_meouu150x",
+    "client_secret": "pi_mock_pi_mock_1760076718283_meouu150x_secret_evl30xntz",
+    "amount": 9900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "signals",
+      "courseTitle": "Premium Signals Subscription",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076718,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076718302",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076810663_xodzbfkll": {
+    "id": "pi_mock_1760076810663_xodzbfkll",
+    "client_secret": "pi_mock_pi_mock_1760076810663_xodzbfkll_secret_ol9wzw97m",
+    "amount": 9900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgkbo80k004adjpoigkqg9ts",
+      "courseTitle": "Trading Basics for Beginners",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076810,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760076810667_vuh7rn08z": {
+    "id": "pi_mock_1760076810667_vuh7rn08z",
+    "client_secret": "pi_mock_pi_mock_1760076810667_vuh7rn08z_secret_ehi3j268g",
+    "amount": 9900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgkbo80k004adjpoigkqg9ts",
+      "courseTitle": "Trading Basics for Beginners",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076810,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076829537",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760076865333_30ybj2kbp": {
+    "id": "pi_mock_1760076865333_30ybj2kbp",
+    "client_secret": "pi_mock_pi_mock_1760076865333_30ybj2kbp_secret_ulxczhhhc",
+    "amount": 1000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgkfovxf001hfzwdnud82u0f",
+      "courseTitle": "Beginner Free Course",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076865,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760076865338_nvdc1nb0u": {
+    "id": "pi_mock_1760076865338_nvdc1nb0u",
+    "client_secret": "pi_mock_pi_mock_1760076865338_nvdc1nb0u_secret_0stg0ksd1",
+    "amount": 1000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgkfovxf001hfzwdnud82u0f",
+      "courseTitle": "Beginner Free Course",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760076865,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760076880567",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760077101450_pymox47n8": {
+    "id": "pi_mock_1760077101450_pymox47n8",
+    "client_secret": "pi_mock_pi_mock_1760077101450_pymox47n8_secret_tajhbwsbf",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgkf8zvd0004fzwd4ty3v3eq",
+      "courseTitle": "What is forex?",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760077101,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760077101465_leho8ip3k": {
+    "id": "pi_mock_1760077101465_leho8ip3k",
+    "client_secret": "pi_mock_pi_mock_1760077101465_leho8ip3k_secret_qm5qrdq5z",
+    "amount": 2000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgkf8zvd0004fzwd4ty3v3eq",
+      "courseTitle": "What is forex?",
+      "userId": "cmgkbo2cu0000djpoil3qa62g",
+      "userEmail": "admin@corefx.com"
+    },
+    "created": 1760077101,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760077117099",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  }
+}

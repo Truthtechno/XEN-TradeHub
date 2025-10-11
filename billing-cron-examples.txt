@@ -1,0 +1,22 @@
+
+# Billing Cron Job Examples
+# Add these to your server's crontab or use a service like Vercel Cron
+
+# Process due subscriptions every hour
+0 * * * * curl -X POST "https://your-domain.com/api/cron/billing" -H "Authorization: Bearer your-secure-cron-secret-here" -H "Content-Type: application/json"
+
+# Process grace period expirations every 6 hours
+0 */6 * * * curl -X POST "https://your-domain.com/api/cron/billing" -H "Authorization: Bearer your-secure-cron-secret-here" -H "Content-Type: application/json"
+
+# Retry failed payments every 12 hours
+0 */12 * * * curl -X POST "https://your-domain.com/api/cron/billing" -H "Authorization: Bearer your-secure-cron-secret-here" -H "Content-Type: application/json"
+
+# For Vercel Cron Jobs, add this to vercel.json:
+{
+  "crons": [
+    {
+      "path": "/api/cron/billing",
+      "schedule": "0 * * * *"
+    }
+  ]
+}

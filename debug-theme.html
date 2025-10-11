@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Debug</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --color-primary: #6279c7;
+            --color-secondary: #e76767;
+            --color-accent: #58cea7;
+            --color-success: #58cea7;
+            --color-warning: #f8bb54;
+            --color-error: #f47c7c;
+            --color-info: #76a8f9;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white p-8">
+    <h1 class="text-2xl font-bold mb-4">Theme Color Debug</h1>
+    
+    <div class="space-y-4">
+        <div class="p-4 bg-theme-primary text-white rounded">
+            Primary Color Test (should be #6279c7)
+        </div>
+        <div class="p-4 bg-theme-secondary text-white rounded">
+            Secondary Color Test (should be #e76767)
+        </div>
+        <div class="p-4 bg-theme-success text-white rounded">
+            Success Color Test (should be #58cea7)
+        </div>
+        <div class="p-4 bg-theme-warning text-white rounded">
+            Warning Color Test (should be #f8bb54)
+        </div>
+        <div class="p-4 bg-theme-error text-white rounded">
+            Error Color Test (should be #f47c7c)
+        </div>
+        <div class="p-4 bg-theme-info text-white rounded">
+            Info Color Test (should be #76a8f9)
+        </div>
+    </div>
+    
+    <div class="mt-8">
+        <h2 class="text-xl font-bold mb-2">CSS Variables:</h2>
+        <div class="text-sm space-y-1">
+            <div>--color-primary: <span id="primary"></span></div>
+            <div>--color-secondary: <span id="secondary"></span></div>
+            <div>--color-success: <span id="success"></span></div>
+            <div>--color-warning: <span id="warning"></span></div>
+            <div>--color-error: <span id="error"></span></div>
+            <div>--color-info: <span id="info"></span></div>
+        </div>
+    </div>
+    
+    <script>
+        // Display CSS variable values
+        const root = document.documentElement;
+        document.getElementById('primary').textContent = getComputedStyle(root).getPropertyValue('--color-primary');
+        document.getElementById('secondary').textContent = getComputedStyle(root).getPropertyValue('--color-secondary');
+        document.getElementById('success').textContent = getComputedStyle(root).getPropertyValue('--color-success');
+        document.getElementById('warning').textContent = getComputedStyle(root).getPropertyValue('--color-warning');
+        document.getElementById('error').textContent = getComputedStyle(root).getPropertyValue('--color-error');
+        document.getElementById('info').textContent = getComputedStyle(root).getPropertyValue('--color-info');
+    </script>
+</body>
+</html>
