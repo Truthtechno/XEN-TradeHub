@@ -109,3 +109,29 @@ prisma/migrations/
 
 # Testing
 coverage/
+test-*.js
+test-*.html
+*-test.js
+*-test.html
+debug-*.html
+debug-*.js
+debug.css
+
+# Temporary documentation
+*-IMPLEMENTATION*.md
+*-TEST*.md
+*-REPORT*.md
+*-FIX*.md
+*-SUMMARY*.md
+*-GUIDE*.md
+*-STATUS*.md
+*-RESULTS*.md
+*-SOLUTION*.md
+*-UPGRADE*.md
+*-ENHANCEMENTS*.md
+*-DOCUMENTATION*.md
+*-VERIFICATION*.md
+*-BILLING*.md
+*-EXPIRY*.md
+*-ACCESS*.md
+*-BRANDING*.md

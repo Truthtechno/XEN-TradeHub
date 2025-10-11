@@ -27,11 +27,11 @@
 - **👨‍🏫 One-on-One Coaching** - Personalized mentoring and trading guidance
 - **📅 Events** - Live trading workshops and educational sessions
 - **🔮 Market Forecasts** - Community and premium market predictions
-- **🤝 Affiliate Programs** - Commission-based referral and partnership system
-- **📊 Sentiment Voting** - Community market sentiment analysis and polls
+- **🤝 Affiliate Programs** - Commission-based referral and partnership system (COMING SOON)
+- **📊 Sentiment Voting** - Community market sentiment analysis and polls (COMING SOON)
 - **💬 Live Support** - Real-time customer support and trading assistance
-- **📋 Booking System** - Session scheduling and management platform
-- **🤝 Collaborations** - Brand partnership and business opportunities
+- **📋 Booking System** - Session scheduling and management platform (COMING SOON)
+- **🤝 Collaborations** - Brand partnership and business opportunities (COMING SOON)
 
 ### 🛠️ Technical Capabilities
 - **📱 Responsive Design** - Mobile-first approach for seamless cross-device experience
