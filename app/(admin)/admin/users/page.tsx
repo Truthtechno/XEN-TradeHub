@@ -135,8 +135,9 @@ export default function UsersPage() {
       console.log('Users count:', data.users?.length)
       console.log('Total users:', data.pagination?.total)
       setUsers(data.users || [])
-    } catch (error) {
-      console.error('Failed to fetch users:', error)
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error('Failed to fetch users:', message)
     } finally {
       if (!isRefresh) {
         setIsLoading(false)
@@ -178,8 +179,9 @@ export default function UsersPage() {
       }
       const data = await response.json()
       setUserDetails(data)
-    } catch (error) {
-      console.error('Failed to fetch user details:', error)
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error('Failed to fetch user details:', message)
     } finally {
       setIsLoadingDetails(false)
     }
@@ -306,9 +308,10 @@ export default function UsersPage() {
             const result = await subscriptionResponse.json()
             console.log('Subscription update successful:', result)
           }
-        } catch (subscriptionError) {
-          console.error('Subscription update error:', subscriptionError)
-          alert(`User updated but subscription update failed: ${subscriptionError.message}`)
+        } catch (subscriptionError: unknown) {
+          const message = subscriptionError instanceof Error ? subscriptionError.message : String(subscriptionError);
+          console.error('Subscription update error:', message)
+          alert(`User updated but subscription update failed: ${message}`)
           return // Don't continue if subscription update fails
         }
       }
@@ -318,8 +321,9 @@ export default function UsersPage() {
       setEditForm({ name: '', email: '', role: '', country: '', subscriptionType: 'NONE', subscriptionPlan: 'MONTHLY' })
       alert(`User ${editingUser.name} updated successfully!`)
       console.log('User updated successfully:', editingUser.name)
-    } catch (error) {
-      console.error('Failed to update user:', error)
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error('Failed to update user:', message)
       alert('Failed to update user')
     } finally {
       setIsSaving(false)
@@ -392,8 +396,9 @@ export default function UsersPage() {
         const error = await response.json()
         alert(error.error || 'Failed to update user')
       }
-    } catch (error) {
-      console.error('Failed to update user details:', error)
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error('Failed to update user details:', message)
       alert('Failed to update user details')
     } finally {
       setIsSavingDetails(false)
@@ -436,8 +441,9 @@ export default function UsersPage() {
           const error = await response.json()
           alert(error.error || 'Failed to delete user')
         }
-      } catch (error) {
-        console.error('Failed to delete user:', error)
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error('Failed to delete user:', message)
         alert('Failed to delete user')
       }
     }
@@ -494,8 +500,9 @@ export default function UsersPage() {
       setTimeout(async () => {
         await fetchUsers(true)
       }, 100)
-    } catch (error) {
-      console.error('Failed to delete users:', error)
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error('Failed to delete users:', message)
       alert('Failed to delete users. Please try again.')
     } finally {
       setIsDeleting(false)
@@ -526,8 +533,9 @@ export default function UsersPage() {
       document.body.removeChild(a)
       
       alert('Users exported successfully!')
-    } catch (error) {
-      console.error('Failed to export users:', error)
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error('Failed to export users:', message)
       alert('Failed to export users. Please try again.')
     }
   }
@@ -566,7 +574,7 @@ export default function UsersPage() {
         const user = users.find(u => u.id === userId)
         return user?.email
       })
-      .filter(Boolean) // Remove any undefined emails
+      .filter((e): e is string => Boolean(e)) // Type-safe filter to ensure string[]
     
     // Create mailto URL with custom subject and body
     const mailtoUrl = createMailtoUrl(selectedUserEmails, emailSubject, emailBody)

@@ -1188,7 +1188,7 @@ export function RightPanels({
                 {/* Validation Warnings */}
                 {(() => {
                   const calc = calculateLotSize()
-                  const warnings = []
+                  const warnings: Array<{ type: string; message: string; icon: string }> = []
                   
                   if (calc.marginLevel < 200) {
                     warnings.push({

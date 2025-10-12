@@ -29,8 +29,8 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     console.log('Item ID for comments:', itemId)
 
     // Check if this is a forecast or signal
-    let forecast = null
-    let signal = null
+    let forecast: any = null
+    let signal: any = null
     let isForecast = false
 
     // Try to find as forecast first
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     }
 
     // Fetch comments (newest first, so newest appears at bottom when displayed)
-    let comments = []
+    let comments: any[] = []
     
     if (isForecast) {
       comments = await prisma.userForecastComment.findMany({
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     console.log('Request URL:', request.url)
     
     // Simplified authentication - use a consistent fallback user for testing
-    let user = null
+    let user: any = null
     
     try {
       user = await getAuthenticatedUserSimple(request)
@@ -203,8 +203,8 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     }
 
     // Check if this is a forecast or signal
-    let forecast = null
-    let signal = null
+    let forecast: any = null
+    let signal: any = null
     let isForecast = false
 
     // Try to find as forecast first
@@ -278,7 +278,7 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     console.log('User role:', (user as any).role)
     console.log('Is admin comment:', isAdminComment)
     
-    let comment = null
+    let comment: any = null
     
     if (isForecast) {
       comment = await prisma.userForecastComment.create({

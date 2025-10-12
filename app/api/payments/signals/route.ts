@@ -107,8 +107,8 @@ export async function GET(request: NextRequest) {
       success: true,
       subscription: {
         hasActiveSubscription: access.subscriptionType !== 'BASIC',
-        subscription: access.subscription,
-        nextBillingDate: access.subscription?.currentPeriodEnd,
+        subscriptionType: access.subscriptionType,
+        nextBillingDate: undefined, // TODO: Get from subscription data
         status: access.subscriptionStatus
       }
     })

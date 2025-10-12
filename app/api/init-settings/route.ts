@@ -34,7 +34,7 @@ export async function POST() {
       theme: 'light'
     }
 
-    const results = []
+    const results: Array<{ key: string; value: string; status: string; error?: string }> = []
     
     for (const [key, value] of Object.entries(defaultSettings)) {
       try {

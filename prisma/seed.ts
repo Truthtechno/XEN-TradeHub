@@ -69,7 +69,7 @@ async function main() {
   })
 
   // Create sample users
-  const users = []
+  const users: any[] = []
   for (let i = 1; i <= 25; i++) {
     const userPassword = await bcrypt.hash('user123', 12)
     const user = await prisma.user.upsert({

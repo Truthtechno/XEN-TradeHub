@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getAuthenticatedUserSimple } from '@/lib/auth-simple'
+import jwt from 'jsonwebtoken'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'

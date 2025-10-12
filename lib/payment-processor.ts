@@ -273,8 +273,7 @@ export class PaymentProcessor {
           user.subscription.status === 'ACTIVE' &&
           user.subscription.currentPeriodEnd &&
           new Date(user.subscription.currentPeriodEnd) <= new Date() &&
-          user.role === 'SIGNALS' &&
-          user.role !== 'SUPERADMIN') {
+          user.role === 'SIGNALS') {
         // User has expired signals subscription (but don't change SUPERADMIN)
         await prisma.subscription.update({
           where: { id: user.subscription.id },

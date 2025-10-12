@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Generate month labels
-    const monthLabels = []
+    const monthLabels: string[] = []
     for (let i = monthsBack - 1; i >= 0; i--) {
       const date = new Date(now.getFullYear(), now.getMonth() - i, 1)
       monthLabels.push(date.toLocaleDateString('en-US', { month: 'short' }))
@@ -58,7 +58,15 @@ export async function GET(request: NextRequest) {
 
     if (chartType === 'revenue') {
       // Revenue trend data
-      const revenueData = []
+      const revenueData: Array<{
+        name: string;
+        value: number;
+        orders: number;
+        mentorship: number;
+        resources: number;
+        events: number;
+        academy: number;
+      }> = []
       
       for (let i = monthsBack - 1; i >= 0; i--) {
         const monthStart = new Date(now.getFullYear(), now.getMonth() - i, 1)
@@ -128,7 +136,13 @@ export async function GET(request: NextRequest) {
     
     if (chartType === 'users') {
       // User growth data
-      const userData = []
+      const userData: Array<{
+        name: string;
+        value: number;
+        newUsers: number;
+        activeUsers: number;
+        premiumUsers: number;
+      }> = []
       
       for (let i = monthsBack - 1; i >= 0; i--) {
         const monthStart = new Date(now.getFullYear(), now.getMonth() - i, 1)
@@ -142,7 +156,10 @@ export async function GET(request: NextRequest) {
         
         userData.push({
           name: monthLabels[monthsBack - 1 - i],
-          value: newUsers
+          value: newUsers,
+          newUsers: newUsers,
+          activeUsers: 0, // TODO: Calculate active users
+          premiumUsers: 0 // TODO: Calculate premium users
         })
       }
       
@@ -155,7 +172,13 @@ export async function GET(request: NextRequest) {
     
     if (chartType === 'signals') {
       // Signal performance data
-      const signalData = []
+      const signalData: Array<{
+        name: string;
+        value: number;
+        totalSignals: number;
+        premiumSignals: number;
+        freeSignals: number;
+      }> = []
       
       for (let i = monthsBack - 1; i >= 0; i--) {
         const monthStart = new Date(now.getFullYear(), now.getMonth() - i, 1)
@@ -182,9 +205,10 @@ export async function GET(request: NextRequest) {
         
         signalData.push({
           name: monthLabels[monthsBack - 1 - i],
-          published,
-          likes,
-          comments
+          value: published,
+          totalSignals: published,
+          premiumSignals: 0, // TODO: Calculate premium signals
+          freeSignals: published // TODO: Calculate free signals
         })
       }
       
@@ -197,7 +221,13 @@ export async function GET(request: NextRequest) {
     
     if (chartType === 'courses') {
       // Course enrollment data
-      const courseData = []
+      const courseData: Array<{
+        name: string;
+        value: number;
+        totalEnrollments: number;
+        completedCourses: number;
+        activeCourses: number;
+      }> = []
       
       for (let i = monthsBack - 1; i >= 0; i--) {
         const monthStart = new Date(now.getFullYear(), now.getMonth() - i, 1)
@@ -225,8 +255,10 @@ export async function GET(request: NextRequest) {
         
         courseData.push({
           name: monthLabels[monthsBack - 1 - i],
-          enrollments,
-          revenue
+          value: enrollments,
+          totalEnrollments: enrollments,
+          completedCourses: 0, // TODO: Calculate completed courses
+          activeCourses: 0 // TODO: Calculate active courses
         })
       }
       

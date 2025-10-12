@@ -19,7 +19,7 @@ export async function POST(
     console.log('=== LIKE TOGGLE API CALL ===')
     console.log('Request URL:', request.url)
     
-    let user = null
+    let user: any = null
     
     try {
       user = await getAuthenticatedUserSimple(request)
@@ -62,8 +62,8 @@ export async function POST(
     console.log('  itemId:', itemId, 'Type:', typeof itemId)
 
     // Check if this is a forecast or signal
-    let forecast = null
-    let signal = null
+    let forecast: any = null
+    let signal: any = null
     let isForecast = false
 
     // Try to find as forecast first
@@ -93,7 +93,7 @@ export async function POST(
     console.log('Item found:', item.title, 'Type:', isForecast ? 'forecast' : 'signal')
 
     // Check if user already liked this item
-    let existingLike = null
+    let existingLike: any = null
     
     if (isForecast) {
       existingLike = await prisma.userForecastLike.findUnique({

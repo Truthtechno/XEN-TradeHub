@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user exists
-    let targetUser = null
+    let targetUser: any = null
     if (userId) {
       targetUser = await prisma.user.findUnique({
         where: { id: userId }
