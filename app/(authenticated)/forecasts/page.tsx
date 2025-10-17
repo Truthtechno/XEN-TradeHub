@@ -84,23 +84,23 @@ export default function ForecastsPage() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-3 sm:p-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center space-x-3">
-            <div className="p-3 rounded-lg bg-xen-blue">
-              <TrendingUp className="h-8 w-8 text-white" />
+            <div className="p-2 sm:p-3 rounded-lg bg-xen-blue">
+              <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Market Forecasts</h1>
-              <p className="text-gray-600">Latest market predictions and analysis</p>
+              <h1 className="text-xl sm:text-3xl font-bold text-gray-900">Market Forecasts</h1>
+              <p className="text-sm sm:text-base text-gray-600">Latest market predictions and analysis</p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <Button className="bg-xen-orange hover:bg-xen-orange/90">
-              <Plus className="h-4 w-4 mr-2" />
-              Publish
+            <Button className="bg-xen-orange hover:bg-xen-orange/90 flex-1 sm:flex-none">
+              <Plus className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Publish</span>
             </Button>
             <Button variant="outline" size="sm">
               <RefreshCw className="h-4 w-4" />
@@ -113,85 +113,85 @@ export default function ForecastsPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <TabsList className="grid w-full max-w-md grid-cols-2">
-            <TabsTrigger value="public">Public Forecasts</TabsTrigger>
-            <TabsTrigger value="private">CoreFX Forecasts</TabsTrigger>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4">
+          <TabsList className="grid w-full sm:max-w-md grid-cols-2">
+            <TabsTrigger value="public" className="text-xs sm:text-sm">Public Forecasts</TabsTrigger>
+            <TabsTrigger value="private" className="text-xs sm:text-sm">CoreFX Forecasts</TabsTrigger>
           </TabsList>
           <div className="flex items-center space-x-2">
-            <div className="relative">
+            <div className="relative flex-1 sm:flex-none">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 placeholder="Search forecasts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 w-64"
+                className="pl-10 w-full sm:w-64"
               />
             </div>
           </div>
         </div>
 
         <TabsContent value="public">
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {filteredForecasts.map((forecast) => (
               <Card key={forecast.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex space-x-4">
+                <CardContent className="p-3 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
                     {/* Forecast Image */}
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 w-full sm:w-32">
                       <img
                         src={forecast.image}
                         alt={forecast.title}
-                        className="w-32 h-24 object-cover rounded-lg"
+                        className="w-full sm:w-32 h-32 sm:h-24 object-cover rounded-lg"
                       />
                     </div>
                     
                     {/* Forecast Content */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
+                        <div className="flex-1">
+                          <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
                             {forecast.title}
                           </h3>
-                          <p className="text-sm text-gray-600 mb-2">{forecast.description}</p>
+                          <p className="text-xs sm:text-sm text-gray-600 mb-2">{forecast.description}</p>
                         </div>
                         {forecast.pair && (
-                          <Badge variant="outline" className="ml-2">
+                          <Badge variant="outline" className="w-fit">
                             {forecast.pair}
                           </Badge>
                         )}
                       </div>
                       
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
-                        <div className="flex items-center space-x-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-gray-500 mb-3 gap-2">
+                        <div className="flex items-center flex-wrap gap-2 sm:gap-4">
                           <div className="flex items-center space-x-1">
-                            <User className="h-4 w-4" />
-                            <span>{"CoreFX Team"}</span>
+                            <User className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <span className="text-xs sm:text-sm">{"CoreFX Team"}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <Calendar className="h-4 w-4" />
-                            <span>{formatDate(forecast.date)}</span>
+                            <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <span className="text-xs sm:text-sm">{formatDate(forecast.date)}</span>
                           </div>
                         </div>
                       </div>
                       
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div className="flex items-center space-x-3 sm:space-x-4 text-xs sm:text-sm text-gray-500">
                           <div className="flex items-center space-x-1">
-                            <Eye className="h-4 w-4" />
+                            <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                             <span>{forecast.views}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <Heart className="h-4 w-4" />
+                            <Heart className="h-3 w-3 sm:h-4 sm:w-4" />
                             <span>{forecast.likes}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <MessageCircle className="h-4 w-4" />
+                            <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" />
                             <span>{forecast.comments}</span>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" className="w-full sm:w-auto text-xs sm:text-sm">
                           View Details
                         </Button>
                       </div>
@@ -204,68 +204,68 @@ export default function ForecastsPage() {
         </TabsContent>
 
         <TabsContent value="private">
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {filteredForecasts.map((forecast) => (
               <Card key={forecast.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex space-x-4">
+                <CardContent className="p-3 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
                     {/* Forecast Image */}
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 w-full sm:w-32">
                       <img
                         src={forecast.image}
                         alt={forecast.title}
-                        className="w-32 h-24 object-cover rounded-lg"
+                        className="w-full sm:w-32 h-32 sm:h-24 object-cover rounded-lg"
                       />
                     </div>
                     
                     {/* Forecast Content */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
+                        <div className="flex-1">
+                          <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
                             {forecast.title}
                           </h3>
-                          <p className="text-sm text-gray-600 mb-2">{forecast.description}</p>
+                          <p className="text-xs sm:text-sm text-gray-600 mb-2">{forecast.description}</p>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Badge variant="xen-red">Premium</Badge>
+                          <Badge variant="xen-red" className="text-xs">Premium</Badge>
                           {forecast.pair && (
-                            <Badge variant="outline">
+                            <Badge variant="outline" className="text-xs">
                               {forecast.pair}
                             </Badge>
                           )}
                         </div>
                       </div>
                       
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
-                        <div className="flex items-center space-x-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-gray-500 mb-3 gap-2">
+                        <div className="flex items-center flex-wrap gap-2 sm:gap-4">
                           <div className="flex items-center space-x-1">
-                            <User className="h-4 w-4" />
-                            <span>{"CoreFX Team"}</span>
+                            <User className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <span className="text-xs sm:text-sm">{"CoreFX Team"}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <Calendar className="h-4 w-4" />
-                            <span>{formatDate(forecast.date)}</span>
+                            <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <span className="text-xs sm:text-sm">{formatDate(forecast.date)}</span>
                           </div>
                         </div>
                       </div>
                       
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div className="flex items-center space-x-3 sm:space-x-4 text-xs sm:text-sm text-gray-500">
                           <div className="flex items-center space-x-1">
-                            <Eye className="h-4 w-4" />
+                            <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                             <span>{forecast.views}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <Heart className="h-4 w-4" />
+                            <Heart className="h-3 w-3 sm:h-4 sm:w-4" />
                             <span>{forecast.likes}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <MessageCircle className="h-4 w-4" />
+                            <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" />
                             <span>{forecast.comments}</span>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" className="w-full sm:w-auto text-xs sm:text-sm">
                           View Details
                         </Button>
                       </div>
@@ -293,7 +293,7 @@ export default function ForecastsPage() {
       )}
 
       {/* Stats */}
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="mt-8 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
         <Card>
           <CardContent className="p-6 text-center">
             <div className="text-3xl font-bold text-xen-blue mb-2">{forecasts.length}</div>

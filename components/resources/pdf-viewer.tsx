@@ -84,49 +84,50 @@ export default function PDFViewer({ url, title }: PDFViewerProps) {
       }`}
     >
       {/* PDF Controls */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
+      <div className="flex items-center justify-between p-2 sm:p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+        <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
+          {/* Decorative dots - Hidden on mobile */}
+          <div className="hidden sm:flex items-center space-x-2 flex-shrink-0">
             <div className="w-3 h-3 bg-red-500 rounded-full"></div>
             <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
           </div>
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 truncate">
             {title}
           </span>
         </div>
 
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center space-x-1 flex-shrink-0">
           {/* Action Controls */}
           <button
             onClick={openInNewTab}
-            className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+            className="p-1.5 sm:p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
             title="Open in New Tab"
           >
-            <ExternalLink className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+            <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-600 dark:text-gray-400" />
           </button>
           
           <button
             onClick={toggleFullscreen}
-            className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+            className="p-1.5 sm:p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
             title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
           >
             {isFullscreen ? (
-              <Minimize2 className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              <Minimize2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-600 dark:text-gray-400" />
             ) : (
-              <Maximize2 className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+              <Maximize2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-600 dark:text-gray-400" />
             )}
           </button>
         </div>
       </div>
 
       {/* PDF Content */}
-      <div className="relative bg-gray-100 dark:bg-gray-800 p-4">
+      <div className="relative bg-gray-100 dark:bg-gray-800 p-1 sm:p-4">
         {isLoading && (
-          <div className="absolute inset-4 flex items-center justify-center bg-white dark:bg-gray-900 z-10 rounded-lg">
+          <div className="absolute inset-1 sm:inset-4 flex items-center justify-center bg-white dark:bg-gray-900 z-10 rounded-lg">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-600 dark:text-gray-400">Loading PDF...</p>
+              <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-blue-600 mx-auto mb-2 sm:mb-4"></div>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Loading PDF...</p>
             </div>
           </div>
         )}
@@ -134,7 +135,7 @@ export default function PDFViewer({ url, title }: PDFViewerProps) {
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-inner overflow-hidden">
           <iframe
             src={`${url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-            className={`w-full border-0 ${isFullscreen ? 'h-[calc(100vh-120px)]' : 'h-[600px]'}`}
+            className={`w-full border-0 ${isFullscreen ? 'h-[calc(100vh-80px)] sm:h-[calc(100vh-120px)]' : 'h-[450px] sm:h-[600px]'}`}
             onLoad={handleIframeLoad}
             onError={handleIframeError}
             title={title}

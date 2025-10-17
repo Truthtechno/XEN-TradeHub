@@ -172,51 +172,56 @@ export function DocumentViewer({ url, title, type }: DocumentViewerProps) {
   return (
     <div className="h-full flex flex-col">
       {/* Document Controls */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-        <div className="flex items-center space-x-2">
-          <BookOpen className="h-5 w-5 text-gray-600 dark:text-gray-400" />
-          <span className="text-sm font-medium text-gray-900 dark:text-white">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-2 sm:p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 gap-2">
+        {/* Title Row */}
+        <div className="flex items-center space-x-2 min-w-0 flex-1">
+          <BookOpen className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400 flex-shrink-0" />
+          <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate">
             {title}
           </span>
           {documentType && (
-            <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">
+            <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded flex-shrink-0">
               {documentType.toUpperCase()}
             </span>
           )}
         </div>
         
-        <div className="flex items-center space-x-2">
+        {/* Controls Row */}
+        <div className="flex items-center justify-between sm:justify-end space-x-1 sm:space-x-2 flex-wrap">
           {/* Page Navigation */}
           {totalPages > 1 && (
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-0.5 sm:space-x-1">
               <Button
                 onClick={handlePreviousPage}
                 disabled={currentPage <= 1}
                 variant="outline"
                 size="sm"
+                className="h-7 w-7 sm:h-8 sm:w-8 p-0"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
               </Button>
-              <span className="text-sm text-gray-600 dark:text-gray-400 px-2">
-                {currentPage} of {totalPages}
+              <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 px-1 sm:px-2 whitespace-nowrap">
+                {currentPage}/{totalPages}
               </span>
               <Button
                 onClick={handleNextPage}
                 disabled={currentPage >= totalPages}
                 variant="outline"
                 size="sm"
+                className="h-7 w-7 sm:h-8 sm:w-8 p-0"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
               </Button>
             </div>
           )}
           
-          {/* Zoom Controls */}
-          <div className="flex items-center space-x-1">
+          {/* Zoom Controls - Hidden on mobile */}
+          <div className="hidden sm:flex items-center space-x-1">
             <Button
               onClick={handleZoomOut}
               variant="outline"
               size="sm"
+              className="h-8 w-8 p-0"
             >
               <ZoomOut className="h-4 w-4" />
             </Button>
@@ -227,16 +232,18 @@ export function DocumentViewer({ url, title, type }: DocumentViewerProps) {
               onClick={handleZoomIn}
               variant="outline"
               size="sm"
+              className="h-8 w-8 p-0"
             >
               <ZoomIn className="h-4 w-4" />
             </Button>
           </div>
           
-          {/* Rotation */}
+          {/* Rotation - Hidden on mobile */}
           <Button
             onClick={handleRotate}
             variant="outline"
             size="sm"
+            className="hidden sm:flex h-8 w-8 p-0"
           >
             <RotateCw className="h-4 w-4" />
           </Button>
@@ -251,8 +258,9 @@ export function DocumentViewer({ url, title, type }: DocumentViewerProps) {
             }}
             variant="outline"
             size="sm"
+            className="h-7 w-7 sm:h-8 sm:w-8 p-0"
           >
-            <Maximize2 className="h-4 w-4" />
+            <Maximize2 className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
         </div>
       </div>
@@ -262,7 +270,7 @@ export function DocumentViewer({ url, title, type }: DocumentViewerProps) {
         <Card className="h-full">
           <CardContent className="p-0 h-full">
             <div 
-              className="document-content h-full overflow-auto p-6"
+              className="document-content h-full overflow-auto p-2 sm:p-6"
               style={{
                 transform: `scale(${zoom / 100}) rotate(${rotation}deg)`,
                 transformOrigin: 'top left',

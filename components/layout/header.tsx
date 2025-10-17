@@ -92,19 +92,20 @@ export function Header({ user, onMenuClick }: HeaderProps) {
 
         {/* Right side */}
         <div className="flex items-center space-x-2 lg:space-x-4">
-          {/* Forecast Button */}
+          {/* Forecast Button - Icon only on mobile, full button on desktop */}
           <Button 
             variant="xen-blue" 
-            className="relative hidden sm:flex"
+            className="relative"
             onClick={async () => {
               if (hasNewNotification('/forecast')) {
                 await markNewAsViewed('/forecast')
               }
               setIsForecastOpen(true)
             }}
+            title="Forecast"
           >
-            <TrendingUp className="mr-2 h-4 w-4" />
-            <span className="hidden lg:inline">Forecast</span>
+            <TrendingUp className="h-4 w-4 mr-2" />
+            <span className="hidden sm:inline">Forecast</span>
             {hasNewNotification('/forecast') && (
               <Badge variant="xen-red" className="absolute -top-2 -right-2 text-xs">
                 NEW
@@ -122,12 +123,13 @@ export function Header({ user, onMenuClick }: HeaderProps) {
             <Calculator className="h-5 w-5" />
           </Button>
 
-          {/* Settings Button */}
+          {/* Settings Button - Hidden on mobile, accessible via profile menu */}
           <Button 
             variant="ghost" 
             size="icon"
             onClick={() => setIsSettingsOpen(true)}
             title="Settings"
+            className="hidden sm:flex"
           >
             <Settings className="h-5 w-5" />
           </Button>

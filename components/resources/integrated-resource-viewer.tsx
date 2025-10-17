@@ -509,8 +509,8 @@ export function IntegratedResourceViewer({
 
           {/* Document Viewer */}
           {(resource.type === 'EBOOK' || resource.type === 'ARTICLE') && (
-            <div className="mb-4 sm:mb-6">
-              <div className="h-[50vh] sm:h-[60vh] border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            <div className="mb-4 sm:mb-6 -mx-3 sm:mx-0">
+              <div className="h-[60vh] sm:h-[65vh] border-0 sm:border border-gray-200 dark:border-gray-700 sm:rounded-lg overflow-hidden">
                 {resource.url ? (
                   <DocumentViewer
                     url={resource.url}

@@ -554,12 +554,15 @@ export function RightPanels({
     <>
       {/* Forecast Panel */}
       {isForecastOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50">
-          <div className={`fixed right-0 top-0 h-full w-[500px] shadow-xl transform transition-all duration-300 ease-in-out flex flex-col ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
-            <div className={`flex items-center justify-between p-4 border-b transition-colors duration-200 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50" onClick={() => onClose('forecast')}>
+          <div 
+            className={`fixed right-0 top-0 h-full w-full sm:w-[500px] shadow-xl transform transition-all duration-300 ease-in-out flex flex-col ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={`flex items-center justify-between p-3 sm:p-4 border-b transition-colors duration-200 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
               <div className="flex items-center space-x-2">
-                <TrendingUp className={`h-5 w-5 transition-colors duration-200 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                <h2 className={`text-lg font-semibold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Market Forecasts</h2>
+                <TrendingUp className={`h-4 w-4 sm:h-5 sm:w-5 transition-colors duration-200 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                <h2 className={`text-base sm:text-lg font-semibold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Market Forecasts</h2>
               </div>
               <Button variant="ghost" size="sm" onClick={() => onClose('forecast')}>
                 <X className="h-4 w-4" />
@@ -570,30 +573,30 @@ export function RightPanels({
             <div className={`flex border-b transition-colors duration-200 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
               <button
                 onClick={() => setForecastTab('public')}
-                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+                className={`flex-1 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors duration-200 ${
                   forecastTab === 'public'
                     ? `${isDarkMode ? 'text-blue-400 border-b-2 border-blue-400' : 'text-blue-600 border-b-2 border-blue-600'}`
                     : `${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'}`
                 }`}
               >
-                <Globe className="inline h-4 w-4 mr-2" />
-                Public
+                <Globe className="inline h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden xs:inline">Public</span>
               </button>
               <button
                 onClick={() => setForecastTab('premium')}
-                className={`flex-1 px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+                className={`flex-1 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors duration-200 ${
                   forecastTab === 'premium'
                     ? `${isDarkMode ? 'text-blue-400 border-b-2 border-blue-400' : 'text-blue-600 border-b-2 border-blue-600'}`
                     : `${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-500 hover:text-gray-700'}`
                 }`}
               >
-                <Crown className="inline h-4 w-4 mr-2" />
-                Premium
+                <Crown className="inline h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden xs:inline">Premium</span>
               </button>
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 overflow-y-auto p-4">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4">
               {isLoadingForecasts ? (
                 <div className="flex items-center justify-center h-32">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -601,30 +604,30 @@ export function RightPanels({
               ) : (
                 <>
                   {forecastTab === 'public' ? (
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {publicForecasts.length > 0 ? (
                         publicForecasts.map((forecast) => (
                           <Card key={forecast.id} className={`transition-colors duration-200 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
-                            <CardContent className="p-4">
-                              <div className="flex items-start justify-between mb-2">
-                                <div className="flex items-center space-x-2">
-                                  <Badge variant="secondary" className="text-xs">
+                            <CardContent className="p-3 sm:p-4">
+                              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
+                                <div className="flex items-center flex-wrap gap-1.5 sm:gap-2">
+                                  <Badge variant="secondary" className="text-[10px] sm:text-xs">
                                     {forecast.type === 'signal' ? 'Signal' : 'Forecast'}
                                   </Badge>
-                                  <Badge variant="outline" className="text-xs">
+                                  <Badge variant="outline" className="text-[10px] sm:text-xs">
                                     {forecast.pair || 'N/A'}
                                   </Badge>
                                 </div>
-                                <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                <span className={`text-[10px] sm:text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                   {new Date(forecast.createdAt).toLocaleDateString()}
                                 </span>
                               </div>
                               
-                              <h3 className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                              <h3 className={`text-sm sm:text-base font-semibold mb-1.5 sm:mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                                 {forecast.title}
                               </h3>
                               
-                              <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                              <p className={`text-xs sm:text-sm mb-2 sm:mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                                 {forecast.description}
                               </p>
 
@@ -660,18 +663,18 @@ export function RightPanels({
 
                               {/* Chart Image */}
                               {forecast.imageUrl && (
-                                <div className="mb-3">
+                                <div className="mb-2 sm:mb-3">
                                   <img 
                                     src={forecast.imageUrl} 
                                     alt="Chart" 
-                                    className="w-full h-32 object-cover rounded"
+                                    className="w-full h-28 sm:h-32 object-cover rounded"
                                   />
                                 </div>
                               )}
 
                               {/* Engagement Stats */}
-                              <div className="flex items-center justify-between text-xs">
-                                <div className="flex items-center space-x-4">
+                              <div className="flex items-center justify-between text-[10px] sm:text-xs">
+                                <div className="flex items-center space-x-3 sm:space-x-4">
                                   <button
                                     onClick={() => handleLikeForecast(forecast.id, forecast.isLiked)}
                                     className={`flex items-center transition-colors duration-200 ${
@@ -680,7 +683,7 @@ export function RightPanels({
                                         : `${isDarkMode ? 'text-gray-400 hover:text-red-500' : 'text-gray-500 hover:text-red-500'}`
                                     } cursor-pointer`}
                                   >
-                                    <Heart className={`h-3 w-3 mr-1 ${forecast.isLiked ? 'fill-current' : ''}`} />
+                                    <Heart className={`h-3 w-3 sm:h-3.5 sm:w-3.5 mr-0.5 sm:mr-1 ${forecast.isLiked ? 'fill-current' : ''}`} />
                                     {forecast.likes || 0}
                                   </button>
                                   <button
@@ -689,11 +692,11 @@ export function RightPanels({
                                       `${isDarkMode ? 'text-gray-400 hover:text-blue-500' : 'text-gray-500 hover:text-blue-600'}`
                                     } cursor-pointer`}
                                   >
-                                    <MessageCircle className="h-3 w-3 mr-1" />
+                                    <MessageCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-0.5 sm:mr-1" />
                                     {forecast.comments || 0}
                                   </button>
                                 </div>
-                                <Badge variant="outline" className="text-xs">
+                                <Badge variant="outline" className="text-[10px] sm:text-xs">
                                   {forecast.isPublic ? 'Public' : 'Premium'}
                                 </Badge>
                               </div>
@@ -701,61 +704,61 @@ export function RightPanels({
                           </Card>
                         ))
                       ) : (
-                        <div className="text-center py-8">
-                          <TrendingUp className={`h-12 w-12 mx-auto mb-4 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`} />
-                          <h3 className={`text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>No Public Forecasts</h3>
-                          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                        <div className="text-center py-6 sm:py-8">
+                          <TrendingUp className={`h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`} />
+                          <h3 className={`text-base sm:text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>No Public Forecasts</h3>
+                          <p className={`text-xs sm:text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                             Check back later for new trading signals and market forecasts.
                           </p>
                         </div>
                       )}
                     </div>
                   ) : (
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {!currentUser ? (
-                        <div className="text-center py-8">
-                          <Lock className={`h-12 w-12 mx-auto mb-4 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`} />
-                          <h3 className={`text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Login Required</h3>
-                          <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                        <div className="text-center py-6 sm:py-8 px-4">
+                          <Lock className={`h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`} />
+                          <h3 className={`text-base sm:text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Login Required</h3>
+                          <p className={`text-xs sm:text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                             Please log in to view premium forecasts and trading signals.
                           </p>
                         </div>
                       ) : !hasPremiumAccess ? (
-                        <div className="text-center py-8">
-                          <Crown className={`h-12 w-12 mx-auto mb-4 ${isDarkMode ? 'text-yellow-500' : 'text-yellow-600'}`} />
-                          <h3 className={`text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Premium Access Required</h3>
-                          <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                        <div className="text-center py-6 sm:py-8 px-4">
+                          <Crown className={`h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 ${isDarkMode ? 'text-yellow-500' : 'text-yellow-600'}`} />
+                          <h3 className={`text-base sm:text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Premium Access Required</h3>
+                          <p className={`text-xs sm:text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                             Subscribe to access exclusive premium forecasts and advanced trading signals.
                           </p>
-                          <Button className="bg-yellow-600 hover:bg-yellow-700 text-white">
-                            <Crown className="h-4 w-4 mr-2" />
+                          <Button className="bg-yellow-600 hover:bg-yellow-700 text-white text-xs sm:text-sm">
+                            <Crown className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                             Subscribe Now
                           </Button>
                         </div>
                       ) : premiumForecasts.length > 0 ? (
                         premiumForecasts.map((forecast) => (
                           <Card key={forecast.id} className={`transition-colors duration-200 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
-                            <CardContent className="p-4">
-                              <div className="flex items-start justify-between mb-2">
-                                <div className="flex items-center space-x-2">
-                                  <Badge variant="secondary" className={`text-xs ${isDarkMode ? 'bg-yellow-600 text-yellow-100' : 'bg-yellow-100 text-yellow-800'}`}>
-                                    <Crown className="h-3 w-3 mr-1" />
+                            <CardContent className="p-3 sm:p-4">
+                              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-2">
+                                <div className="flex items-center flex-wrap gap-1.5 sm:gap-2">
+                                  <Badge variant="secondary" className={`text-[10px] sm:text-xs ${isDarkMode ? 'bg-yellow-600 text-yellow-100' : 'bg-yellow-100 text-yellow-800'}`}>
+                                    <Crown className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
                                     Premium
                                   </Badge>
-                                  <Badge variant="outline" className="text-xs">
+                                  <Badge variant="outline" className="text-[10px] sm:text-xs">
                                     {forecast.pair || 'N/A'}
                                   </Badge>
                                 </div>
-                                <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                <span className={`text-[10px] sm:text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                                   {new Date(forecast.createdAt).toLocaleDateString()}
                                 </span>
                               </div>
                               
-                              <h3 className={`font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                              <h3 className={`text-sm sm:text-base font-semibold mb-1.5 sm:mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                                 {forecast.title}
                               </h3>
                               
-                              <p className={`text-sm mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                              <p className={`text-xs sm:text-sm mb-2 sm:mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                                 {forecast.description}
                               </p>
 
@@ -791,18 +794,18 @@ export function RightPanels({
 
                               {/* Chart Image */}
                               {forecast.imageUrl && (
-                                <div className="mb-3">
+                                <div className="mb-2 sm:mb-3">
                                   <img 
                                     src={forecast.imageUrl} 
                                     alt="Chart" 
-                                    className="w-full h-32 object-cover rounded"
+                                    className="w-full h-28 sm:h-32 object-cover rounded"
                                   />
                                 </div>
                               )}
 
                               {/* Engagement Stats */}
-                              <div className="flex items-center justify-between text-xs">
-                                <div className="flex items-center space-x-4">
+                              <div className="flex items-center justify-between text-[10px] sm:text-xs">
+                                <div className="flex items-center space-x-3 sm:space-x-4">
                                   <button
                                     onClick={() => handleLikeForecast(forecast.id, forecast.isLiked)}
                                     className={`flex items-center transition-colors duration-200 ${
@@ -811,7 +814,7 @@ export function RightPanels({
                                         : `${isDarkMode ? 'text-gray-400 hover:text-red-500' : 'text-gray-500 hover:text-red-500'}`
                                     } cursor-pointer`}
                                   >
-                                    <Heart className={`h-3 w-3 mr-1 ${forecast.isLiked ? 'fill-current' : ''}`} />
+                                    <Heart className={`h-3 w-3 sm:h-3.5 sm:w-3.5 mr-0.5 sm:mr-1 ${forecast.isLiked ? 'fill-current' : ''}`} />
                                     {forecast.likes || 0}
                                   </button>
                                   <button
@@ -820,11 +823,11 @@ export function RightPanels({
                                       `${isDarkMode ? 'text-gray-400 hover:text-blue-500' : 'text-gray-500 hover:text-blue-600'}`
                                     } cursor-pointer`}
                                   >
-                                    <MessageCircle className="h-3 w-3 mr-1" />
+                                    <MessageCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-0.5 sm:mr-1" />
                                     {forecast.comments || 0}
                                   </button>
                                 </div>
-                                <Badge variant="outline" className={`text-xs ${isDarkMode ? 'bg-yellow-600 text-yellow-100 border-yellow-600' : 'bg-yellow-100 text-yellow-800 border-yellow-200'}`}>
+                                <Badge variant="outline" className={`text-[10px] sm:text-xs ${isDarkMode ? 'bg-yellow-600 text-yellow-100 border-yellow-600' : 'bg-yellow-100 text-yellow-800 border-yellow-200'}`}>
                                   Premium
                                 </Badge>
                               </div>
@@ -832,10 +835,10 @@ export function RightPanels({
                           </Card>
                         ))
                       ) : (
-                        <div className="text-center py-8">
-                          <Crown className={`h-12 w-12 mx-auto mb-4 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`} />
-                          <h3 className={`text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>No Premium Forecasts</h3>
-                          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                        <div className="text-center py-6 sm:py-8 px-4">
+                          <Crown className={`h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`} />
+                          <h3 className={`text-base sm:text-lg font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>No Premium Forecasts</h3>
+                          <p className={`text-xs sm:text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                             No premium forecasts available at the moment. Check back later for exclusive content.
                           </p>
                         </div>
