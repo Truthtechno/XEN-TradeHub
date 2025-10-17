@@ -311,65 +311,108 @@ export default function AdminMarketAnalysisPage() {
     
     return (
       <div className="space-y-4">
-        <div className="flex justify-between items-center">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
           <div>
-            <h3 className="text-lg font-semibold">Currency Strength Heatmap</h3>
-            <p className="text-sm text-muted-foreground">Real-time currency pair performance and strength analysis</p>
+            <h3 className="text-base sm:text-lg font-semibold">Currency Strength Heatmap</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground">Real-time currency pair performance and strength analysis</p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm">1D</Button>
-            <Button variant="outline" size="sm">1W</Button>
-            <Button variant="outline" size="sm">1M</Button>
+          <div className="flex gap-2 flex-wrap">
+            <Button variant="outline" size="sm" className="text-xs">1D</Button>
+            <Button variant="outline" size="sm" className="text-xs">1W</Button>
+            <Button variant="outline" size="sm" className="text-xs">1M</Button>
             <Button variant="outline" size="sm" onClick={updateData}>
-              <RefreshCw className="h-4 w-4" />
+              <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </div>
         </div>
         
-        <div className="grid grid-cols-9 gap-1 text-xs">
-          {/* Header row */}
-          <div></div>
-          {currencies.map(currency => (
-            <div key={currency} className="text-center font-semibold p-2 bg-muted rounded">
-              {currency}
-            </div>
-          ))}
-          
-          {/* Data rows */}
+        {/* Mobile View - List of currency pairs */}
+        <div className="block lg:hidden space-y-3">
           {currencies.map(currency1 => (
-            <React.Fragment key={currency1}>
-              <div className="text-center font-semibold p-2 bg-muted rounded flex items-center justify-center">
-                {currency1}
+            <div key={currency1} className="space-y-2">
+              <div className="font-semibold text-sm bg-muted p-2 rounded sticky top-0 z-10">
+                {currency1} Pairs
               </div>
-              {currencies.map(currency2 => {
-                if (currency1 === currency2) {
-                  return <div key={`${currency1}-${currency2}`} className="p-2 text-center text-muted-foreground">-</div>
-                }
-                
-                const pair = `${currency1}/${currency2}`
-                const rate = forexRates.find(r => r.pair === pair)
-                const change = rate?.changePercent || 0
-                
-                return (
-                  <div
-                    key={`${currency1}-${currency2}`}
-                    className={`p-2 text-center rounded ${getChangeBgColor(change)}`}
-                  >
-                    <div className={`font-semibold ${getChangeColor(change)}`}>
-                      {formatPercent(change)}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {currencies.map(currency2 => {
+                  if (currency1 === currency2) return null
+                  
+                  const pair = `${currency1}/${currency2}`
+                  const rate = forexRates.find(r => r.pair === pair)
+                  const change = rate?.changePercent || 0
+                  
+                  return (
+                    <div
+                      key={`${currency1}-${currency2}`}
+                      className={`p-3 rounded-lg ${getChangeBgColor(change)} border border-gray-200 dark:border-gray-700`}
+                    >
+                      <div className="text-xs font-medium text-muted-foreground mb-1">
+                        {currency2}
+                      </div>
+                      <div className={`text-sm font-bold ${getChangeColor(change)}`}>
+                        {formatPercent(change)}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        {rate ? formatCurrency(rate.rate, 2) : 'N/A'}
+                      </div>
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                      {rate ? formatCurrency(rate.rate) : 'N/A'}
-                    </div>
-                  </div>
-                )
-              })}
-            </React.Fragment>
+                  )
+                })}
+              </div>
+            </div>
           ))}
         </div>
         
+        {/* Desktop View - Grid heatmap */}
+        <div className="hidden lg:block overflow-x-auto">
+          <div className="min-w-[800px]">
+            <div className="grid grid-cols-9 gap-1 text-xs">
+              {/* Header row */}
+              <div></div>
+              {currencies.map(currency => (
+                <div key={currency} className="text-center font-semibold p-2 bg-muted rounded">
+                  {currency}
+                </div>
+              ))}
+              
+              {/* Data rows */}
+              {currencies.map(currency1 => (
+                <React.Fragment key={currency1}>
+                  <div className="text-center font-semibold p-2 bg-muted rounded flex items-center justify-center">
+                    {currency1}
+                  </div>
+                  {currencies.map(currency2 => {
+                    if (currency1 === currency2) {
+                      return <div key={`${currency1}-${currency2}`} className="p-2 text-center text-muted-foreground">-</div>
+                    }
+                    
+                    const pair = `${currency1}/${currency2}`
+                    const rate = forexRates.find(r => r.pair === pair)
+                    const change = rate?.changePercent || 0
+                    
+                    return (
+                      <div
+                        key={`${currency1}-${currency2}`}
+                        className={`p-2 text-center rounded ${getChangeBgColor(change)}`}
+                      >
+                        <div className={`font-semibold ${getChangeColor(change)}`}>
+                          {formatPercent(change)}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {rate ? formatCurrency(rate.rate) : 'N/A'}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
+        
         {/* Legend */}
-        <div className="flex gap-4 text-xs">
+        <div className="flex flex-wrap gap-3 sm:gap-4 text-xs">
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-green-100 dark:bg-green-500/30 rounded"></div>
             <span>Positive</span>

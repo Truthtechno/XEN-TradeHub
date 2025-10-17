@@ -49,7 +49,7 @@ export async function simpleLogin(request: NextRequest) {
         name: user.name,
         role: user.role
       },
-      'your-secret-key',
+      process.env.JWT_SECRET as string,
       { expiresIn: '7d' }
     )
 
@@ -93,7 +93,7 @@ export async function simpleAuthCheck(request: NextRequest) {
       )
     }
 
-    const decoded = jwt.verify(token, 'your-secret-key') as any
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as any
 
     const user = await prisma.user.findUnique({
       where: { id: decoded.id }

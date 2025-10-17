@@ -71,14 +71,17 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
+      // On sign in, set fresh identity onto token
       if (user) {
-        token.role = (user as any).role
         token.id = (user as any).id
+        token.role = (user as any).role
+        token.email = (user as any).email
+        token.name = (user as any).name
       }
       return token
     },
     async session({ session, token }) {
-      if (token && session.user) {
+      if (session.user) {
         (session.user as any).id = token.id as string
         (session.user as any).role = token.role as string
       }

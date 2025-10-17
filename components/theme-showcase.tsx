@@ -112,7 +112,7 @@ export function ThemeShowcase({ theme, isDark }: ThemeShowcaseProps) {
         >
           <CardTitle 
             className="text-xl flex items-center gap-2"
-            style={{ fontFamily: theme.headingFont }}
+            style={{ fontFamily: theme.headingFont, color: '#FFFFFa' }}
           >
             <Activity className="w-5 h-5" />
             Trading Dashboard

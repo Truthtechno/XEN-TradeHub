@@ -89,12 +89,12 @@ export function ThemePreview({ theme, isDark }: ThemePreviewProps) {
           className="pb-3"
           style={{ 
             backgroundColor: colors.primaryColor,
-            color: getContrastTextColor(colors.primaryColor)
+            color: '#FFFFFF'
           }}
         >
           <CardTitle 
             className="text-lg"
-            style={{ fontFamily: `'${theme.headingFont}', sans-serif` }}
+            style={{ fontFamily: `'${theme.headingFont}', sans-serif`, color: '#FFFFFa' }}
           >
             Trading Dashboard
           </CardTitle>

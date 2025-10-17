@@ -5132,5 +5132,159 @@
         "exp_year": 2025
       }
     }
+  },
+  "pi_mock_1760680802120_9oji0dxl9": {
+    "id": "pi_mock_1760680802120_9oji0dxl9",
+    "client_secret": "pi_mock_pi_mock_1760680802120_9oji0dxl9_secret_8uws95j0f",
+    "amount": 4999,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgs5qasw005pgds4dzq2803i",
+      "courseTitle": "Trading Psychology Masterclass",
+      "userId": "mock_user_1760680802120",
+      "userEmail": "test@example.com"
+    },
+    "created": 1760680802,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760680802122_cjzn448s4": {
+    "id": "pi_mock_1760680802122_cjzn448s4",
+    "client_secret": "pi_mock_pi_mock_1760680802122_cjzn448s4_secret_qid3zq9g2",
+    "amount": 4999,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgs5qasw005pgds4dzq2803i",
+      "courseTitle": "Trading Psychology Masterclass",
+      "userId": "mock_user_1760680802120",
+      "userEmail": "test@example.com"
+    },
+    "created": 1760680802,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760680824470",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760680968224_y7gpg8248": {
+    "id": "pi_mock_1760680968224_y7gpg8248",
+    "client_secret": "pi_mock_pi_mock_1760680968224_y7gpg8248_secret_l1g23oi75",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgufzlot000d9sxxw4w0o1nk",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmgs5tcjx0000bt0z6fftfk9s",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1760680968,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760680968227_54lup3u2g": {
+    "id": "pi_mock_1760680968227_54lup3u2g",
+    "client_secret": "pi_mock_pi_mock_1760680968227_54lup3u2g_secret_cc0c016q7",
+    "amount": 150000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgufzlot000d9sxxw4w0o1nk",
+      "courseTitle": "One-on-One Mentorship",
+      "userId": "cmgs5tcjx0000bt0z6fftfk9s",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1760680968,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760680990500",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
+  },
+  "pi_mock_1760681258208_xaex5hlti": {
+    "id": "pi_mock_1760681258208_xaex5hlti",
+    "client_secret": "pi_mock_pi_mock_1760681258208_xaex5hlti_secret_5xakczo9d",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "userId": "cmgug48ng000m9sxx9copqld5",
+      "userEmail": "signal@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1760681258,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760681258211_yd1qgupca": {
+    "id": "pi_mock_1760681258211_yd1qgupca",
+    "client_secret": "pi_mock_pi_mock_1760681258211_yd1qgupca_secret_cnlt2ss4f",
+    "amount": 5000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "userId": "cmgug48ng000m9sxx9copqld5",
+      "userEmail": "signal@corefx.com",
+      "subscriptionType": "signals",
+      "plan": "MONTHLY",
+      "courseId": "999",
+      "courseTitle": "Signals Service Monthly Subscription"
+    },
+    "created": 1760681258,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760681273037",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
   }
 }

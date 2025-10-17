@@ -2,19 +2,38 @@ import { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './auth'
+import jwt from 'jsonwebtoken'
+import { prisma } from './prisma'
 
 export async function getAuthenticatedUser(request: NextRequest) {
   try {
-    // Try JWT token first
+    // Prefer custom JWT cookie first
+    const cookieToken = request.cookies.get('auth-token')?.value
+    if (cookieToken) {
+      try {
+        const decoded = jwt.verify(cookieToken, process.env.JWT_SECRET as string) as any
+        const user = await prisma.user.findUnique({
+          where: { id: decoded.id },
+          select: { id: true, name: true, email: true, role: true }
+        })
+        if (user) {
+          return { id: user.id, role: user.role, email: user.email, name: user.name, source: 'jwt-cookie' }
+        }
+      } catch (e) {
+        console.log('Auth: custom JWT verify failed')
+      }
+    }
+
+    // Then try NextAuth JWT (if used)
     const token = await getToken({ req: request })
     if (token) {
-      console.log('Auth: JWT token found:', { id: token.id, role: token.role })
+      console.log('Auth: NextAuth JWT token found:', { id: token.id, role: token.role })
       return {
         id: token.id as string,
         role: token.role as string,
         email: token.email as string,
         name: token.name as string,
-        source: 'jwt'
+        source: 'nextauth-jwt'
       }
     }
 

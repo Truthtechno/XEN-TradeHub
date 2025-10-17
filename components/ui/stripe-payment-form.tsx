@@ -176,20 +176,22 @@ const PaymentForm = ({
 }
 
 export default function StripePaymentForm(props: StripePaymentFormProps) {
-  const { settings } = useSettings()
+  const { settings, loading } = useSettings()
   const [stripePromise, setStripePromise] = useState<any>(null)
 
   useEffect(() => {
-    if (settings.stripePublishableKey) {
+    if (!settings.useMockPayment && settings.stripePublishableKey) {
       setStripePromise(loadStripe(settings.stripePublishableKey))
     }
-  }, [settings.stripePublishableKey])
+  }, [settings.stripePublishableKey, settings.useMockPayment])
 
   // Use mock payment form if enabled in settings
   if (settings.useMockPayment) {
+    console.log('Using mock payment form')
     return <MockPaymentForm {...props} />
   }
 
+  // Show loading while Stripe is being initialized
   if (!stripePromise) {
     return (
       <div className="text-center py-8">

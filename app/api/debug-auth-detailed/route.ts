@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     let jwtDecoded = null
     if (token) {
       try {
-        jwtDecoded = jwt.verify(token, 'your-secret-key') as any
+        jwtDecoded = jwt.verify(token, process.env.JWT_SECRET as string) as any
         console.log('Direct JWT verification successful:', jwtDecoded)
       } catch (jwtError) {
         console.log('Direct JWT verification failed:', jwtError)

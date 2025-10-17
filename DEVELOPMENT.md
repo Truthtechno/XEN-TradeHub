@@ -16,7 +16,7 @@
    npm install
    ```
 
-2. **Environment Setup**
+2. **Environment Setup** 
    ```bash
    cp env.example .env.local
    # Configure your environment variables

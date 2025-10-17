@@ -1060,7 +1060,7 @@ export default function SettingsPage() {
                 </div>
 
                 {/* Typography Preview */}
-                <div className="border border-theme rounded-lg p-4 bg-theme-secondary">
+                <div className="border border-theme rounded-lg p-4">
                   <h4 className="text-sm font-medium text-theme mb-3">Typography Preview</h4>
                   <div className="space-y-3">
                     <h1 className="text-2xl font-bold" style={{ fontFamily: localSettings.headingFont }}>
@@ -1131,7 +1131,7 @@ export default function SettingsPage() {
                       
                       <div>
                   <h4 className="text-sm font-medium text-theme mb-3">Live Preview</h4>
-                  <div className="border border-theme rounded-lg p-6 bg-theme-secondary">
+                  <div className="border border-theme rounded-lg p-6">
                     <ThemePreview theme={localSettings} isDark={localSettings.theme === 'dark'} />
                   </div>
                 </div>

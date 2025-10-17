@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Verify JWT token (lightweight check)
-    const decoded = jwt.verify(token, 'your-secret-key') as any
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any
 
     // Quick role check from JWT token (avoid database lookup for frequent requests)
     if (!['SUPERADMIN', 'ADMIN', 'ANALYST', 'EDITOR'].includes(decoded.role)) {
@@ -74,22 +74,32 @@ export async function GET(request: NextRequest) {
     ])
 
     // Format registrations to match expected structure
-    const formattedRegistrations = registrations.map(reg => ({
-      id: reg.id,
-      user: {
-        name: reg.user.name,
-        email: reg.user.email
-      },
-      broker: 'EXNESS', // Default broker
-      link: {
-        label: reg.link.name
-      },
-      verified: reg.verified || false,
-      verifiedAt: reg.verifiedAt,
-      registered: reg.createdAt,
-      createdAt: reg.createdAt,
-      verificationData: reg.verificationData
-    }))
+    const formattedRegistrations = registrations.map(reg => {
+      // Safely extract verification data
+      const verificationData = reg.verificationData as any || {}
+      
+      return {
+        id: reg.id,
+        user: {
+          name: reg.user?.name || 'Unknown User',
+          email: reg.user?.email || 'no-email@example.com'
+        },
+        broker: 'EXNESS', // Default broker
+        link: {
+          label: reg.link?.name || 'EXNESS'
+        },
+        verified: reg.verified || false,
+        verifiedAt: reg.verifiedAt,
+        registered: reg.createdAt,
+        createdAt: reg.createdAt,
+        verificationData: {
+          email: verificationData.email || reg.user?.email || '',
+          fullName: verificationData.fullName || reg.user?.name || '',
+          phoneNumber: verificationData.phoneNumber || '',
+          exnessAccountId: verificationData.exnessAccountId || ''
+        }
+      }
+    })
 
     return NextResponse.json({
       registrations: formattedRegistrations,

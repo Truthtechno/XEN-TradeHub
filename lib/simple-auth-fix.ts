@@ -18,7 +18,7 @@ export async function getAuthenticatedUserSimpleFix(request: NextRequest) {
     
     // Verify JWT token
     try {
-      const decoded = jwt.verify(token, 'your-secret-key') as any
+      const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as any
       console.log('JWT decoded:', { id: decoded.id, email: decoded.email, role: decoded.role })
       
       // Find user in database

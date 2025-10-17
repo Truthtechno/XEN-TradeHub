@@ -15,7 +15,7 @@ export async function POST(
     }
 
     // Verify JWT token
-    const decoded = jwt.verify(token, 'your-secret-key') as any
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any
 
     // Get user from database
     const user = await prisma.user.findUnique({

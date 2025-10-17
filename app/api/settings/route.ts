@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
       stripePublishableKey: settingsObj.stripePublishableKey || '',
       stripeSecretKey: settingsObj.stripeSecretKey || '',
       stripeWebhookSecret: settingsObj.stripeWebhookSecret || '',
-      useMockPayment: settingsObj.useMockPayment === 'true',
+      useMockPayment: settingsObj.useMockPayment !== undefined ? settingsObj.useMockPayment === 'true' : true,
       mockPaymentSuccessRate: parseInt(settingsObj.mockPaymentSuccessRate || '85'),
       // Enhanced theme settings
       accentColor: settingsObj.accentColor || '#10B981',
