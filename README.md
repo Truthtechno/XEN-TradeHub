@@ -150,12 +150,6 @@ The system comes pre-configured with demo accounts for testing:
 - **Subscription**: Premium Signals Plan
 - **Features**: Full access to educational content
 
-### 💼 Affiliate Account
-- **Email**: `affiliate@corefx.com`
-- **Password**: `affiliate123` (or OAuth login)
-- **Role**: Affiliate Partner
-- **Features**: Referral tracking and commission management
-
 ## 🎨 Design System
 
 ### 🎨 CoreFX Color Palette
