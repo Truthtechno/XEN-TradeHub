@@ -579,7 +579,7 @@ export function ResourceForm({ isOpen, onClose, onSave, resource }: ResourceForm
                 placeholder="Add a tag"
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
               />
-              <Button type="button" onClick={handleAddTag} size="sm">
+              <Button type="button" onClick={handleAddTag} size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm">
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
@@ -631,7 +631,7 @@ export function ResourceForm({ isOpen, onClose, onSave, resource }: ResourceForm
             <Button type="button" variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit" disabled={isUploading || uploadingThumbnail || uploadingContent}>
+            <Button className='bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm' type="submit" disabled={isUploading || uploadingThumbnail || uploadingContent}>
               {isUploading || uploadingThumbnail || uploadingContent ? (
                 <>
                   <Upload className="h-4 w-4 mr-2 animate-spin" />

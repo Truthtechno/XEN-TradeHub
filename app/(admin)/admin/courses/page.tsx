@@ -598,7 +598,7 @@ export default function CoursesPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => handleDeleteCourse(course)}
-                        className="text-theme-error hover:text-theme-error-700 hover:bg-theme-error-50 border-theme-error hover:border-theme-error-300"
+                        className="text-theme-error hover:text-theme-error-700 hover:bg-theme-error-50 dark:hover:bg-theme-error-900 border-theme-error hover:border-theme-error-300"
                       >
                         <Trash2 className="h-4 w-4 mr-1" />
                         Delete

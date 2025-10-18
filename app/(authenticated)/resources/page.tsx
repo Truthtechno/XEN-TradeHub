@@ -347,7 +347,7 @@ export default function ResourcesPage() {
                   <DollarSign className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                   <div>
                     <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200">
-                      Premium Resources Available
+                      Gain Premium Access
                     </h3>
                     <p className="text-sm text-blue-700 dark:text-blue-300">
                       Purchase individual resources or upgrade to Premium for free access to all content
@@ -356,7 +356,7 @@ export default function ResourcesPage() {
                 </div>
                 <div className="flex space-x-2">
                   <Button 
-                    onClick={() => window.location.href = '/signals'}
+                    onClick={() => window.location.href = '/one-on-one'}
                     variant="outline"
                     className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
                   >

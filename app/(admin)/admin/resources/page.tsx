@@ -295,7 +295,7 @@ export default function ResourcesPage() {
             className="border-theme-border hover:bg-theme-bg-secondary px-6 py-3"
           >
             <Search className="h-4 w-4 mr-2" />
-            Q Refresh
+            Refresh
           </Button>
           <Button 
             onClick={() => setIsFormOpen(true)} 

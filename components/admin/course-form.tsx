@@ -671,6 +671,7 @@ export default function CourseForm({ initialData, onSubmit, onCancel, isLoading 
                       type="button" 
                       onClick={addLesson} 
                       disabled={(!newLesson.title && !newLesson.videoUrl) || isUploadingVideo || isUploadingThumbnail}
+                       className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
                     >
                       {isUploadingVideo || isUploadingThumbnail ? (
                         <>
@@ -865,7 +866,7 @@ export default function CourseForm({ initialData, onSubmit, onCancel, isLoading 
                         className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         onKeyPress={(e) => e.key === 'Enter' && addTag()}
                       />
-                      <Button type="button" onClick={addTag} size="sm">
+                      <Button type="button" onClick={addTag} size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
                         <Plus className="h-4 w-4" />
                       </Button>
                     </div>

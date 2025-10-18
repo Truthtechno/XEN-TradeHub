@@ -5286,5 +5286,55 @@
         "exp_year": 2025
       }
     }
+  },
+  "pi_mock_1760758829112_btaydbgq1": {
+    "id": "pi_mock_1760758829112_btaydbgq1",
+    "client_secret": "pi_mock_pi_mock_1760758829112_btaydbgq1_secret_egghsvqbw",
+    "amount": 14900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmgs5qasg004cgds4qyncyea4",
+      "courseTitle": "Risk Management Strategies",
+      "userId": "cmgs5tcjx0000bt0z6fftfk9s",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1760758829,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1760758829115_zbeqm2fyw": {
+    "id": "pi_mock_1760758829115_zbeqm2fyw",
+    "client_secret": "pi_mock_pi_mock_1760758829115_zbeqm2fyw_secret_1l5hnq8fl",
+    "amount": 14900,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmgs5qasg004cgds4qyncyea4",
+      "courseTitle": "Risk Management Strategies",
+      "userId": "cmgs5tcjx0000bt0z6fftfk9s",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1760758829,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1760758853088",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
   }
 }
