@@ -5980,5 +5980,55 @@
         "exp_year": 2025
       }
     }
+  },
+  "pi_mock_1761559697244_o9fg9dcml": {
+    "id": "pi_mock_1761559697244_o9fg9dcml",
+    "client_secret": "pi_mock_pi_mock_1761559697244_o9fg9dcml_secret_snxqrorop",
+    "amount": 20000,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "metadata": {
+      "courseId": "cmh8z50dj000310g13rh0p09v",
+      "courseTitle": "Beginner Course",
+      "userId": "cmh8vdqzx00013a5u65vd8ehu",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1761559697,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  },
+  "pi_mock_1761559697261_x35318lbh": {
+    "id": "pi_mock_1761559697261_x35318lbh",
+    "client_secret": "pi_mock_pi_mock_1761559697261_x35318lbh_secret_qn9aaq4c4",
+    "amount": 20000,
+    "currency": "usd",
+    "status": "succeeded",
+    "metadata": {
+      "courseId": "cmh8z50dj000310g13rh0p09v",
+      "courseTitle": "Beginner Course",
+      "userId": "cmh8vdqzx00013a5u65vd8ehu",
+      "userEmail": "brian@corefx.com"
+    },
+    "created": 1761559697,
+    "payment_method_types": [
+      "card"
+    ],
+    "automatic_payment_methods": {
+      "enabled": true
+    },
+    "payment_method": {
+      "id": "pm_mock_1761559715218",
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      }
+    }
   }
 }
