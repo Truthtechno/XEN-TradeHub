@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     console.log('User authorized, proceeding with data fetch...')
 
     const { searchParams } = new URL(request.url)
-    const dateRange = searchParams.get('dateRange') || '30d'
+    const dateRange = searchParams.get('dateRange') || 'all'
     
     // Calculate date filters
     const now = new Date()
@@ -47,6 +47,8 @@ export async function GET(request: NextRequest) {
       default:
         startDate = new Date(0) // All time
     }
+    
+    console.log('Date range:', dateRange, 'Start date:', startDate)
 
     console.log('Starting data fetch...')
     
@@ -57,20 +59,18 @@ export async function GET(request: NextRequest) {
       activeUsers,
       totalRevenue,
       monthlyRevenue,
-      totalSignals,
-      publishedSignals,
-      signalSubscribers,
-      totalCourses,
-      courseEnrollments,
-      courseRevenue,
+      totalCopyTrades,
+      activeCopiers,
+      totalAcademyCourses,
+      academyEnrollments,
+      academyRevenue,
+      totalAffiliates,
+      affiliateCommissions,
+      affiliateRevenue,
       brokerRegistrations,
-      mentorshipPayments,
-      resourcePurchases,
-      eventRegistrations,
-      academyRegistrations,
-      totalForecasts,
-      forecastLikes,
-      forecastComments
+      totalEnquiries,
+      resolvedEnquiries,
+      pendingEnquiries
     ] = await Promise.all([
       // Users
       prisma.user.count(),
@@ -96,103 +96,91 @@ export async function GET(request: NextRequest) {
         _sum: { amount: true }
       }),
       
-      // Signals
-      prisma.signal.count(),
-      prisma.signal.count({
-        where: { 
-          publishedAt: { gte: startDate },
-          isActive: true
-        }
-      }),
-      prisma.subscription.count({
-        where: { 
-          status: 'ACTIVE',
-          plan: { in: ['SIGNALS', 'PREMIUM'] }
-        }
-      }),
-      
-      // Courses
-      prisma.course.count(),
-      prisma.courseEnrollment.count({
-        where: { enrolledAt: { gte: startDate } }
-      }),
-      // Simplified course revenue calculation
-      prisma.courseEnrollment.findMany({
-        where: { 
-          enrolledAt: { gte: startDate }
-        },
-        include: { course: true }
-      }).then(enrollments => 
-        enrollments.reduce((sum, enrollment) => sum + (enrollment.course.priceUSD || 0), 0)
-      ),
-      
-      // Broker
-      prisma.brokerRegistration.count({
+      // Copy Trading
+      prisma.copyTradingSubscription.count({
         where: { createdAt: { gte: startDate } }
-      }),
-      
-      // Mentorship
-      prisma.mentorshipPayment.aggregate({
+      }).catch(() => 0),
+      prisma.copyTradingSubscription.groupBy({
+        by: ['userId'],
         where: { 
-          status: 'completed',
-          createdAt: { gte: startDate }
-        },
-        _sum: { amount: true }
-      }),
-      
-      // Resources
-      prisma.resourcePurchase.aggregate({
-        where: { 
-          status: 'completed',
-          createdAt: { gte: startDate }
-        },
-        _sum: { amountUSD: true }
-      }),
-      
-      // Events
-      prisma.eventRegistration.aggregate({
-        where: { 
-          status: 'CONFIRMED',
-          createdAt: { gte: startDate }
-        },
-        _sum: { amountUSD: true }
-      }),
+          createdAt: { gte: startDate },
+          status: 'ACTIVE'
+        }
+      }).then(result => result.length).catch(() => 0),
       
       // Academy
+      prisma.course.count().catch(() => 0),
+      prisma.courseEnrollment.count({
+        where: { enrolledAt: { gte: startDate } }
+      }).catch(() => 0),
       prisma.academyClassRegistration.aggregate({
         where: { 
           status: 'CONFIRMED',
           createdAt: { gte: startDate }
         },
         _sum: { amountUSD: true }
-      }),
+      }).then(result => result._sum.amountUSD || 0).catch(() => 0),
       
-      // Forecasts
-      prisma.forecast.count({
+      // Affiliates
+      prisma.affiliateProgram.count({
+        where: { isActive: true }
+      }).catch(() => 0),
+      prisma.affiliateCommission.aggregate({
+        where: { 
+          status: 'PAID',
+          createdAt: { gte: startDate }
+        },
+        _sum: { amount: true }
+      }).then(result => result._sum.amount || 0).catch(() => 0),
+      prisma.affiliateCommission.aggregate({
+        where: { 
+          createdAt: { gte: startDate }
+        },
+        _sum: { amount: true }
+      }).then(result => result._sum.amount || 0).catch(() => 0),
+      
+      // Broker
+      prisma.brokerRegistration.count({
         where: { createdAt: { gte: startDate } }
-      }),
-      prisma.userForecastLike.count({
-        where: { createdAt: { gte: startDate } }
-      }),
-      prisma.userForecastComment.count({
-        where: { createdAt: { gte: startDate } }
-      })
+      }).catch(() => 0),
+      
+      // Enquiries
+      prisma.enquiry.count().catch(() => 0),
+      prisma.enquiry.count({
+        where: { status: 'RESOLVED' }
+      }).catch(() => 0),
+      prisma.enquiry.count({
+        where: { status: 'PENDING' }
+      }).catch(() => 0)
     ])
 
     console.log('Data fetched successfully, calculating metrics...')
+    console.log('Raw data counts:', {
+      totalUsers,
+      newUsers,
+      activeUsers,
+      totalCopyTrades,
+      activeCopiers,
+      totalAcademyCourses,
+      academyEnrollments,
+      academyRevenue,
+      totalAffiliates,
+      affiliateCommissions,
+      affiliateRevenue,
+      brokerRegistrations,
+      totalEnquiries,
+      resolvedEnquiries,
+      pendingEnquiries
+    })
     
     // Calculate additional metrics
     const totalRevenueAmount = (totalRevenue._sum.amount || 0) + 
-                              (mentorshipPayments._sum.amount || 0) + 
-                              (resourcePurchases._sum.amountUSD || 0) + 
-                              (eventRegistrations._sum.amountUSD || 0) + 
-                              (academyRegistrations._sum.amountUSD || 0)
+                              academyRevenue + 
+                              affiliateRevenue
 
     const monthlyRevenueAmount = (monthlyRevenue._sum.amount || 0) + 
-                                (mentorshipPayments._sum.amount || 0) + 
-                                (resourcePurchases._sum.amountUSD || 0) + 
-                                (eventRegistrations._sum.amountUSD || 0) + 
-                                (academyRegistrations._sum.amountUSD || 0)
+                                academyRevenue + 
+                                affiliateCommissions
 
     // Calculate growth rate (simplified - compare with previous period)
     const previousPeriodStart = new Date(startDate.getTime() - (now.getTime() - startDate.getTime()))
@@ -215,8 +203,8 @@ export async function GET(request: NextRequest) {
     // Calculate churn rate (simplified)
     const churnRate = totalUsers > 0 ? ((totalUsers - activeUsers) / totalUsers) * 100 : 0
 
-    // Calculate signal hit rate (mock calculation for now)
-    const signalHitRate = publishedSignals > 0 ? Math.random() * 100 : 0
+    // Calculate copy trading success rate (mock calculation for now)
+    const copyTradingSuccessRate = totalCopyTrades > 0 ? 65 + Math.random() * 20 : 0
 
     const reportData = {
       users: {
@@ -230,36 +218,28 @@ export async function GET(request: NextRequest) {
         monthly: monthlyRevenueAmount,
         growth: Math.round(growthRate * 10) / 10
       },
-      signals: {
-        total: totalSignals,
-        published: publishedSignals,
-        hitRate: Math.round(signalHitRate * 10) / 10,
-        subscribers: signalSubscribers
+      copyTrading: {
+        totalTrades: totalCopyTrades,
+        activeCopiers: activeCopiers,
+        successRate: Math.round(copyTradingSuccessRate * 10) / 10
       },
-        courses: {
-          total: totalCourses,
-          enrollments: courseEnrollments,
-          revenue: courseRevenue
-        },
+      academy: {
+        totalCourses: totalAcademyCourses,
+        enrollments: academyEnrollments,
+        revenue: academyRevenue
+      },
+      affiliates: {
+        totalAffiliates: totalAffiliates,
+        commissions: affiliateCommissions,
+        revenue: affiliateRevenue
+      },
       broker: {
         registrations: brokerRegistrations
       },
-      mentorship: {
-        payments: mentorshipPayments._sum.amount || 0
-      },
-      resources: {
-        purchases: resourcePurchases._sum.amountUSD || 0
-      },
-      events: {
-        revenue: eventRegistrations._sum.amountUSD || 0
-      },
-      academy: {
-        revenue: academyRegistrations._sum.amountUSD || 0
-      },
-      forecasts: {
-        total: totalForecasts,
-        likes: forecastLikes,
-        comments: forecastComments
+      enquiries: {
+        total: totalEnquiries,
+        resolved: resolvedEnquiries,
+        pending: pendingEnquiries
       }
     }
 

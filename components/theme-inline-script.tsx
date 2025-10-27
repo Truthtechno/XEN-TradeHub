@@ -10,7 +10,7 @@ export function ThemeInlineScript() {
             try {
               // Get theme from localStorage with fallback
               const savedTheme = localStorage.getItem('theme') || 'light';
-              const savedSettings = localStorage.getItem('corefx-settings');
+              const savedSettings = localStorage.getItem('app-settings');
               
               // Apply theme class immediately to prevent flash
               if (savedTheme === 'dark') {

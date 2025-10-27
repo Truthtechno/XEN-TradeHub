@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const session = await getServerSession(authOptions)
     
     // For development/testing, use a fallback user ID if no session
-    const userId = (session?.user as any)?.id || 'cmghmk1tu00001d3t8ipi2pm6'
+    const userId = (session?.user as any)?.id || 'cmgz9k42t00008wbbr17oa6aq' // Actual admin user ID from xen_tradehub database
 
     const { bannerId } = await request.json()
 

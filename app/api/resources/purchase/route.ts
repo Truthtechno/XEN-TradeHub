@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAuthenticatedUserSimple } from '@/lib/auth-simple'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
-import { notifyStudentPurchase } from '@/lib/admin-notification-utils'
+// import { notifyStudentPurchase } from '@/lib/admin-notification-utils'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -110,15 +110,15 @@ export async function POST(request: NextRequest) {
     console.log('Resource purchase intent created:', purchase.id, 'Mock Payment ID:', mockPaymentData.paymentIntentId)
 
     // Create admin notification for student purchase
-    await notifyStudentPurchase(
-      user.name || user.email || 'Unknown User',
-      user.email || 'unknown@example.com',
-      'resource',
-      resource.title,
-      resource.priceUSD || 0,
-      'USD',
-      `/admin/resources/${resource.id}`
-    )
+    // await notifyStudentPurchase(
+    //   user.name || user.email || 'Unknown User',
+    //   user.email || 'unknown@example.com',
+    //   'resource',
+    //   resource.title,
+    //   resource.priceUSD || 0,
+    //   'USD',
+    //   `/admin/resources/${resource.id}`
+    // )
 
     return NextResponse.json({ 
       success: true,

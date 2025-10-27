@@ -43,6 +43,9 @@ interface AcademyClass {
   description: string
   instructor: string
   location: string
+  deliveryMode: 'PHYSICAL' | 'ONLINE'
+  scheduleType: 'ONE_TIME' | 'RECURRING'
+  recurrencePattern?: string
   nextSession: string
   duration: string
   maxStudents: number
@@ -108,6 +111,9 @@ export default function AcademyPage() {
     maxStudents: '',
     instructor: '',
     location: '',
+    deliveryMode: 'PHYSICAL',
+    scheduleType: 'ONE_TIME',
+    recurrencePattern: '',
     nextSession: '',
     status: 'UPCOMING',
     isPublished: true
@@ -184,6 +190,7 @@ export default function AcademyPage() {
 
   const handleCreateClass = async () => {
     try {
+      console.log('Creating class with data:', formData)
       const response = await fetch('/api/academy-classes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -191,14 +198,21 @@ export default function AcademyPage() {
       })
 
       if (response.ok) {
+        const result = await response.json()
+        console.log('Class created successfully:', result)
         setShowCreateDialog(false)
         resetForm()
         fetchClasses()
+        alert('Class created successfully!')
       } else {
-        console.error('Failed to create class')
+        const error = await response.json()
+        console.error('Failed to create class:', error)
+        const errorMessage = error.details || error.error || 'Unknown error'
+        alert(`Failed to create class: ${errorMessage}`)
       }
     } catch (error) {
       console.error('Error creating class:', error)
+      alert('An error occurred while creating the class. Please try again.')
     }
   }
 
@@ -222,6 +236,29 @@ export default function AcademyPage() {
       }
     } catch (error) {
       console.error('Error updating class:', error)
+    }
+  }
+
+  const handleUpdateRecurringSessions = async () => {
+    try {
+      setIsRefreshing(true)
+      const response = await fetch('/api/admin/update-recurring-sessions', {
+        method: 'POST'
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        alert(`Updated ${result.updatedCount} recurring class(es)`)
+        fetchClasses()
+      } else {
+        const error = await response.json()
+        alert(`Failed to update: ${error.details || error.error}`)
+      }
+    } catch (error) {
+      console.error('Error updating recurring sessions:', error)
+      alert('An error occurred while updating recurring sessions')
+    } finally {
+      setIsRefreshing(false)
     }
   }
 
@@ -296,6 +333,9 @@ export default function AcademyPage() {
       maxStudents: '',
       instructor: '',
       location: '',
+      deliveryMode: 'PHYSICAL',
+      scheduleType: 'ONE_TIME',
+      recurrencePattern: '',
       nextSession: '',
       status: 'UPCOMING',
       isPublished: true
@@ -304,6 +344,11 @@ export default function AcademyPage() {
 
   const openEditDialog = (academyClass: AcademyClass) => {
     setEditingClass(academyClass)
+    
+    // Format datetime for datetime-local input (YYYY-MM-DDTHH:mm)
+    const sessionDate = new Date(academyClass.nextSession)
+    const formattedDateTime = sessionDate.toISOString().slice(0, 16)
+    
     setFormData({
       title: academyClass.title,
       description: academyClass.description,
@@ -314,7 +359,10 @@ export default function AcademyPage() {
       maxStudents: academyClass.maxStudents.toString(),
       instructor: academyClass.instructor,
       location: academyClass.location,
-      nextSession: academyClass.nextSession.split('T')[0],
+      deliveryMode: academyClass.deliveryMode || 'PHYSICAL',
+      scheduleType: academyClass.scheduleType || 'ONE_TIME',
+      recurrencePattern: academyClass.recurrencePattern || '',
+      nextSession: formattedDateTime,
       status: academyClass.status,
       isPublished: academyClass.isPublished
     })
@@ -455,6 +503,9 @@ export default function AcademyPage() {
   }
 
   const formatCurrency = (amount: number, currency: string = 'USD') => {
+    if (amount === 0 || !amount) {
+      return 'Free'
+    }
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: currency
@@ -488,6 +539,15 @@ export default function AcademyPage() {
               >
                 <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
                 {isRefreshing ? 'Refreshing...' : 'Refresh'}
+              </Button>
+              <Button
+                onClick={handleUpdateRecurringSessions}
+                disabled={isRefreshing}
+                variant="outline"
+                className="w-full sm:w-auto border-theme-border hover:bg-theme-bg-secondary"
+              >
+                <Calendar className="h-4 w-4 mr-2" />
+                Update Sessions
               </Button>
               <Button
                 onClick={() => setShowCreateDialog(true)}
@@ -722,14 +782,14 @@ export default function AcademyPage() {
 
       {/* Create Class Dialog */}
       <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-        <DialogContent className="max-w-2xl bg-theme-card border-theme-border">
+        <DialogContent className="max-w-2xl max-h-[90vh] bg-theme-card border-theme-border overflow-hidden flex flex-col">
           <DialogHeader>
             <DialogTitle className={textHierarchy.sectionHeading(isDarkMode)}>Create New Academy Class</DialogTitle>
             <DialogDescription className={textHierarchy.subheading()}>
               Add a new in-person training class to the academy.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 overflow-y-auto pr-2">
             <div className="space-y-2">
               <Label htmlFor="title" className={textHierarchy.cardTitle(isDarkMode)}>Class Title</Label>
               <Input
@@ -770,6 +830,18 @@ export default function AcademyPage() {
                 placeholder="e.g., XEN Forex Academy, Kampala"
                 className="bg-theme-bg border-theme-border text-theme-text"
               />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="deliveryMode" className={textHierarchy.cardTitle(isDarkMode)}>Delivery Mode</Label>
+              <Select value={formData.deliveryMode} onValueChange={(value) => setFormData({...formData, deliveryMode: value})}>
+                <SelectTrigger className="bg-theme-bg border-theme-border text-theme-text">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-theme-card border-theme-border">
+                  <SelectItem value="PHYSICAL">Physical</SelectItem>
+                  <SelectItem value="ONLINE">Online</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="price" className={textHierarchy.cardTitle(isDarkMode)}>Price</Label>
@@ -829,12 +901,37 @@ export default function AcademyPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="nextSession">Next Session</Label>
+              <Label htmlFor="scheduleType" className={textHierarchy.cardTitle(isDarkMode)}>Schedule Type</Label>
+              <Select value={formData.scheduleType} onValueChange={(value) => setFormData({...formData, scheduleType: value})}>
+                <SelectTrigger className="bg-theme-bg border-theme-border text-theme-text">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-theme-card border-theme-border">
+                  <SelectItem value="ONE_TIME">One-Time Session</SelectItem>
+                  <SelectItem value="RECURRING">Recurring Schedule</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {formData.scheduleType === 'RECURRING' && (
+              <div className="space-y-2">
+                <Label htmlFor="recurrencePattern" className={textHierarchy.cardTitle(isDarkMode)}>Recurrence Pattern</Label>
+                <Input
+                  id="recurrencePattern"
+                  value={formData.recurrencePattern}
+                  onChange={(e) => setFormData({...formData, recurrencePattern: e.target.value})}
+                  placeholder="e.g., Every Tuesday, Weekly on Mondays"
+                  className="bg-theme-bg border-theme-border text-theme-text"
+                />
+              </div>
+            )}
+            <div className="space-y-2">
+              <Label htmlFor="nextSession">Next Session (Date & Time)</Label>
               <Input
                 id="nextSession"
-                type="date"
+                type="datetime-local"
                 value={formData.nextSession}
                 onChange={(e) => setFormData({...formData, nextSession: e.target.value})}
+                className="bg-theme-bg border-theme-border text-theme-text"
               />
             </div>
             <div className="space-y-2">
@@ -878,14 +975,14 @@ export default function AcademyPage() {
 
       {/* Edit Class Dialog */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent className="max-w-2xl bg-theme-card border-theme-border">
+        <DialogContent className="max-w-2xl max-h-[90vh] bg-theme-card border-theme-border overflow-hidden flex flex-col">
           <DialogHeader>
             <DialogTitle className={textHierarchy.sectionHeading(isDarkMode)}>Edit Academy Class</DialogTitle>
             <DialogDescription className={textHierarchy.subheading()}>
               Update the academy class details.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 overflow-y-auto pr-2">
             <div className="space-y-2">
               <Label htmlFor="edit-title">Class Title</Label>
               <Input
@@ -922,6 +1019,18 @@ export default function AcademyPage() {
                 onChange={(e) => setFormData({...formData, location: e.target.value})}
                 placeholder="e.g., XEN Forex Academy, Kampala"
               />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-deliveryMode">Delivery Mode</Label>
+              <Select value={formData.deliveryMode} onValueChange={(value) => setFormData({...formData, deliveryMode: value})}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="PHYSICAL">Physical</SelectItem>
+                  <SelectItem value="ONLINE">Online</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="edit-price">Price</Label>
@@ -980,10 +1089,33 @@ export default function AcademyPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-nextSession">Next Session</Label>
+              <Label htmlFor="edit-scheduleType">Schedule Type</Label>
+              <Select value={formData.scheduleType} onValueChange={(value) => setFormData({...formData, scheduleType: value})}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ONE_TIME">One-Time Session</SelectItem>
+                  <SelectItem value="RECURRING">Recurring Schedule</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {formData.scheduleType === 'RECURRING' && (
+              <div className="space-y-2">
+                <Label htmlFor="edit-recurrencePattern">Recurrence Pattern</Label>
+                <Input
+                  id="edit-recurrencePattern"
+                  value={formData.recurrencePattern}
+                  onChange={(e) => setFormData({...formData, recurrencePattern: e.target.value})}
+                  placeholder="e.g., Every Tuesday, Weekly on Mondays"
+                />
+              </div>
+            )}
+            <div className="space-y-2">
+              <Label htmlFor="edit-nextSession">Next Session (Date & Time)</Label>
               <Input
                 id="edit-nextSession"
-                type="date"
+                type="datetime-local"
                 value={formData.nextSession}
                 onChange={(e) => setFormData({...formData, nextSession: e.target.value})}
               />

@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { notifyAcademyRegistration } from '@/lib/admin-notification-utils'
+import { createAcademyCommission } from '@/lib/affiliate-commission-utils'
+import { getAuthenticatedUserSimple } from '@/lib/auth-simple'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -70,9 +73,12 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Get logged-in user from auth token (if available)
+    const authUser = await getAuthenticatedUserSimple(request)
+    const loggedInUserId = authUser?.id || null
+
     const body = await request.json()
     const {
-      userId,
       fullName,
       email,
       phone,
@@ -83,6 +89,9 @@ export async function POST(
       status = 'PENDING',
       paymentStatus = 'PENDING'
     } = body
+
+    // Use logged-in user ID (for commission tracking), not the userId from body
+    const userId = loggedInUserId
 
     // Validate required fields
     if (!fullName || !email) {
@@ -159,6 +168,28 @@ export async function POST(
         }
       }
     })
+
+    // Notify admins about new academy registration
+    await notifyAcademyRegistration(
+      fullName,
+      email,
+      academyClass.title,
+      `/admin/academy`
+    )
+
+    // Create affiliate commission if user was referred
+    console.log(`[Academy Registration] userId: ${userId}, price: ${academyClass.price}`)
+    if (userId && academyClass.price > 0) {
+      console.log(`[Academy Registration] Creating commission for user ${userId}`)
+      await createAcademyCommission(
+        userId,
+        academyClass.price,
+        params.id
+      )
+      console.log(`[Academy Registration] Commission created successfully`)
+    } else {
+      console.log(`[Academy Registration] Skipping commission - userId: ${userId}, price: ${academyClass.price}`)
+    }
 
     return NextResponse.json(registration, { status: 201 })
   } catch (error) {

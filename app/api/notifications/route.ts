@@ -39,14 +39,14 @@ export async function GET(request: NextRequest) {
     const isAdmin = adminRoles.includes(user.role)
     
     if (isAdmin) {
-      // Admins see admin-specific notifications (student activities)
+      // Admins see admin-specific notifications (user activities)
       whereClause.type = {
-        in: ['STUDENT_PURCHASE', 'STUDENT_ENROLLMENT', 'STUDENT_REGISTRATION', 'STUDENT_ENQUIRY', 'STUDENT_ACTIVITY']
+        in: ['USER_SIGNUP', 'ACADEMY_REGISTRATION', 'ACADEMY_ENROLLMENT', 'BROKER_ACCOUNT_OPENING', 'COPY_TRADING_SUBSCRIPTION', 'AFFILIATE_REGISTRATION', 'AFFILIATE_REFERRAL', 'USER_ENQUIRY', 'USER_ACTIVITY']
       }
     } else {
-      // Students see student-specific notifications (courses, resources, events, signals, etc.)
+      // Students see user-specific notifications (new content, referrals, etc.)
       whereClause.type = {
-        in: ['LOGIN', 'WELCOME', 'SYSTEM', 'UPDATE', 'SECURITY', 'PROMOTION', 'SIGNAL', 'COURSE', 'BOOKING', 'PAYMENT']
+        in: ['NEW_BROKER', 'NEW_ACADEMY_CLASS', 'NEW_MASTER_TRADER', 'NEW_COURSE', 'NEW_RESOURCE', 'NEW_SIGNAL', 'NEW_EVENT', 'AFFILIATE_REFERRAL_SIGNUP', 'SYSTEM_UPDATE', 'PROMOTION']
       }
     }
 
@@ -79,11 +79,11 @@ export async function GET(request: NextRequest) {
     
     if (isAdmin) {
       unreadWhereClause.type = {
-        in: ['STUDENT_PURCHASE', 'STUDENT_ENROLLMENT', 'STUDENT_REGISTRATION', 'STUDENT_ENQUIRY', 'STUDENT_ACTIVITY']
+        in: ['USER_SIGNUP', 'ACADEMY_REGISTRATION', 'ACADEMY_ENROLLMENT', 'BROKER_ACCOUNT_OPENING', 'COPY_TRADING_SUBSCRIPTION', 'AFFILIATE_REGISTRATION', 'AFFILIATE_REFERRAL', 'USER_ENQUIRY', 'USER_ACTIVITY']
       }
     } else {
       unreadWhereClause.type = {
-        in: ['LOGIN', 'WELCOME', 'SYSTEM', 'UPDATE', 'SECURITY', 'PROMOTION', 'SIGNAL', 'COURSE', 'BOOKING', 'PAYMENT']
+        in: ['NEW_BROKER', 'NEW_ACADEMY_CLASS', 'NEW_MASTER_TRADER', 'NEW_COURSE', 'NEW_RESOURCE', 'NEW_SIGNAL', 'NEW_EVENT', 'AFFILIATE_REFERRAL_SIGNUP', 'SYSTEM_UPDATE', 'PROMOTION']
       }
     }
     

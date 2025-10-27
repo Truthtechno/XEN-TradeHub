@@ -34,8 +34,8 @@ export async function GET(request: NextRequest) {
 
     // Build where clause for admin activity notifications
     const where: any = {
-      // Show all notifications for admin (including existing UPDATE types and EMAIL notifications)
-      type: { in: ['STUDENT_PURCHASE', 'STUDENT_ENROLLMENT', 'STUDENT_REGISTRATION', 'STUDENT_ENQUIRY', 'STUDENT_ACTIVITY', 'USER_LOGIN', 'SUBSCRIPTION_CREATED', 'SUBSCRIPTION_UPDATED', 'SUBSCRIPTION_CANCELLED', 'PAYMENT_SUCCESS', 'PAYMENT_FAILED', 'UPDATE', 'EMAIL'] }
+      // Show all admin activity notifications (XEN TradeHub types)
+      type: { in: ['USER_SIGNUP', 'ACADEMY_REGISTRATION', 'ACADEMY_ENROLLMENT', 'BROKER_ACCOUNT_OPENING', 'COPY_TRADING_SUBSCRIPTION', 'AFFILIATE_REGISTRATION', 'AFFILIATE_REFERRAL', 'USER_ENQUIRY', 'USER_ACTIVITY'] }
     }
     
     if (type !== 'all') {
@@ -55,6 +55,8 @@ export async function GET(request: NextRequest) {
       ]
     }
 
+    console.log('[Admin Activity Notifications] Fetching with where clause:', JSON.stringify(where, null, 2))
+    
     const [notifications, total] = await Promise.all([
       prisma.notification.findMany({
         where,
@@ -74,10 +76,17 @@ export async function GET(request: NextRequest) {
       }),
       prisma.notification.count({ where })
     ])
+    
+    console.log(`[Admin Activity Notifications] Found ${notifications.length} notifications, total: ${total}`)
 
-    // Get statistics for all notifications
+    // Get statistics for admin notifications only
+    const adminNotificationTypes = ['USER_SIGNUP', 'ACADEMY_REGISTRATION', 'ACADEMY_ENROLLMENT', 'BROKER_ACCOUNT_OPENING', 'COPY_TRADING_SUBSCRIPTION', 'AFFILIATE_REGISTRATION', 'AFFILIATE_REFERRAL', 'USER_ENQUIRY', 'USER_ACTIVITY']
+    
     const stats = await prisma.notification.groupBy({
       by: ['type', 'isRead'],
+      where: {
+        type: { in: adminNotificationTypes }
+      },
       _count: {
         id: true
       }
@@ -85,6 +94,9 @@ export async function GET(request: NextRequest) {
 
     const typeStats = await prisma.notification.groupBy({
       by: ['type'],
+      where: {
+        type: { in: adminNotificationTypes }
+      },
       _count: {
         id: true
       }
@@ -137,11 +149,11 @@ export async function POST(request: NextRequest) {
     const notificationSchema = z.object({
       title: z.string().min(1),
       message: z.string().min(1),
-      type: z.enum(['STUDENT_PURCHASE', 'STUDENT_ENROLLMENT', 'STUDENT_REGISTRATION', 'STUDENT_ENQUIRY', 'STUDENT_ACTIVITY']),
+      type: z.enum(['USER_SIGNUP', 'ACADEMY_REGISTRATION', 'ACADEMY_ENROLLMENT', 'BROKER_ACCOUNT_OPENING', 'COPY_TRADING_SUBSCRIPTION', 'AFFILIATE_REGISTRATION', 'AFFILIATE_REFERRAL', 'USER_ENQUIRY', 'USER_ACTIVITY']),
       actionUrl: z.string().optional(),
-      studentId: z.string().optional(),
-      studentName: z.string().optional(),
-      studentEmail: z.string().optional()
+      userId: z.string().optional(),
+      userName: z.string().optional(),
+      userEmail: z.string().optional()
     })
 
     const validatedData = notificationSchema.parse(body)

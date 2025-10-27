@@ -26,11 +26,10 @@ interface HeaderProps {
 }
 
 export function Header({ user, onMenuClick }: HeaderProps) {
-  const [isForecastOpen, setIsForecastOpen] = useState(false)
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false)
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
-  const { unreadCount, hasNewNotification, markNewAsViewed } = useNotifications()
+  const { unreadCount } = useNotifications()
 
   // Listen for custom event to open calculator panel
   React.useEffect(() => {
@@ -44,23 +43,8 @@ export function Header({ user, onMenuClick }: HeaderProps) {
     }
   }, [])
 
-  // Listen for custom event to open forecast panel
-  React.useEffect(() => {
-    const handleOpenForecast = () => {
-      setIsForecastOpen(true)
-    }
-
-    window.addEventListener('openForecastPanel', handleOpenForecast)
-    return () => {
-      window.removeEventListener('openForecastPanel', handleOpenForecast)
-    }
-  }, [])
-
   const handleClosePanel = (panel: string) => {
     switch (panel) {
-      case 'forecast':
-        setIsForecastOpen(false)
-        break
       case 'calculator':
         setIsCalculatorOpen(false)
         break
@@ -92,27 +76,6 @@ export function Header({ user, onMenuClick }: HeaderProps) {
 
         {/* Right side */}
         <div className="flex items-center space-x-2 lg:space-x-4">
-          {/* Forecast Button - Icon only on mobile, full button on desktop */}
-          <Button 
-            variant="xen-blue" 
-            className="relative"
-            onClick={async () => {
-              if (hasNewNotification('/forecast')) {
-                await markNewAsViewed('/forecast')
-              }
-              setIsForecastOpen(true)
-            }}
-            title="Forecast"
-          >
-            <TrendingUp className="h-4 w-4 mr-2" />
-            <span className="hidden sm:inline">Forecast</span>
-            {hasNewNotification('/forecast') && (
-              <Badge variant="xen-red" className="absolute -top-2 -right-2 text-xs">
-                NEW
-              </Badge>
-            )}
-          </Button>
-
           {/* Calculator Button */}
           <Button 
             variant="ghost" 
@@ -199,7 +162,6 @@ export function Header({ user, onMenuClick }: HeaderProps) {
 
       {/* Right Panels */}
       <RightPanels
-        isForecastOpen={isForecastOpen}
         isCalculatorOpen={isCalculatorOpen}
         isSettingsOpen={isSettingsOpen}
         isNotificationsOpen={isNotificationsOpen}

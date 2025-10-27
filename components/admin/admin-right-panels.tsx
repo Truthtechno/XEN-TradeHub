@@ -370,17 +370,6 @@ export function AdminRightPanels({
                   className={`w-full transition-colors duration-200 ${isDarkMode ? 'border-gray-600 text-white hover:bg-gray-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'}`}
                   onClick={() => {
                     onClose('notifications')
-                    window.location.href = '/admin/signals'
-                  }}
-                >
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  View All Signals
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className={`w-full transition-colors duration-200 ${isDarkMode ? 'border-gray-600 text-white hover:bg-gray-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'}`}
-                  onClick={() => {
-                    onClose('notifications')
                     window.location.href = '/admin/courses'
                   }}
                 >

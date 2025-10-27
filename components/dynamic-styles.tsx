@@ -22,7 +22,7 @@ export function DynamicStyles() {
     
     // Save settings to localStorage immediately to prevent flash on reload
     if (settings) {
-      localStorage.setItem('corefx-settings', JSON.stringify(settings))
+      localStorage.setItem('app-settings', JSON.stringify(settings))
       localStorage.setItem('theme', settings.theme || 'light')
     }
     

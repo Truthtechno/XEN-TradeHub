@@ -67,7 +67,7 @@ export async function getAuthenticatedUserSimple(request: NextRequest) {
     // For development/testing, return a mock admin user
     if (process.env.NODE_ENV === 'development') {
       return {
-        id: 'cmghmk1tu00001d3t8ipi2pm6',
+        id: 'cmgz9k42t00008wbbr17oa6aq', // Actual admin user ID from xen_tradehub database
         role: 'SUPERADMIN',
         email: 'admin@corefx.com',
         name: 'Admin User'

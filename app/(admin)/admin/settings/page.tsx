@@ -928,7 +928,7 @@ export default function SettingsPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     {/* Light Mode Preview */}
                     <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white">
-                      <h5 className="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
+                      <h5 className="text-sm font-medium text-black mb-3 flex items-center gap-2">
                         <Sun className="h-4 w-4 text-yellow-500" />
                         Light Mode
                       </h5>
@@ -1157,7 +1157,7 @@ export default function SettingsPage() {
                 <Button
                   onClick={saveSettings}
                   disabled={isSaving}
-                  className="button-professional"
+                  className="button-professional bg-theme-primary hover:bg-theme-primary-700 text-white"
                 >
                   {isSaving ? (
                     <>

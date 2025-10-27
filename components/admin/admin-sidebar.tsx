@@ -8,20 +8,19 @@ import {
   BarChart3,
   Users,
   TrendingUp,
-  BookOpen,
-  FileText,
   Settings,
   Bell,
-  Megaphone,
-  Link as LinkIcon,
-  Shield,
+  Briefcase,
+  Copy,
+  DollarSign,
   X,
   ChevronDown,
   ChevronRight,
   Crown,
   MessageCircle,
-  Calendar,
-  Building
+  Activity,
+  GraduationCap,
+  Trophy
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useSetting } from '@/lib/settings-context'
@@ -69,55 +68,43 @@ const menuItems: MenuItem[] = [
     roles: ['SUPERADMIN', 'ADMIN', 'SUPPORT']
   },
   {
-    name: 'Trade & Broker',
-    href: '/admin/trade',
-    icon: LinkIcon,
+    name: 'Brokers',
+    href: '/admin/brokers',
+    icon: Briefcase,
     roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
   },
   {
-    name: 'Signals',
-    href: '/admin/signals',
-    icon: TrendingUp,
-    roles: ['SUPERADMIN', 'ADMIN', 'ANALYST', 'EDITOR']
-  },
-  {
-    name: 'Market Analysis',
-    href: '/admin/market-analysis',
-    icon: BarChart3,
+    name: 'Copy Trading',
+    href: '/admin/copy-trading',
+    icon: Copy,
     roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
   },
   {
-    name: 'Courses',
-    href: '/admin/courses',
-    icon: BookOpen,
-    roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
+    name: 'Monthly Challenge',
+    href: '/admin/monthly-challenge',
+    icon: Trophy,
+    roles: ['SUPERADMIN', 'ADMIN']
   },
-  {
-    name: 'Resources',
-    href: '/admin/resources',
-    icon: FileText,
-    roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
-  },
-  {
-    name: 'Events',
-    href: '/admin/events',
-    icon: Calendar,
-    roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
-  },
+  // {
+  //   name: 'Market Analysis',
+  //   href: '/admin/market-analysis',
+  //   icon: Activity,
+  //   roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
+  // },
   {
     name: 'Academy',
     href: '/admin/academy',
-    icon: Building,
+    icon: GraduationCap,
     roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
   },
   {
-    name: 'Mentorship',
-    href: '/admin/mentorship',
-    icon: Users,
-    roles: ['SUPERADMIN', 'ADMIN', 'SUPPORT']
+    name: 'Affiliates',
+    href: '/admin/affiliates',
+    icon: DollarSign,
+    roles: ['SUPERADMIN', 'ADMIN']
   },
   {
-    name: 'Enquiry',
+    name: 'Live Enquiry',
     href: '/admin/enquiry',
     icon: MessageCircle,
     roles: ['SUPERADMIN', 'ADMIN', 'SUPPORT']
@@ -127,6 +114,12 @@ const menuItems: MenuItem[] = [
     href: '/admin/notifications',
     icon: Bell,
     roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
+  },
+  {
+    name: 'Features',
+    href: '/admin/features',
+    icon: Crown,
+    roles: ['SUPERADMIN']
   },
   {
     name: 'Settings',

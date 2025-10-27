@@ -4,7 +4,6 @@ import { z } from 'zod'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import Stripe from 'stripe'
-import { notifyStudentRegistration } from '@/lib/admin-notification-utils'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -199,14 +198,7 @@ export async function POST(request: NextRequest) {
       console.log('Skipping system notification creation:', error instanceof Error ? error.message : 'Unknown error')
     }
 
-    // Create admin notification for student registration
-    await notifyStudentRegistration(
-      validatedData.fullName,
-      validatedData.email,
-      'event',
-      event.title,
-      `/admin/events/${event.id}`
-    )
+    // TODO: Add admin notification for student registration
 
     // Log the action (skip if no valid actor)
     try {

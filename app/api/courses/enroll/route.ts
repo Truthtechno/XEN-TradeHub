@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAuthenticatedUserSimple } from '@/lib/auth-simple'
 import { prisma } from '@/lib/prisma'
-import { notifyStudentEnrollment } from '@/lib/admin-notification-utils'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -97,13 +96,7 @@ export async function POST(request: NextRequest) {
       transactionId
     })
 
-    // Create admin notification for student enrollment
-    await notifyStudentEnrollment(
-      user.name || user.email || 'Unknown User',
-      user.email || 'unknown@example.com',
-      course.title,
-      `/admin/courses/${course.id}`
-    )
+    // TODO: Add admin notification for student enrollment
 
     return NextResponse.json({ 
       success: true,

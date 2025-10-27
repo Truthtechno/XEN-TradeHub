@@ -7,33 +7,54 @@ import { Button } from '@/components/ui/button'
 import { useRegistration } from '@/lib/registration-context'
 import { useSettings } from '@/lib/settings-context'
 import { useNotifications } from '@/lib/notifications-context'
-import { Activity, Building, Calculator, Calendar, CheckCircle, GraduationCap, Hand, Headphones, HelpCircle, Home, Play, RefreshCw, Shield, Star, Target, TrendingUp, Trophy, Users } from 'lucide-react'
+import { Activity, Briefcase, Building, Calculator, CheckCircle, Copy, DollarSign, GraduationCap, MessageCircle, Play, RefreshCw, Shield, Star, TrendingUp, Trophy } from 'lucide-react'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
 import BannerDisplay from '@/components/banner-display'
 
-// This will be moved inside the component to use dynamic settings
+// XEN TradeHub Dashboard Cards
 const getDashboardCards = (siteName: string) => [
   {
-    title: `Trade With ${siteName}`,
-    description: 'Exness partnership',
-    icon: Hand,
-    color: 'bg-red-500',
-    href: '/trade-core'
-  },
-  {
-    title: 'Signals',
-    description: 'Premium trading signals',
-    icon: TrendingUp,
-    color: 'bg-green-500',
-    href: '/signals'
-  },
-  {
-    title: 'Currency Heatmap',
-    description: 'Live currency strength',
-    icon: Activity,
+    title: 'Trade Through Us',
+    description: 'Partner broker accounts',
+    icon: Briefcase,
     color: 'bg-blue-500',
-    href: '/market-analysis'
+    href: '/brokers'
+  },
+  {
+    title: 'Copy Trading',
+    description: 'Follow master traders',
+    icon: Copy,
+    color: 'bg-purple-500',
+    href: '/copy-trading'
+  },
+  {
+    title: 'Monthly Challenge',
+    description: 'Refer & Earn $1000!',
+    icon: Trophy,
+    color: 'bg-green-700',
+    href: '/copy-trading/monthly-challenge'
+  },
+  // {
+  //   title: 'Market Analysis',
+  //   description: 'Live currency strength',
+  //   icon: Activity,
+  //   color: 'bg-indigo-500',
+  //   href: '/market-analysis'
+  // },
+  {
+    title: 'Academy',
+    description: 'Trading education',
+    icon: GraduationCap,
+    color: 'bg-teal-500',
+    href: '/academy'
+  },
+  {
+    title: 'Earn With Us',
+    description: 'Affiliate program',
+    icon: DollarSign,
+    color: 'bg-emerald-500',
+    href: '/affiliates'
   },
   {
     title: 'Lot Size Calculator',
@@ -43,38 +64,10 @@ const getDashboardCards = (siteName: string) => [
     href: 'calculator-panel'
   },
   {
-    title: 'Upcoming Events',
-    description: 'Organised events',
-    icon: Calendar,
-    color: 'bg-purple-500',
-    href: '/events'
-  },
-  {
-    title: 'Course',
-    description: 'Master forex trading',
-    icon: GraduationCap,
-    color: 'bg-green-500',
-    href: '/courses'
-  },
-  {
-    title: 'One on One',
-    description: 'Personal coaching',
-    icon: Users,
-    color: 'bg-orange-500',
-    href: '/one-on-one'
-  },
-  {
-    title: 'Academy',
-    description: 'In-person training',
-    icon: Building,
-    color: 'bg-green-500',
-    href: '/academy'
-  },
-  {
-    title: 'Enquiry',
+    title: 'Live Enquiry',
     description: 'Get in touch',
-    icon: HelpCircle,
-    color: 'bg-red-500',
+    icon: MessageCircle,
+    color: 'bg-pink-500',
     href: '/enquiry'
   }
 ]
@@ -283,6 +276,7 @@ export default function DashboardPage() {
       )}
 
       {/* Quick Stats */}
+      
       <div className="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <Card className={`transition-colors duration-200 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -311,6 +305,7 @@ export default function DashboardPage() {
             <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Total Earnings</CardTitle>
             <Trophy className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
           </CardHeader>
+         
           <CardContent>
             <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>$0</div>
             <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>Start trading to earn</p>

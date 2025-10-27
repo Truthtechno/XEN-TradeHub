@@ -1,6 +1,6 @@
-# CoreFX - Professional Forex Trading Platform
+# XEN TradeHub - Complete Trading Business Platform
 
-**CoreFX** helps you create a comprehensive forex trading ecosystem with advanced analytics, educational resources, and community engagement. Built with modern web technologies for scalability and performance.
+**XEN TradeHub** is a comprehensive trading business platform designed for companies to manage trading activities, partnerships, and user engagement. Built with modern web technologies for scalability and performance.
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -9,38 +9,63 @@
 
 ## 🎯 Goals
 
-- **Professional Trading Platform** - Complete forex trading ecosystem with advanced features
-- **Educational Excellence** - Comprehensive learning resources and mentorship programs
-- **Community Engagement** - Active trading community with real-time collaboration
+- **Complete Business Platform** - Comprehensive trading ecosystem for companies
+- **Partnership Management** - Manage broker partnerships and trading relationships
+- **Community Trading** - Copy trading and follower engagement features
+- **Revenue Generation** - Affiliate programs, academy monetization, and commission systems
 - **Scalable Architecture** - Modern tech stack for enterprise-level performance
-- **User-Centric Design** - Intuitive interface optimized for traders of all levels
+- **User-Centric Design** - Intuitive interface optimized for businesses and traders
 
 ## ✨ Features
 
-### 🏢 Core Trading Modules
-- **📊 Dashboard** - Personalized trading hub with real-time statistics
-- **📈 Signals** - Premium trading signals with detailed market analysis
-- **🌍 Market Analysis** - Live currency heatmap and comprehensive market insights
-- **📚 Online Courses** - Self-paced learning with interactive video content
-- **🎓 Academy** - Professional training programs and workshops
-- **📖 Learning Resources** - Videos, webinars, podcasts, and educational materials
-- **👨‍🏫 One-on-One Coaching** - Personalized mentoring and trading guidance
-- **📅 Events** - Live trading workshops and educational sessions
-- **🔮 Market Forecasts** - Community and premium market predictions
-- **🤝 Affiliate Programs** - Commission-based referral and partnership system (COMING SOON)
-- **📊 Sentiment Voting** - Community market sentiment analysis and polls (COMING SOON)
-- **💬 Live Support** - Real-time customer support and trading assistance
-- **📋 Booking System** - Session scheduling and management platform (COMING SOON)
-- **🤝 Collaborations** - Brand partnership and business opportunities (COMING SOON)
+### 🏢 Core Business Modules
+- **📊 Dashboard** - Comprehensive control center with real-time statistics and quick access to all features
+- **🏛️ Trade Through Us** - Partner broker account management and submission system
+- **📋 Copy Trading** - Master trader profiles with subscription management and follower tracking
+- **🏆 Monthly Challenge** - Referral contests with automatic payout and progress tracking
+- **🎓 Academy** - Managed training programs with class scheduling and student progress
+- **💰 Affiliates** - Complete affiliate program with commission tracking, payouts, and detailed analytics
+- **💬 Live Enquiry** - Real-time customer support with inquiry management
+- **🔔 Notifications** - System-wide notification management for users and admins
+- **⚙️ Features & Permissions** - Role-based access control and feature management
+- **📊 Reports** - Comprehensive analytics and reporting dashboard
+- **🔧 Settings** - System configuration and customization
 
 ### 🛠️ Technical Capabilities
 - **📱 Responsive Design** - Mobile-first approach for seamless cross-device experience
-- **⚡ Real-time Data** - Live market data and advanced currency strength analysis
+- **⚡ Real-time Analytics** - Live data tracking for commissions, subscriptions, and user activity
 - **🔐 Secure Authentication** - JWT-based authentication with Google OAuth integration
 - **💳 Payment Processing** - Stripe and PayPal integration for seamless transactions
 - **🗄️ Advanced Database** - PostgreSQL with Prisma ORM for optimal performance
-- **👨‍💼 Admin Dashboard** - Comprehensive content management and analytics
-- **🔌 API Integration** - Exness, TradingView, and economic calendar APIs
+- **👨‍💼 Admin Dashboard** - Comprehensive business management and analytics
+- **💰 Commission System** - Automated affiliate commission tracking and payout management
+- **📄 Export & Reporting** - Excel export functionality for detailed analytics
+- **🔔 Notification System** - Real-time notifications for users and admins
+
+### 🎯 Key Module Highlights
+
+#### Admin Dashboard
+- **User Management** - Complete user lifecycle management with role assignment
+- **Broker Management** - Partner broker onboarding and account tracking
+- **Copy Trading Admin** - Approve master traders, manage subscriptions, track followers
+- **Monthly Challenge** - Create challenges, monitor progress, process payouts
+- **Academy Management** - Schedule classes, track enrollments, manage students
+- **Affiliate Administration** - Track referrals, calculate commissions, process payouts
+- **Live Enquiry** - Manage customer support tickets and inquiries
+- **Notification Center** - Send targeted notifications to users or groups
+- **Feature Permissions** - Control access to features by role
+- **System Settings** - Configure platform-wide settings
+- **Reports Dashboard** - Comprehensive analytics and insights
+
+#### User Dashboard  
+- **Trade Through Us** - Submit broker accounts for partnership verification
+- **Copy Trading** - Browse and subscribe to master traders
+- **Monthly Challenge** - Participate in referral contests and track earnings
+- **Academy** - Enroll in courses and attend classes
+- **Earn With Us** - Join the affiliate program, track referrals and commissions
+- **Live Enquiry** - Submit support requests and get help
+- **Notifications** - Stay updated with system notifications
+- **Dashboard Overview** - Quick access to all features with activity summary
 
 ## 🛠️ Tech Stack
 
@@ -49,9 +74,10 @@
 - **Database**: PostgreSQL
 - **Authentication**: NextAuth.js with JWT
 - **Payments**: Stripe, PayPal
-- **Styling**: TailwindCSS with custom CoreFX theme
+- **Styling**: TailwindCSS with custom XEN TradeHub theme
 - **Icons**: Lucide React
 - **Charts**: Recharts
+- **Data Export**: Excel/CSV export functionality
 
 ## 🚀 Quick Start
 
@@ -64,8 +90,8 @@
 
 1. **📥 Clone the Repository**
    ```bash
-   git clone https://github.com/Truthtechno/CoreFX
-   cd CoreFX
+   git clone https://github.com/Truthtechno/xen-tradehub
+   cd xen-tradehub
    ```
 
 2. **📦 Install Dependencies**
@@ -83,7 +109,7 @@
    Configure your environment variables:
    ```env
    # Database Configuration
-   DATABASE_URL="postgresql://username:password@localhost:5432/corefx"
+   DATABASE_URL="postgresql://username:password@localhost:5432/xen_tradehub"
    
    # Authentication
    NEXTAUTH_URL="http://localhost:3000"
@@ -138,27 +164,27 @@ open http://localhost:3000
 The system comes pre-configured with demo accounts for testing:
 
 ### 🔧 Administrator Account
-- **Email**: `admin@corefx.com`
+- **Email**: `admin@xentradehub.com`
 - **Password**: `admin123` (or OAuth login)
-- **Role**: System Administrator
-- **Access**: Full platform management
+- **Role**: SUPERADMIN
+- **Access**: Full platform management, all modules and settings
 
-### 👨‍🎓 Student Account
-- **Email**: `student@corefx.com`
-- **Password**: `student123` (or OAuth login)
-- **Role**: Trading Student
-- **Subscription**: Premium Signals Plan
-- **Features**: Full access to educational content
+### 👤 Standard User Account
+- **Email**: Varies (example: `brian@example.com`)
+- **Password**: (Created during registration)
+- **Role**: User
+- **Features**: Access to Trade Through Us, Copy Trading, Monthly Challenge, Academy, Affiliates, Live Enquiry
 
 ## 🎨 Design System
 
-### 🎨 CoreFX Color Palette
-- **🔴 CoreFX Red**: `#DC2626` - Primary actions, highlights, and CTAs
-- **🔵 CoreFX Blue**: `#2563EB` - Secondary actions, links, and navigation
-- **🟠 CoreFX Orange**: `#EA580C` - Accents, warnings, and special features
-- **🟢 CoreFX Green**: `#16A34A` - Success states, positive values, and profits
-- **🟣 CoreFX Purple**: `#9333EA` - Premium features and exclusive content
-- **🟡 CoreFX Yellow**: `#EAB308` - Alerts, highlights, and attention-grabbing elements
+### 🎨 XEN TradeHub Color Palette
+- **🔴 Primary Red**: `#DC2626` - Primary actions, highlights, and CTAs (Super Admin badges)
+- **🔵 Primary Blue**: `#2563EB` - Secondary actions, links, and navigation
+- **🟠 Accent Orange**: `#EA580C` - Calculators and special features
+- **🟢 Success Green**: `#16A34A` - Success states, earnings, and positive values
+- **🟣 Accent Purple**: `#9333EA` - Copy Trading and premium features
+- **🟡 Warning Yellow**: `#EAB308` - Alerts, highlights, and attention-grabbing elements
+- **🌸 Enquiry Pink**: Used for Live Enquiry interactions
 
 ### 📝 Typography System
 - **Font Family**: Inter (Google Fonts) - Clean, modern, and highly readable
@@ -186,15 +212,29 @@ The application is fully responsive with:
 
 ### 📁 Project Structure
 ```
-corefx/
+xen-tradehub/
 ├── app/                    # Next.js 14 App Router
 │   ├── (admin)/           # Admin dashboard routes
+│   │   ├── users/         # User management
+│   │   ├── brokers/       # Broker partnerships
+│   │   ├── copy-trading/  # Copy trading management
+│   │   ├── monthly-challenge/ # Challenge management
+│   │   ├── academy/       # Academy management
+│   │   ├── affiliates/    # Affiliate management
+│   │   ├── live-enquiry/  # Enquiry management
+│   │   ├── notifications/ # Notification management
+│   │   ├── features/      # Feature permissions
+│   │   ├── settings/      # System settings
+│   │   └── reports/       # Reports and analytics
 │   ├── (authenticated)/   # Protected user routes
+│   │   ├── dashboard/     # Main dashboard
+│   │   ├── trade-through-us/ # Broker submissions
+│   │   ├── copy-trading/  # Browse traders
+│   │   ├── monthly-challenge/ # Challenge participation
+│   │   ├── academy/       # Educational content
+│   │   ├── earn-with-us/  # Affiliate program
+│   │   └── live-enquiry/  # Support requests
 │   ├── api/               # API endpoints
-│   ├── dashboard/         # Main dashboard
-│   ├── signals/           # Trading signals module
-│   ├── market-analysis/   # Market analysis tools
-│   ├── courses/           # Educational content
 │   └── ...                # Additional modules
 ├── components/            # Reusable UI components
 │   ├── ui/               # ShadCN/UI components
@@ -232,24 +272,27 @@ corefx/
 ## 📊 Database Schema
 
 The application uses PostgreSQL with the following main entities:
-- **Users** - User accounts and profiles
-- **Courses** - Online courses and content
-- **Signals** - Trading signals and analysis
-- **Resources** - Learning materials
-- **Events** - Workshops and sessions
-- **Forecasts** - Market predictions
-- **Bookings** - Session scheduling
-- **Affiliates** - Referral tracking
-- **Notifications** - User notifications
+- **Users** - User accounts and profiles with role-based permissions
+- **Brokers** - Broker partnerships and submissions
+- **CopyTrading** - Master trader profiles and subscriptions
+- **MonthlyChallenge** - Challenge contests and participant tracking
+- **Academy** - Educational classes and enrollment
+- **Affiliates** - Affiliate network and commission tracking
+- **Commissions** - Automated commission calculation and payouts
+- **Enquiries** - Live customer support inquiries
+- **Notifications** - System-wide user and admin notifications
+- **Features** - Feature flags and permissions management
 
 ## 🔐 Security Features
 
 - **JWT Authentication** with secure token handling
-- **Role-based access control** (Admin, Student, Affiliate)
+- **Role-based access control** (SUPERADMIN, Admin, User)
+- **Feature-level permissions** for granular access control
 - **Input validation** with Zod schemas
 - **SQL injection protection** via Prisma ORM
 - **XSS protection** with React's built-in escaping
 - **CSRF protection** with NextAuth.js
+- **Secure commission calculations** with automated payout verification
 
 ## 📈 Performance Optimizations
 
@@ -258,6 +301,8 @@ The application uses PostgreSQL with the following main entities:
 - **Lazy loading** for non-critical components
 - **Database indexing** for faster queries
 - **Caching strategies** for API responses
+- **Excel export optimization** for large datasets
+- **Real-time notification batching** for improved performance
 
 ## 🤝 Contributing
 
@@ -274,22 +319,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🆘 Support & Contact
 
 ### 📞 Get Help
-- **📧 Email**: [support@corefx.com](mailto:support@corefx.com)
-- **📚 Documentation**: [docs.corefx.com](https://docs.corefx.com)
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/your-username/corefx/issues)
-- **💬 Community**: [Discord Server](https://discord.gg/corefx)
-- **📱 Live Chat**: Available in the application
+- **📧 Email**: [support@xentradehub.com](mailto:support@xentradehub.com)
+- **📚 Documentation**: [docs.xentradehub.com](https://docs.xentradehub.com)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/Truthtechno/xen-tradehub/issues)
+- **💬 Community**: [Discord Server](https://discord.gg/xentradehub)
+- **📱 Live Enquiry**: Available in the application dashboard
 
 ### 🤝 Business Inquiries
-- **Partnerships**: [partnerships@corefx.com](mailto:partnerships@corefx.com)
-- **Enterprise**: [enterprise@corefx.com](mailto:enterprise@corefx.com)
-- **Media**: [media@corefx.com](mailto:media@corefx.com)
+- **Partnerships**: [partnerships@xentradehub.com](mailto:partnerships@xentradehub.com)
+- **Enterprise**: [enterprise@xentradehub.com](mailto:enterprise@xentradehub.com)
+- **Broker Integrations**: [brokers@xentradehub.com](mailto:brokers@xentradehub.com)
 
 ## 🙏 Acknowledgments
 
 ### 🏆 Core Contributors
 - **Bryan Amooti** - Lead Developer & System Architect
-- **CoreFX Team** - Trading expertise and platform development
+- **XEN TradeHub Team** - Trading platform development and business expertise
 
 ### 🛠️ Technology Partners
 - **Next.js Team** - Revolutionary React framework
@@ -298,10 +343,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Prisma** - Type-safe database toolkit
 - **Vercel** - Deployment and hosting platform
 
-### 📈 Trading Partners
-- **Exness** - Broker integration and API
-- **TradingView** - Market data and charting
-- **Stripe** - Payment processing
+### 💰 Payment & Integration Partners
+- **Stripe** - Payment processing and subscription management
+- **PayPal** - Alternative payment gateway
+- **Excel/CSV Export** - Data export functionality
+- **NextAuth.js** - Authentication and session management
 
 ---
 
@@ -312,5 +358,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Truthtechno/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/brian-amooti)
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/trustdigitalsol)
+
+**XEN TradeHub - Complete Trading Business Platform**
 
 </div>

@@ -20,6 +20,48 @@ interface BannerDisplayProps {
 }
 
 const colorConfig = {
+  // Semantic colors from admin panel
+  primary: {
+    bg: 'bg-blue-600',
+    text: 'text-white',
+    icon: '🔵'
+  },
+  secondary: {
+    bg: 'bg-gray-700',
+    text: 'text-white',
+    icon: '⚫'
+  },
+  accent: {
+    bg: 'bg-teal-500',
+    text: 'text-white',
+    icon: '🟢'
+  },
+  success: {
+    bg: 'bg-green-600',
+    text: 'text-white',
+    icon: '✅'
+  },
+  warning: {
+    bg: 'bg-yellow-500',
+    text: 'text-black',
+    icon: '⚠️'
+  },
+  error: {
+    bg: 'bg-red-600',
+    text: 'text-white',
+    icon: '❌'
+  },
+  info: {
+    bg: 'bg-blue-500',
+    text: 'text-white',
+    icon: 'ℹ️'
+  },
+  neutral: {
+    bg: 'bg-gray-500',
+    text: 'text-white',
+    icon: '⚪'
+  },
+  // Legacy colors for backward compatibility
   red: {
     bg: 'bg-red-500',
     text: 'text-white',
@@ -67,6 +109,19 @@ export default function BannerDisplay({ pagePath, className = '' }: BannerDispla
   const [dismissedBanners, setDismissedBanners] = useState<Set<string>>(new Set())
   const [isLoading, setIsLoading] = useState(true)
 
+  // Load dismissed banners from localStorage on mount
+  useEffect(() => {
+    const stored = localStorage.getItem('dismissedBanners')
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored)
+        setDismissedBanners(new Set(parsed))
+      } catch (error) {
+        console.error('Error parsing dismissed banners:', error)
+      }
+    }
+  }, [])
+
   useEffect(() => {
     fetchBanners()
   }, [pagePath])
@@ -88,6 +143,14 @@ export default function BannerDisplay({ pagePath, className = '' }: BannerDispla
 
   const dismissBanner = async (bannerId: string) => {
     try {
+      // Immediately update UI
+      const newDismissed = new Set(Array.from(dismissedBanners).concat(bannerId))
+      setDismissedBanners(newDismissed)
+      
+      // Save to localStorage
+      localStorage.setItem('dismissedBanners', JSON.stringify(Array.from(newDismissed)))
+      
+      // Call API to persist in database
       const response = await fetch('/api/banners/dismiss', {
         method: 'POST',
         headers: {
@@ -96,8 +159,8 @@ export default function BannerDisplay({ pagePath, className = '' }: BannerDispla
         body: JSON.stringify({ bannerId }),
       })
 
-      if (response.ok) {
-        setDismissedBanners(prev => new Set(Array.from(prev).concat(bannerId)))
+      if (!response.ok) {
+        console.error('Failed to dismiss banner on server')
       }
     } catch (error) {
       console.error('Error dismissing banner:', error)

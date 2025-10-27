@@ -363,7 +363,7 @@ export default function NotificationsPage() {
                             <h4 className={`text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                               {notification.title}
                             </h4>
-                            <Badge variant={getTypeBadgeVariant(notification.type)} className="text-xs">
+                            <Badge variant={getTypeBadgeVariant(notification.type)} className="text-xs bg-theme-primary text-white">
                               {notification.type}
                             </Badge>
                           </div>

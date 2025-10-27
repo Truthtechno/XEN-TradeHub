@@ -53,6 +53,7 @@ export default function NotificationsPage() {
   const [isCreateOpen, setIsCreateOpen] = useState(false)
   const [isEditOpen, setIsEditOpen] = useState(false)
   const [editingNotification, setEditingNotification] = useState<NewNotification | null>(null)
+  const formContainerRef = React.useRef<HTMLDivElement>(null)
 
   // Form state for NEW notifications
   const [formData, setFormData] = useState({
@@ -69,16 +70,14 @@ export default function NotificationsPage() {
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Predefined page paths
+  // Predefined page paths (only existing pages)
   const pagePaths = [
-    { value: '/', label: 'Home Page' },
-    { value: '/courses', label: 'Courses Page' },
-    { value: '/resources', label: 'Resources Page' },
-    { value: '/signals', label: 'Signals Page' },
-    { value: '/events', label: 'Events Page' },
-    { value: '/academy', label: 'Academy Page' },
-    { value: '/mentorship', label: 'Mentorship Page' },
-    { value: '/dashboard', label: 'Dashboard Page' }
+    { value: '/dashboard', label: 'Dashboard' },
+    { value: '/brokers', label: 'Trade Through Us' },
+    { value: '/copy-trading', label: 'Copy Trading' },
+    { value: '/academy', label: 'Academy' },
+    { value: '/market-analysis', label: 'Market Analysis' },
+    { value: '/affiliates', label: 'Earn With Us' }
   ]
 
   // Color options - mapped to semantic meanings
@@ -125,31 +124,62 @@ export default function NotificationsPage() {
   // Create NEW notification
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault()
+    console.log('[Frontend] handleCreate called')
+    console.log('[Frontend] Current formData:', formData)
     setError('')
+    
+    // Validate required fields
+    if (!formData.pagePath) {
+      console.log('[Frontend] Validation failed: missing pagePath')
+      setError('Please select a page path')
+      return
+    }
+    if (!formData.title) {
+      console.log('[Frontend] Validation failed: missing title')
+      setError('Please enter a title')
+      return
+    }
+    if (!formData.message) {
+      console.log('[Frontend] Validation failed: missing message')
+      setError('Please enter a message')
+      return
+    }
+    
+    console.log('[Frontend] Validation passed')
+    
     setIsSubmitting(true)
+    
+    const payload = {
+      ...formData,
+      type: 'banner' // Add type for banner
+    }
+    
+    console.log('[Frontend] Creating banner with payload:', payload)
     
     try {
       const response = await fetch('/api/admin/new-notifications', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          type: 'banner' // Add type for banner
-        })
+        body: JSON.stringify(payload)
       })
       
+      console.log('[Frontend] Response status:', response.status)
+      console.log('[Frontend] Response ok:', response.ok)
+      
       if (response.ok) {
+        const data = await response.json()
+        console.log('[Frontend] Success response:', data)
         await fetchNewNotifications()
         setIsCreateOpen(false)
         setFormData({ pagePath: '', title: '', message: '', description: '', isActive: true, expiresAt: '', color: 'blue' })
         setError('')
       } else {
         const errorData = await response.json()
-        console.error('Failed to create banner:', errorData)
+        console.error('[Frontend] Error response:', errorData)
         setError(errorData.error || 'Failed to create banner. Please try again.')
       }
     } catch (error) {
-      console.error('Failed to create notification:', error)
+      console.error('[Frontend] Network error:', error)
       setError('Network error. Please check your connection and try again.')
     } finally {
       setIsSubmitting(false)
@@ -262,6 +292,13 @@ export default function NotificationsPage() {
       fetchNewNotifications()
     }
   }, [activeTab])
+
+  // Scroll form to top when dialog opens
+  useEffect(() => {
+    if ((isCreateOpen || isEditOpen) && formContainerRef.current) {
+      formContainerRef.current.scrollTop = 0
+    }
+  }, [isCreateOpen, isEditOpen])
 
   // Get icon for notification type
   const getIconForType = (type: string) => {
@@ -589,7 +626,7 @@ export default function NotificationsPage() {
                 <p className={`text-sm text-theme-error-600 dark:text-theme-error-400`}>{error}</p>
               </div>
             )}
-            <div className="space-y-4 max-h-[70vh] overflow-y-auto">
+            <div ref={formContainerRef} className="space-y-4 max-h-[70vh] overflow-y-auto">
               <div>
                 <Label htmlFor="pagePath" className={textHierarchy.cardDescription()}>Page Path</Label>
                 <select

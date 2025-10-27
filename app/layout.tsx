@@ -1,41 +1,14 @@
 import type { Metadata } from 'next'
-import { Inter, Poppins, JetBrains_Mono, Lato } from 'next/font/google'
 import './globals.css'
 import { MainLayout } from '@/components/layout/main-layout'
 import { OptimizedDynamicStyles } from '@/components/optimized-dynamic-styles'
 import { DynamicFavicon } from '@/components/dynamic-favicon'
 import { Providers } from '@/components/providers'
-
-// Load default fonts - these will be overridden by dynamic styles
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap'
-})
-
-const poppins = Poppins({ 
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-poppins',
-  display: 'swap'
-})
-
-const jetbrainsMono = JetBrains_Mono({ 
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap'
-})
-
-const lato = Lato({ 
-  subsets: ['latin'],
-  weight: ['300', '400', '700', '900'],
-  variable: '--font-lato',
-  display: 'swap'
-})
+import { getAllFontVariables } from '@/lib/fonts'
 
 export const metadata: Metadata = {
-  title: 'CoreFX - Professional Trading Education Platform',
-  description: 'Master forex trading with CoreFX. Premium signals, courses, and personalized coaching. Transform your financial future with our proven system.',
+  title: 'XEN TradeHub - Forex Learning & Trading Ecosystem',
+  description: 'Master forex trading with our comprehensive platform. Premium signals, courses, and personalized coaching. Transform your financial future with our proven system.',
 }
 
 export default function RootLayout({
@@ -46,7 +19,7 @@ export default function RootLayout({
   return (
     <html 
       lang="en" 
-      className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} ${lato.variable}`}
+      className={getAllFontVariables()}
       style={{
         visibility: 'hidden',
         backgroundColor: 'var(--color-bg, #FFFFFF)',
@@ -66,7 +39,7 @@ export default function RootLayout({
                 try {
                   // Get theme and settings in one go
                   const savedTheme = localStorage.getItem('theme') || 'light';
-                  const savedSettings = localStorage.getItem('corefx-settings');
+                  const savedSettings = localStorage.getItem('app-settings');
                   
                   // Determine theme state
                   let isDark = false;
@@ -170,26 +143,25 @@ export default function RootLayout({
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              /* Force theme state immediately */
-              html { visibility: hidden !important; }
-              html.theme-loaded { visibility: visible !important; }
+              /* Safer theme loading - show content after short delay even if script fails */
+              html { 
+                visibility: hidden;
+                animation: showContent 0.3s ease-in 0.5s forwards;
+              }
+              html.theme-loaded { 
+                visibility: visible !important;
+                animation: none;
+              }
+              @keyframes showContent {
+                to { visibility: visible; }
+              }
               html:not(.theme-loaded) { 
-                background-color: var(--color-bg, #FFFFFF) !important; 
-                color: var(--color-text, #0F172A) !important; 
+                background-color: var(--color-bg, #FFFFFF); 
+                color: var(--color-text, #0F172A); 
               }
               html:not(.theme-loaded).dark { 
-                background-color: var(--color-bg, #0F172A) !important; 
-                color: var(--color-text, #F8FAFC) !important; 
-              }
-              /* Force text colors in dark mode */
-              .dark, .dark * {
-                color: var(--color-text, #F8FAFC) !important;
-              }
-              .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-                color: var(--color-text, #F8FAFC) !important;
-              }
-              .dark p, .dark span, .dark div {
-                color: var(--color-text, #F8FAFC) !important;
+                background-color: var(--color-bg, #0F172A); 
+                color: var(--color-text, #F8FAFC); 
               }
             `,
           }}

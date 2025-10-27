@@ -76,6 +76,9 @@ export async function PUT(
       maxStudents,
       instructor,
       location,
+      deliveryMode,
+      scheduleType,
+      recurrencePattern,
       nextSession,
       status,
       isPublished
@@ -85,13 +88,16 @@ export async function PUT(
     
     if (title !== undefined) updateData.title = title
     if (description !== undefined) updateData.description = description
-    if (price !== undefined) updateData.price = parseFloat(price)
+    if (price !== undefined) updateData.price = price ? parseFloat(price) : 0
     if (currency !== undefined) updateData.currency = currency
     if (duration !== undefined) updateData.duration = duration
     if (level !== undefined) updateData.level = level.toUpperCase()
     if (maxStudents !== undefined) updateData.maxStudents = parseInt(maxStudents)
     if (instructor !== undefined) updateData.instructor = instructor
     if (location !== undefined) updateData.location = location
+    if (deliveryMode !== undefined) updateData.deliveryMode = deliveryMode.toUpperCase()
+    if (scheduleType !== undefined) updateData.scheduleType = scheduleType.toUpperCase()
+    if (recurrencePattern !== undefined) updateData.recurrencePattern = recurrencePattern || null
     if (nextSession !== undefined) updateData.nextSession = new Date(nextSession)
     if (status !== undefined) updateData.status = status.toUpperCase()
     if (isPublished !== undefined) updateData.isPublished = isPublished

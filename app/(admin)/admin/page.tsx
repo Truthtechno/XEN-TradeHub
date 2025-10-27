@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Activity, ArrowDownRight, ArrowUpRight, BarChart3, Bell, Building, Calculator, Calendar, Calendar as CalendarIcon, CreditCard, DollarSign, Eye, FileText, GraduationCap, Hand, HelpCircle, Link as LinkIcon, RefreshCw, Settings, Shield, TrendingUp, User, UserPlus, Users } from 'lucide-react'
+import { Activity, ArrowDownRight, ArrowUpRight, BarChart3, Bell, Briefcase, Copy, CreditCard, Crown, DollarSign, Eye, GraduationCap, HelpCircle, MessageCircle, RefreshCw, Settings, Shield, TrendingUp, UserPlus, Users } from 'lucide-react'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
 
@@ -166,15 +166,23 @@ export default function AdminDashboard() {
       description: 'Manage user accounts',
       icon: Users,
       href: '/admin/users',
-      color: 'bg-slate-500', // Slate for users
+      color: 'bg-slate-500',
       roles: ['SUPERADMIN', 'ADMIN', 'SUPPORT']
     },
     {
-      title: 'Trade with Us',
-      description: 'Broker partnership registrations',
-      icon: Hand,
-      href: '/admin/trade',
-      color: 'bg-red-500', // Red for trading/broker
+      title: 'Brokers',
+      description: 'Manage broker partnerships',
+      icon: Briefcase,
+      href: '/admin/brokers',
+      color: 'bg-blue-500',
+      roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
+    },
+    {
+      title: 'Copy Trading',
+      description: 'Master traders & subscriptions',
+      icon: Copy,
+      href: '/admin/copy-trading',
+      color: 'bg-purple-500',
       roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
     },
     {
@@ -182,63 +190,39 @@ export default function AdminDashboard() {
       description: 'Premium trading signals',
       icon: TrendingUp,
       href: '/admin/signals',
-      color: 'bg-green-500', // Green for profitable signals
+      color: 'bg-green-500',
       roles: ['SUPERADMIN', 'ADMIN', 'ANALYST', 'EDITOR']
     },
-    {
-      title: 'Market Analysis',
-      description: 'Real-time market insights',
-      icon: BarChart3,
-      href: '/admin/market-analysis',
-      color: 'bg-indigo-500', // Indigo for market analysis
-      roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
-    },
-    {
-      title: 'Courses',
-      description: 'Master the Art & Practice of Trading',
-      icon: GraduationCap,
-      href: '/admin/courses',
-      color: 'bg-purple-500', // Purple for education
-      roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
-    },
-    {
-      title: 'Resources',
-      description: 'Educational materials',
-      icon: FileText,
-      href: '/admin/resources',
-      color: 'bg-cyan-500', // Cyan for resources
-      roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
-    },
-    {
-      title: 'Events',
-      description: 'Webinars and workshops',
-      icon: Calendar,
-      href: '/admin/events',
-      color: 'bg-violet-500', // Violet for events
-      roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
-    },
+    // {
+    //   title: 'Market Analysis',
+    //   description: 'Real-time market insights',
+    //   icon: Activity,
+    //   href: '/admin/market-analysis',
+    //   color: 'bg-indigo-500',
+    //   roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
+    // },
     {
       title: 'Academy',
-      description: 'In-person training & classes',
-      icon: Building,
+      description: 'Manage training classes',
+      icon: GraduationCap,
       href: '/admin/academy',
-      color: 'bg-teal-500', // Teal for academy
+      color: 'bg-teal-500',
       roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
     },
     {
-      title: 'Mentorship',
-      description: 'One-on-one coaching',
-      icon: User,
-      href: '/admin/mentorship',
-      color: 'bg-orange-500', // Orange for mentorship
-      roles: ['SUPERADMIN', 'ADMIN', 'SUPPORT']
+      title: 'Affiliates',
+      description: 'Manage affiliate program',
+      icon: DollarSign,
+      href: '/admin/affiliates',
+      color: 'bg-emerald-500',
+      roles: ['SUPERADMIN', 'ADMIN']
     },
     {
-      title: 'Enquiry',
-      description: 'Customer inquiries & feedback',
-      icon: HelpCircle,
+      title: 'Live Enquiry',
+      description: 'Customer inquiries & support',
+      icon: MessageCircle,
       href: '/admin/enquiry',
-      color: 'bg-pink-500', // Pink for enquiries
+      color: 'bg-pink-500',
       roles: ['SUPERADMIN', 'ADMIN', 'SUPPORT']
     },
     {
@@ -246,15 +230,23 @@ export default function AdminDashboard() {
       description: 'System notifications',
       icon: Bell,
       href: '/admin/notifications',
-      color: 'bg-amber-500', // Amber for notifications
+      color: 'bg-amber-500',
       roles: ['SUPERADMIN', 'ADMIN', 'EDITOR']
+    },
+    {
+      title: 'Features',
+      description: 'Admin permissions control',
+      icon: Crown,
+      href: '/admin/features',
+      color: 'bg-purple-500',
+      roles: ['SUPERADMIN']
     },
     {
       title: 'Settings',
       description: 'System configuration',
       icon: Settings,
       href: '/admin/settings',
-      color: 'bg-gray-500', // Gray for settings
+      color: 'bg-gray-500',
       roles: ['SUPERADMIN', 'ADMIN']
     },
     {
@@ -262,7 +254,7 @@ export default function AdminDashboard() {
       description: 'Analytics and reports',
       icon: BarChart3,
       href: '/admin/reports',
-      color: 'bg-emerald-500', // Emerald for reports
+      color: 'bg-cyan-500',
       roles: ['SUPERADMIN', 'ADMIN', 'ANALYST']
     }
   ]

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAuthenticatedUserSimple } from '@/lib/auth-simple'
+import { getAuthenticatedUserSimpleFix } from '@/lib/simple-auth-fix'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 
@@ -16,7 +16,7 @@ import { existsSync } from 'fs'
 
 export async function POST(request: NextRequest) {
   try {
-    const user = await getAuthenticatedUserSimple(request)
+    const user = await getAuthenticatedUserSimpleFix(request)
     
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

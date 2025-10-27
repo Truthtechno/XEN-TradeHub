@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
+import { notifyUserEnquiry } from '@/lib/admin-notification-utils'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -35,6 +36,15 @@ export async function POST(request: NextRequest) {
         status: 'NEW'
       }
     })
+
+    // Notify admins about new enquiry
+    await notifyUserEnquiry(
+      validatedData.name,
+      validatedData.email,
+      validatedData.enquiryType,
+      validatedData.subject,
+      `/admin/enquiry`
+    )
 
     return NextResponse.json({
       success: true,

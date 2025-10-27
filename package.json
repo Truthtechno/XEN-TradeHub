@@ -1,6 +1,6 @@
 {
-  "name": "corefx",
-  "version": "0.1.0",
+  "name": "xen-tradehub",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

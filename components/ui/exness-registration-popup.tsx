@@ -173,7 +173,7 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto w-[95vw] sm:w-full">
         <DialogHeader className="relative">
-          <DialogTitle className="text-center text-xl sm:text-2xl font-bold text-gray-900">
+          <DialogTitle className="text-center text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
             FREE VIP MEMBERSHIP
           </DialogTitle>
           <p className="text-center text-red-600 font-bold text-xs sm:text-sm mt-1">
@@ -194,14 +194,14 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
           <Button
             variant={activeTab === 'new' ? 'default' : 'outline'}
             onClick={() => setActiveTab('new')}
-            className={`flex-1 text-xs sm:text-sm ${activeTab === 'new' ? 'bg-gray-800 text-white' : 'bg-white border-gray-300'}`}
+            className={`flex-1 text-xs sm:text-sm ${activeTab === 'new' ? 'bg-gray-800 dark:bg-gray-700 text-white' : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white'}`}
           >
             New Account
           </Button>
           <Button
             variant={activeTab === 'existing' ? 'default' : 'outline'}
             onClick={() => setActiveTab('existing')}
-            className={`flex-1 text-xs sm:text-sm ${activeTab === 'existing' ? 'bg-gray-800 text-white' : 'bg-white border-gray-300'}`}
+            className={`flex-1 text-xs sm:text-sm ${activeTab === 'existing' ? 'bg-gray-800 dark:bg-gray-700 text-white' : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white'}`}
           >
             Existing Account
           </Button>
@@ -210,7 +210,7 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
         {activeTab === 'new' ? (
           <div className="space-y-6">
             {/* Instructions Header */}
-            <div className="flex items-center space-x-2 text-green-600 font-semibold text-sm sm:text-base">
+            <div className="flex items-center space-x-2 text-green-600 dark:text-green-400 font-semibold text-sm sm:text-base">
               <span>Follow these steps</span>
               <div className="flex space-x-1">
                 {[...Array(4)].map((_, i) => (
@@ -224,14 +224,14 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
             {/* Steps */}
             <div className="space-y-4">
               {newAccountSteps.map((step, index) => (
-                <div key={index} className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
-                  <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm">
+                <div key={index} className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-green-500 dark:bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm">
                     {step.number}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-gray-900 font-medium text-sm sm:text-base">{step.title}</p>
+                    <p className="text-gray-900 dark:text-white font-medium text-sm sm:text-base">{step.title}</p>
                     {step.subtitle && (
-                      <p className="text-gray-500 text-xs sm:text-sm mt-1">{step.subtitle}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-1">{step.subtitle}</p>
                     )}
                     {step.action}
                   </div>
@@ -250,11 +250,11 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
         ) : (
           <div className="space-y-6">
             {/* Warning Banner */}
-            <div className="bg-orange-100 border border-orange-200 rounded-lg p-3 sm:p-4 flex items-start space-x-3">
-              <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600 flex-shrink-0 mt-0.5" />
+            <div className="bg-orange-100 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-3 sm:p-4 flex items-start space-x-3">
+              <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-orange-800 text-xs sm:text-sm">FOLLOW THIS PROCEDURE CAREFULLY</p>
-                <p className="text-orange-700 text-xs sm:text-sm">For existing Exness account holders</p>
+                <p className="font-semibold text-orange-800 dark:text-orange-300 text-xs sm:text-sm">FOLLOW THIS PROCEDURE CAREFULLY</p>
+                <p className="text-orange-700 dark:text-orange-400 text-xs sm:text-sm">For existing Exness account holders</p>
               </div>
             </div>
 
@@ -262,16 +262,16 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
             <div className="space-y-4">
               {existingAccountSteps.map((step, index) => (
                 <div key={index} className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-green-500 dark:bg-green-600 rounded-full flex items-center justify-center">
                     <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-gray-900 font-medium text-sm sm:text-base">
+                    <p className="text-gray-900 dark:text-white font-medium text-sm sm:text-base">
                       {step.title.split(step.highlight || '').map((part, i) => (
                         <span key={i}>
                           {part}
                           {step.highlight && i === 0 && (
-                            <span className="bg-yellow-200 px-1 rounded text-xs sm:text-sm">{step.highlight}</span>
+                            <span className="bg-yellow-200 dark:bg-yellow-600 dark:text-white px-1 rounded text-xs sm:text-sm">{step.highlight}</span>
                           )}
                         </span>
                       ))}
@@ -280,14 +280,14 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
                     {step.details && (
                       <div className="mt-3 space-y-2">
                         {step.details.map((detail, detailIndex) => (
-                          <div key={detailIndex} className="ml-2 sm:ml-4 text-xs sm:text-sm text-gray-700">
+                          <div key={detailIndex} className="ml-2 sm:ml-4 text-xs sm:text-sm text-gray-700 dark:text-gray-300">
                             • {detail}
                           </div>
                         ))}
                       </div>
                     )}
                     {step.highlight === "3 days" && (
-                      <span className="text-orange-600 font-semibold text-xs sm:text-sm"> {step.highlight}</span>
+                      <span className="text-orange-600 dark:text-orange-400 font-semibold text-xs sm:text-sm"> {step.highlight}</span>
                     )}
                   </div>
                 </div>
@@ -295,15 +295,15 @@ export function ExnessRegistrationPopup({ isOpen, onClose }: ExnessRegistrationP
             </div>
 
             {/* After Confirmation Section */}
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3 sm:p-4">
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3 sm:p-4">
               <div className="flex items-start space-x-3">
-                <Leaf className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <Leaf className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-semibold text-green-800 mb-3 text-sm sm:text-base">After confirmation:</h3>
+                  <h3 className="font-semibold text-green-800 dark:text-green-300 mb-3 text-sm sm:text-base">After confirmation:</h3>
                   <ul className="space-y-2">
                     {afterConfirmationSteps.map((step, index) => (
-                      <li key={index} className="text-green-700 text-xs sm:text-sm flex items-start space-x-2">
-                        <span className="text-green-600">•</span>
+                      <li key={index} className="text-green-700 dark:text-green-400 text-xs sm:text-sm flex items-start space-x-2">
+                        <span className="text-green-600 dark:text-green-400">•</span>
                         <span>{step}</span>
                       </li>
                     ))}

@@ -118,19 +118,25 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/new-notifications - Create NEW notification (banner)
 export async function POST(request: NextRequest) {
   try {
+    console.log('[NEW Notification] POST request received')
     const user = await getAuthenticatedUserSimple(request)
     
     if (!user) {
+      console.log('[NEW Notification] Unauthorized - no user')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+
+    console.log('[NEW Notification] User authenticated:', user.email, user.role)
 
     const adminRoles = ['SUPERADMIN', 'ADMIN', 'EDITOR', 'ANALYST', 'SUPPORT']
     
     if (!adminRoles.includes(user.role)) {
+      console.log('[NEW Notification] Forbidden - user role:', user.role)
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
     const body = await request.json()
+    console.log('[NEW Notification] Request body:', JSON.stringify(body, null, 2))
     
     const notificationSchema = z.object({
       pagePath: z.string().min(1),
@@ -143,9 +149,12 @@ export async function POST(request: NextRequest) {
       color: z.string().default('blue')
     })
 
+    console.log('[NEW Notification] Validating data...')
     const validatedData = notificationSchema.parse(body)
+    console.log('[NEW Notification] Validation successful:', JSON.stringify(validatedData, null, 2))
 
     // Create the notification
+    console.log('[NEW Notification] Creating notification in database...')
     const notification = await prisma.newNotification.create({
       data: {
         userId: user.id,
@@ -169,8 +178,10 @@ export async function POST(request: NextRequest) {
         }
       }
     })
+    console.log('[NEW Notification] Notification created successfully:', notification.id)
 
     // Log the action
+    console.log('[NEW Notification] Creating audit log...')
     await prisma.auditLog.create({
       data: {
         actorId: user.id,
@@ -184,19 +195,28 @@ export async function POST(request: NextRequest) {
         }
       }
     })
+    console.log('[NEW Notification] Audit log created')
 
+    console.log('[NEW Notification] Returning success response')
     return NextResponse.json({
       success: true,
       notification
     }, { status: 201 })
   } catch (error) {
     if (error instanceof z.ZodError) {
+      console.error('[NEW Notification] Validation error:', error.errors)
       return NextResponse.json({ error: 'Validation error', details: error.errors }, { status: 400 })
     }
     
-    console.error('Failed to create NEW notification:', error)
+    console.error('[NEW Notification] Failed to create:', error)
+    console.error('[NEW Notification] Error details:', error instanceof Error ? error.message : 'Unknown error')
+    console.error('[NEW Notification] Stack:', error instanceof Error ? error.stack : 'No stack trace')
+    
     return NextResponse.json(
-      { error: 'Failed to create NEW notification' },
+      { 
+        error: 'Failed to create NEW notification',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     )
   }

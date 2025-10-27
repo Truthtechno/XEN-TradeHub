@@ -9,7 +9,7 @@ import { useRegistration } from '@/lib/registration-context'
 import { useSettings } from '@/lib/settings-context'
 import { useSession } from 'next-auth/react'
 import { useAcademyRegistrations } from '@/hooks/use-academy-registrations'
-import { BookOpen, Building, Calendar, CheckCircle, Clock, GraduationCap, Mail, MapPin, Phone, RefreshCw, Target, Users } from 'lucide-react'
+import { BookOpen, Building, Calendar, CheckCircle, Clock, GraduationCap, Mail, MapPin, Monitor, Phone, RefreshCw, Target, Users } from 'lucide-react'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
 
@@ -19,6 +19,9 @@ interface AcademyClass {
   description: string
   instructor: string
   location: string
+  deliveryMode?: 'PHYSICAL' | 'ONLINE'
+  scheduleType?: 'ONE_TIME' | 'RECURRING'
+  recurrencePattern?: string
   nextSession: string
   duration: string
   maxStudents: number
@@ -332,10 +335,14 @@ export default function AcademyPage() {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-theme-primary">
-                      {new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: course.currency
-                      }).format(course.price)}
+                      {course.price === 0 || !course.price ? (
+                        'Free'
+                      ) : (
+                        new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: course.currency
+                        }).format(course.price)
+                      )}
                     </div>
                     <div className="text-sm text-theme-text-tertiary">per person</div>
                   </div>
@@ -345,12 +352,38 @@ export default function AcademyPage() {
                 <div className="space-y-2 text-sm text-theme-text-secondary">
                   <div className="flex items-center space-x-2">
                     <Calendar className="h-4 w-4 text-theme-text-tertiary" />
-                    <span>Next session: {new Date(course.nextSession).toLocaleDateString()}</span>
+                    <span>
+                      {course.scheduleType === 'RECURRING' && course.recurrencePattern ? (
+                        <>{course.recurrencePattern} (Next: {new Date(course.nextSession).toLocaleString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric', 
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })})</>
+                      ) : (
+                        <>Next session: {new Date(course.nextSession).toLocaleString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric', 
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}</>
+                      )}
+                    </span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <MapPin className="h-4 w-4 text-theme-text-tertiary" />
                     <span>{course.location}</span>
                   </div>
+                  {course.deliveryMode && (
+                    <div className="flex items-center space-x-2">
+                      <Monitor className="h-4 w-4 text-theme-text-tertiary" />
+                      <span>
+                        {course.deliveryMode === 'ONLINE' ? 'Online Session' : 'Physical Session'}
+                      </span>
+                    </div>
+                  )}
                   <div className="flex items-center space-x-2">
                     <GraduationCap className="h-4 w-4 text-theme-text-tertiary" />
                     <span>Instructor: {course.instructor}</span>

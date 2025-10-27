@@ -82,9 +82,7 @@ export default function UsersPage() {
     name: '',
     email: '',
     role: '',
-    country: '',
-    subscriptionType: 'NONE',
-    subscriptionPlan: 'MONTHLY'
+    country: ''
   })
   const [isSaving, setIsSaving] = useState(false)
   const [isEditingDetails, setIsEditingDetails] = useState(false)
@@ -198,33 +196,11 @@ export default function UsersPage() {
     console.log('Edit user clicked for user:', user)
     setEditingUser(user)
     
-    // Determine subscription type and plan based on user data
-    let subscriptionType = 'NONE'
-    let subscriptionPlan = 'MONTHLY'
-    
-    if (user.subscription && user.subscription.status === 'ACTIVE') {
-      // User has an active subscription
-      subscriptionPlan = user.subscription.plan || 'MONTHLY'
-      if (user.role === 'PREMIUM') {
-        subscriptionType = 'PREMIUM'
-      } else if (user.role === 'SIGNALS') {
-        subscriptionType = 'SIGNALS'
-      }
-    } else if (user.role === 'PREMIUM') {
-      // User has PREMIUM role but no active subscription
-      subscriptionType = 'PREMIUM'
-    } else if (user.role === 'SIGNALS') {
-      // User has SIGNALS role but no active subscription
-      subscriptionType = 'SIGNALS'
-    }
-    
     setEditForm({
       name: user.name,
       email: user.email,
       role: user.role,
-      country: getCountry(user),
-      subscriptionType: subscriptionType,
-      subscriptionPlan: subscriptionPlan
+      country: getCountry(user)
     })
     // Close any open dropdown menus
     document.body.click()
@@ -259,66 +235,9 @@ export default function UsersPage() {
         return
       }
 
-      // Update subscription if it changed
-      // Determine current subscription type based on actual subscription data, not just role
-      let currentSubscriptionType = 'NONE'
-      if (editingUser.subscription) {
-        // If user has an active subscription, determine type from subscription data
-        if (editingUser.subscription.plan === 'MONTHLY' || editingUser.subscription.plan === 'YEARLY') {
-          // Check if it's a premium subscription by looking at the role or subscription type
-          currentSubscriptionType = editingUser.role === 'PREMIUM' ? 'PREMIUM' : 'SIGNALS'
-        }
-      } else if (editingUser.role === 'PREMIUM') {
-        // If user has PREMIUM role but no subscription, they might have premium access without subscription
-        currentSubscriptionType = 'PREMIUM'
-      } else if (editingUser.role === 'SIGNALS') {
-        // If user has SIGNALS role but no subscription, they might have signals access
-        currentSubscriptionType = 'SIGNALS'
-      }
-      
-      console.log('Current subscription type:', currentSubscriptionType)
-      console.log('New subscription type:', editForm.subscriptionType)
-      console.log('User role:', editingUser.role)
-      console.log('User subscription:', editingUser.subscription)
-      
-      if (editForm.subscriptionType !== currentSubscriptionType) {
-        console.log('Subscription changed, updating...')
-        try {
-          const subscriptionResponse = await fetch('/api/admin/users/subscription', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              userId: editingUser.id,
-              subscriptionType: editForm.subscriptionType,
-              plan: editForm.subscriptionPlan,
-              reason: 'Admin subscription update'
-            }),
-          })
-          
-          console.log('Subscription response status:', subscriptionResponse.status)
-          
-          if (!subscriptionResponse.ok) {
-            const error = await subscriptionResponse.json()
-            console.error('Subscription update failed:', error)
-            alert(`User updated but subscription update failed: ${error.message}`)
-            return // Don't continue if subscription update fails
-          } else {
-            const result = await subscriptionResponse.json()
-            console.log('Subscription update successful:', result)
-          }
-        } catch (subscriptionError: unknown) {
-          const message = subscriptionError instanceof Error ? subscriptionError.message : String(subscriptionError);
-          console.error('Subscription update error:', message)
-          alert(`User updated but subscription update failed: ${message}`)
-          return // Don't continue if subscription update fails
-        }
-      }
-      
       await fetchUsers(true) // Refresh the list
       setEditingUser(null)
-      setEditForm({ name: '', email: '', role: '', country: '', subscriptionType: 'NONE', subscriptionPlan: 'MONTHLY' })
+      setEditForm({ name: '', email: '', role: '', country: '' })
       alert(`User ${editingUser.name} updated successfully!`)
       console.log('User updated successfully:', editingUser.name)
     } catch (error: unknown) {
@@ -332,7 +251,7 @@ export default function UsersPage() {
 
   const handleCancelEdit = () => {
     setEditingUser(null)
-    setEditForm({ name: '', email: '', role: '', country: '', subscriptionType: 'NONE', subscriptionPlan: 'MONTHLY' })
+    setEditForm({ name: '', email: '', role: '', country: '' })
   }
 
   const handleEditDetails = () => {
@@ -911,7 +830,7 @@ export default function UsersPage() {
             </h1>
           </div>
           <p className="text-theme-secondary text-sm sm:text-base lg:text-lg max-w-2xl">
-            Manage user accounts, roles, and subscriptions
+            Manage user accounts and roles
           </p>
         </div>
         <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 flex-shrink-0">
@@ -974,9 +893,6 @@ export default function UsersPage() {
                 <option value="all">All Roles</option>
                 <option value="SUPERADMIN">Super Admin</option>
                 <option value="ADMIN">Admin</option>
-                <option value="ANALYST">Analyst</option>
-                <option value="EDITOR">Editor</option>
-                <option value="SUPPORT">Support</option>
                 <option value="STUDENT">Student</option>
               </select>
             </div>
@@ -1016,15 +932,15 @@ export default function UsersPage() {
               </div>
               <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 sm:p-4 text-center">
                 <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                  {filteredUsers.filter(u => getSubscriptionStatus(u).type === 'premium' || getSubscriptionStatus(u).type === 'signals').length}
+                  {filteredUsers.filter(u => u.role === 'ADMIN').length}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Premium</div>
+                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Admins</div>
               </div>
               <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 sm:p-4 text-center">
                 <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                  {filteredUsers.filter(u => u.hasMentorship).length}
+                  {filteredUsers.filter(u => u.role === 'SUPERADMIN').length}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Mentorship</div>
+                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Super Admins</div>
               </div>
               <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 sm:p-4 text-center">
                 <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
@@ -1076,7 +992,6 @@ export default function UsersPage() {
                     <span>Role</span>
                   </div>
                 </div>
-                <div className="w-32 text-center">Subscription</div>
                 <div className="w-24 text-center">Activity</div>
                 <div className="w-48 text-center">Additional Info</div>
                 <div className="w-32 text-center">Actions</div>
@@ -1159,37 +1074,9 @@ export default function UsersPage() {
                               className="px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                             >
                               <option value="STUDENT">STUDENT</option>
-                              <option value="SIGNALS">SIGNALS</option>
-                              <option value="PREMIUM">PREMIUM</option>
-                              <option value="AFFILIATE">AFFILIATE</option>
-                              <option value="SUPPORT">SUPPORT</option>
-                              <option value="EDITOR">EDITOR</option>
-                              <option value="ANALYST">ANALYST</option>
                               <option value="ADMIN">ADMIN</option>
                               <option value="SUPERADMIN">SUPERADMIN</option>
                             </select>
-                            <div className="space-y-1">
-                              <label className="text-xs text-gray-600 dark:text-gray-400">Subscription</label>
-                              <select
-                                value={editForm.subscriptionType}
-                                onChange={(e) => setEditForm({...editForm, subscriptionType: e.target.value})}
-                                className="w-full px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                              >
-                                <option value="NONE">No Subscription</option>
-                                <option value="SIGNALS">Signals Subscription</option>
-                                <option value="PREMIUM">Premium Subscription</option>
-                              </select>
-                              {editForm.subscriptionType === 'SIGNALS' && (
-                                <select
-                                  value={editForm.subscriptionPlan}
-                                  onChange={(e) => setEditForm({...editForm, subscriptionPlan: e.target.value})}
-                                  className="w-full px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                                >
-                                  <option value="MONTHLY">Monthly</option>
-                                  <option value="YEARLY">Yearly</option>
-                                </select>
-                              )}
-                            </div>
                           </div>
                         ) : (
                           <Badge className={`${getRoleBadgeColor(user.role)} text-xs px-2 py-0.5 font-medium w-fit`}>
@@ -1200,19 +1087,6 @@ export default function UsersPage() {
 
                       {/* Status and Info Grid */}
                       <div className="grid grid-cols-2 gap-2">
-                        {/* Subscription Status */}
-                        <div className="flex items-center space-x-1">
-                          {getSubscriptionIcon(subStatus)}
-                          <Badge className={`${
-                            subStatus.type === 'premium' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white' :
-                            subStatus.type === 'signals' ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white' :
-                            subStatus.type === 'expired' ? 'bg-gradient-to-r from-red-500 to-red-600 text-white' :
-                            'bg-gradient-to-r from-gray-500 to-gray-600 text-white'
-                          } text-xs px-2 py-0.5 font-medium shadow-sm`}>
-                            {subStatus.status}
-                          </Badge>
-                        </div>
-
                         {/* Activity Status */}
                         <div className="flex items-center space-x-1">
                           <div className={`w-1.5 h-1.5 rounded-full ${
@@ -1303,37 +1177,9 @@ export default function UsersPage() {
                                   className="px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                                 >
                                   <option value="STUDENT">STUDENT</option>
-                                  <option value="SIGNALS">SIGNALS</option>
-                                  <option value="PREMIUM">PREMIUM</option>
-                                  <option value="AFFILIATE">AFFILIATE</option>
-                                  <option value="SUPPORT">SUPPORT</option>
-                                  <option value="EDITOR">EDITOR</option>
-                                  <option value="ANALYST">ANALYST</option>
                                   <option value="ADMIN">ADMIN</option>
                                   <option value="SUPERADMIN">SUPERADMIN</option>
                                 </select>
-                                <div className="space-y-1">
-                                  <label className="text-xs text-gray-600 dark:text-gray-400">Subscription</label>
-                                  <select
-                                    value={editForm.subscriptionType}
-                                    onChange={(e) => setEditForm({...editForm, subscriptionType: e.target.value})}
-                                    className="w-full px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                                  >
-                                    <option value="NONE">No Subscription</option>
-                                    <option value="SIGNALS">Signals Subscription</option>
-                                    <option value="PREMIUM">Premium Subscription</option>
-                                  </select>
-                                  {editForm.subscriptionType === 'SIGNALS' && (
-                                    <select
-                                      value={editForm.subscriptionPlan}
-                                      onChange={(e) => setEditForm({...editForm, subscriptionPlan: e.target.value})}
-                                      className="w-full px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                                    >
-                                      <option value="MONTHLY">Monthly</option>
-                                      <option value="YEARLY">Yearly</option>
-                                    </select>
-                                  )}
-                                </div>
                               </div>
                             ) : (
                               <Badge className={`${getRoleBadgeColor(user.role)} text-xs px-2 py-0.5 font-medium`}>
@@ -1345,19 +1191,6 @@ export default function UsersPage() {
                         <p className="text-xs text-gray-600 dark:text-gray-400 truncate">
                           {user.email}
                         </p>
-                      </div>
-
-                      {/* Subscription Status */}
-                      <div className="flex items-center space-x-1 flex-shrink-0">
-                        {getSubscriptionIcon(subStatus)}
-                        <Badge className={`${
-                          subStatus.type === 'premium' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white' :
-                          subStatus.type === 'signals' ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white' :
-                          subStatus.type === 'expired' ? 'bg-gradient-to-r from-red-500 to-red-600 text-white' :
-                          'bg-gradient-to-r from-gray-500 to-gray-600 text-white'
-                        } text-xs px-2 py-0.5 font-medium shadow-sm`}>
-                          {subStatus.status}
-                        </Badge>
                       </div>
 
                       {/* Activity Status */}
@@ -1550,10 +1383,6 @@ export default function UsersPage() {
                           className="mt-1 w-full px-3 py-2 border border-theme-border rounded-md bg-theme-bg text-theme-text"
                         >
                           <option value="STUDENT">STUDENT</option>
-                          <option value="AFFILIATE">AFFILIATE</option>
-                          <option value="SUPPORT">SUPPORT</option>
-                          <option value="EDITOR">EDITOR</option>
-                          <option value="ANALYST">ANALYST</option>
                           <option value="ADMIN">ADMIN</option>
                           <option value="SUPERADMIN">SUPERADMIN</option>
                         </select>
@@ -1638,39 +1467,6 @@ export default function UsersPage() {
                   </CardContent>
                 </Card>
               </div>
-
-              {/* Subscription Information */}
-              <Card className="bg-theme-card border-theme-border">
-                <CardHeader>
-                  <CardTitle className={textHierarchy.sectionHeading(isDarkMode)}>Subscription Information</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {userDetails.subscription ? (
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className={`text-sm font-medium ${textHierarchy.metaText(isDarkMode)}`}>Plan</span>
-                        <Badge className={getSubscriptionBadgeColor(userDetails.subscription.status)}>
-                          {userDetails.subscription.plan}
-                        </Badge>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className={`text-sm font-medium ${textHierarchy.metaText(isDarkMode)}`}>Status</span>
-                        <span className={textHierarchy.cardTitle(isDarkMode)}>{userDetails.subscription.status}</span>
-                      </div>
-                      {userDetails.subscription.currentPeriodStart && (
-                        <div className="flex items-center justify-between">
-                          <span className={`text-sm font-medium ${textHierarchy.metaText(isDarkMode)}`}>Current Period</span>
-                          <span className={textHierarchy.cardTitle(isDarkMode)}>
-                            {formatDate(userDetails.subscription.currentPeriodStart)} - {formatDate(userDetails.subscription.currentPeriodEnd)}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <p className={textHierarchy.cardDescription()}>No active subscription</p>
-                  )}
-                </CardContent>
-              </Card>
 
               {/* Engagement Statistics */}
               <Card className="bg-theme-card border-theme-border">

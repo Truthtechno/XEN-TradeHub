@@ -3,13 +3,13 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export interface AdminNotificationData {
-  type: 'STUDENT_PURCHASE' | 'STUDENT_ENROLLMENT' | 'STUDENT_REGISTRATION' | 'STUDENT_ENQUIRY' | 'STUDENT_ACTIVITY'
+  type: 'USER_SIGNUP' | 'ACADEMY_REGISTRATION' | 'ACADEMY_ENROLLMENT' | 'BROKER_ACCOUNT_OPENING' | 'COPY_TRADING_SUBSCRIPTION' | 'AFFILIATE_REGISTRATION' | 'AFFILIATE_REFERRAL' | 'USER_ENQUIRY' | 'USER_ACTIVITY'
   title: string
   message: string
   actionUrl?: string
-  studentId?: string
-  studentName?: string
-  studentEmail?: string
+  userId?: string
+  userName?: string
+  userEmail?: string
 }
 
 /**
@@ -51,101 +51,156 @@ export async function createAdminActivityNotification(data: AdminNotificationDat
 }
 
 /**
- * Create admin notification for student purchase
+ * Create admin notification for new user signup
  */
-export async function notifyStudentPurchase(
-  studentName: string,
-  studentEmail: string,
-  itemType: string,
-  itemName: string,
-  amount: number,
-  currency: string = 'USD',
+export async function notifyUserSignup(
+  userName: string,
+  userEmail: string,
+  referralCode?: string,
   actionUrl?: string
 ) {
+  const referralMsg = referralCode ? ` using referral code: ${referralCode}` : ''
   return createAdminActivityNotification({
-    type: 'STUDENT_PURCHASE',
-    title: 'New Student Purchase',
-    message: `${studentName} (${studentEmail}) purchased ${itemType}: "${itemName}" for ${currency} ${amount}`,
-    actionUrl,
-    studentName,
-    studentEmail
+    type: 'USER_SIGNUP',
+    title: '🎉 New User Signup',
+    message: `${userName} (${userEmail}) just signed up${referralMsg}`,
+    actionUrl: actionUrl || '/admin/users',
+    userName,
+    userEmail
   })
 }
 
 /**
- * Create admin notification for student enrollment
+ * Create admin notification for academy class registration
  */
-export async function notifyStudentEnrollment(
-  studentName: string,
-  studentEmail: string,
-  courseName: string,
+export async function notifyAcademyRegistration(
+  userName: string,
+  userEmail: string,
+  className: string,
   actionUrl?: string
 ) {
   return createAdminActivityNotification({
-    type: 'STUDENT_ENROLLMENT',
-    title: 'New Student Enrollment',
-    message: `${studentName} (${studentEmail}) enrolled in course: "${courseName}"`,
-    actionUrl,
-    studentName,
-    studentEmail
+    type: 'ACADEMY_REGISTRATION',
+    title: '📚 New Academy Registration',
+    message: `${userName} (${userEmail}) registered for academy class: "${className}"`,
+    actionUrl: actionUrl || '/admin/academy',
+    userName,
+    userEmail
   })
 }
 
 /**
- * Create admin notification for student registration
+ * Create admin notification for broker account opening
  */
-export async function notifyStudentRegistration(
-  studentName: string,
-  studentEmail: string,
-  eventType: string,
-  eventName: string,
+export async function notifyBrokerAccountOpening(
+  userName: string,
+  userEmail: string,
+  brokerName: string,
   actionUrl?: string
 ) {
   return createAdminActivityNotification({
-    type: 'STUDENT_REGISTRATION',
-    title: 'New Student Registration',
-    message: `${studentName} (${studentEmail}) registered for ${eventType}: "${eventName}"`,
-    actionUrl,
-    studentName,
-    studentEmail
+    type: 'BROKER_ACCOUNT_OPENING',
+    title: '💼 New Broker Account Opening',
+    message: `${userName} (${userEmail}) opened an account with broker: "${brokerName}"`,
+    actionUrl: actionUrl || '/admin/brokers',
+    userName,
+    userEmail
   })
 }
 
 /**
- * Create admin notification for student enquiry
+ * Create admin notification for copy trading subscription
  */
-export async function notifyStudentEnquiry(
-  studentName: string,
-  studentEmail: string,
+export async function notifyCopyTradingSubscription(
+  userName: string,
+  userEmail: string,
+  traderName: string,
+  actionUrl?: string
+) {
+  return createAdminActivityNotification({
+    type: 'COPY_TRADING_SUBSCRIPTION',
+    title: '📈 New Copy Trading Subscription',
+    message: `${userName} (${userEmail}) subscribed to copy trader: "${traderName}"`,
+    actionUrl: actionUrl || '/admin/copy-trading',
+    userName,
+    userEmail
+  })
+}
+
+/**
+ * Create admin notification for affiliate registration
+ */
+export async function notifyAffiliateRegistration(
+  userName: string,
+  userEmail: string,
+  referralCode: string,
+  actionUrl?: string
+) {
+  return createAdminActivityNotification({
+    type: 'AFFILIATE_REGISTRATION',
+    title: '🤝 New Affiliate Registration',
+    message: `${userName} (${userEmail}) registered as an affiliate with code: ${referralCode}`,
+    actionUrl: actionUrl || '/admin/affiliates',
+    userName,
+    userEmail
+  })
+}
+
+/**
+ * Create admin notification for affiliate referral signup
+ */
+export async function notifyAffiliateReferral(
+  referrerName: string,
+  referrerEmail: string,
+  newUserName: string,
+  newUserEmail: string,
+  actionUrl?: string
+) {
+  return createAdminActivityNotification({
+    type: 'AFFILIATE_REFERRAL',
+    title: '🎯 New Affiliate Referral',
+    message: `${newUserName} (${newUserEmail}) signed up using ${referrerName}'s referral link`,
+    actionUrl: actionUrl || '/admin/affiliates',
+    userName: referrerName,
+    userEmail: referrerEmail
+  })
+}
+
+/**
+ * Create admin notification for user enquiry
+ */
+export async function notifyUserEnquiry(
+  userName: string,
+  userEmail: string,
   enquiryType: string,
-  message: string,
+  subject: string,
   actionUrl?: string
 ) {
   return createAdminActivityNotification({
-    type: 'STUDENT_ENQUIRY',
-    title: 'New Student Enquiry',
-    message: `${studentName} (${studentEmail}) sent ${enquiryType} enquiry: "${message.substring(0, 100)}${message.length > 100 ? '...' : ''}"`,
-    actionUrl,
-    studentName,
-    studentEmail
+    type: 'USER_ENQUIRY',
+    title: '💬 New User Enquiry',
+    message: `${userName} (${userEmail}) sent a ${enquiryType} enquiry: "${subject}"`,
+    actionUrl: actionUrl || '/admin/enquiry',
+    userName,
+    userEmail
   })
 }
 
 /**
- * Create admin notification for general student activity
+ * Create admin notification for general user activity
  */
-export async function notifyStudentActivity(
-  studentName: string,
-  studentEmail: string,
+export async function notifyUserActivity(
+  userName: string,
+  userEmail: string,
   activity: string,
   actionUrl?: string
 ) {
   return createAdminActivityNotification({
-    type: 'STUDENT_ACTIVITY',
-    title: 'Student Activity',
-    message: `${studentName} (${studentEmail}) ${activity}`,
+    type: 'USER_ACTIVITY',
+    title: 'User Activity',
+    message: `${userName} (${userEmail}) ${activity}`,
     actionUrl,
-    studentName,
-    studentEmail
+    userName,
+    userEmail
   })
 }

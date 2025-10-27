@@ -167,16 +167,16 @@ export function VerificationForm({ isOpen, onClose, accountType }: VerificationF
       <Dialog open={isOpen} onOpenChange={handleClose}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-center text-green-600">Verification Submitted!</DialogTitle>
+            <DialogTitle className="text-center text-green-600 dark:text-green-400">Verification Submitted!</DialogTitle>
           </DialogHeader>
-          <Card className="border-green-200 bg-green-50">
+          <Card className="border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20">
             <CardContent className="p-6 text-center">
-              <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-green-800 mb-2">Thank You!</h3>
-              <p className="text-green-700 text-sm mb-4">
+              <CheckCircle className="h-16 w-16 text-green-500 dark:text-green-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-green-800 dark:text-green-300 mb-2">Thank You!</h3>
+              <p className="text-green-700 dark:text-green-400 text-sm mb-4">
                 Your verification request has been submitted successfully and will appear in the admin panel shortly. You will receive an email confirmation shortly.
               </p>
-              <div className="text-left text-sm text-green-700 space-y-2">
+              <div className="text-left text-sm text-green-700 dark:text-green-400 space-y-2">
                 <p className="font-semibold">Next Steps:</p>
                 <ul className="space-y-1 ml-4">
                   <li>• Check your email for verification instructions</li>
@@ -202,17 +202,17 @@ export function VerificationForm({ isOpen, onClose, accountType }: VerificationF
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-center">
+          <DialogTitle className="text-center text-gray-900 dark:text-white">
             Complete Your Verification
           </DialogTitle>
-          <p className="text-center text-sm text-gray-600">
+          <p className="text-center text-sm text-gray-600 dark:text-gray-400">
             {accountType === 'new' ? 'New Account' : 'Existing Account'} Verification
           </p>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Email Address *
             </label>
             <Input
@@ -228,7 +228,7 @@ export function VerificationForm({ isOpen, onClose, accountType }: VerificationF
           </div>
 
           <div>
-            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Full Name *
             </label>
             <Input
@@ -244,7 +244,7 @@ export function VerificationForm({ isOpen, onClose, accountType }: VerificationF
           </div>
 
           <div>
-            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Phone Number
             </label>
             <Input
@@ -260,7 +260,7 @@ export function VerificationForm({ isOpen, onClose, accountType }: VerificationF
 
           {accountType === 'existing' && (
             <div>
-              <label htmlFor="exnessAccountId" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="exnessAccountId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Exness Account ID
               </label>
               <Input
@@ -276,8 +276,8 @@ export function VerificationForm({ isOpen, onClose, accountType }: VerificationF
           )}
 
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-              <p className="text-red-700 text-sm">{error}</p>
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+              <p className="text-red-700 dark:text-red-400 text-sm">{error}</p>
             </div>
           )}
 

@@ -14,6 +14,7 @@ model User {
   password                  String?
   image                     String?
   role                      String                     @default("STUDENT")
+  referredByCode            String?
   lastLoginAt               DateTime?
   createdAt                 DateTime                   @default(now())
   updatedAt                 DateTime                   @updatedAt
@@ -43,6 +44,12 @@ model User {
   userSignalComments        UserSignalComment[]
   userSignalLikes           UserSignalLike[]
   signals                   UserSignal[]
+  brokerAccountOpenings     BrokerAccountOpening[]
+  copyTradingSubscriptions  CopyTradingSubscription[]
+  affiliateProgram          AffiliateProgram?
+  affiliateReferrals        AffiliateReferral[]
+  adminFeatures             AdminFeature[]
+  monthlyChallenges         MonthlyChallenge[]
 
   @@map("users")
 }
@@ -584,22 +591,25 @@ model Settings {
 }
 
 model AcademyClass {
-  id            String                     @id @default(cuid())
-  title         String
-  description   String
-  price         Float
-  currency      String                     @default("USD")
-  duration      String
-  level         String
-  maxStudents   Int
-  instructor    String
-  location      String
-  nextSession   DateTime
-  status        String                     @default("UPCOMING")
-  isPublished   Boolean                    @default(true)
-  createdAt     DateTime                   @default(now())
-  updatedAt     DateTime                   @updatedAt
-  registrations AcademyClassRegistration[]
+  id               String                     @id @default(cuid())
+  title            String
+  description      String
+  price            Float
+  currency         String                     @default("USD")
+  duration         String
+  level            String
+  maxStudents      Int
+  instructor       String
+  location         String
+  deliveryMode     String                     @default("PHYSICAL")
+  scheduleType     String                     @default("ONE_TIME")
+  recurrencePattern String?
+  nextSession      DateTime
+  status           String                     @default("UPCOMING")
+  isPublished      Boolean                    @default(true)
+  createdAt        DateTime                   @default(now())
+  updatedAt        DateTime                   @updatedAt
+  registrations    AcademyClassRegistration[]
 
   @@map("academy_classes")
 }
@@ -652,4 +662,248 @@ model DismissedBanner {
 
   @@unique([userId, bannerId])
   @@map("dismissed_banners")
+}
+
+model Broker {
+  id                    String               @id @default(cuid())
+  name                  String
+  slug                  String               @unique
+  description           String?
+  logoUrl               String?
+  referralLink          String
+  benefits              String[]
+  newAccountSteps       Json?
+  existingAccountSteps  Json?
+  isActive              Boolean              @default(true)
+  displayOrder          Int                  @default(0)
+  notes                 String?
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+  accountOpenings       BrokerAccountOpening[]
+
+  @@map("brokers")
+}
+
+model BrokerAccountOpening {
+  id               String   @id @default(cuid())
+  brokerId         String
+  userId           String
+  fullName         String
+  email            String
+  phone            String?
+  accountId        String?
+  status           String   @default("PENDING")
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  broker           Broker   @relation(fields: [brokerId], references: [id], onDelete: Cascade)
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("broker_account_openings")
+}
+
+model CopyTradingPlatform {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  description      String?
+  logoUrl          String?
+  copyTradingLink  String
+  profitPercentage Float    @default(0)
+  profitShareRate  Float    @default(20)
+  riskLevel        String   @default("MEDIUM")
+  minInvestment    Float    @default(0)
+  strategy         String?
+  roi              Float    @default(0)
+  winRate          Float    @default(0)
+  maxDrawdown      Float    @default(0)
+  isActive         Boolean  @default(true)
+  displayOrder     Int      @default(0)
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  subscriptions    CopyTradingSubscription[]
+  trades           CopyTrade[]
+  profitShares     ProfitShare[]
+
+  @@map("copy_trading_platforms")
+}
+
+model CopyTradingSubscription {
+  id                String               @id @default(cuid())
+  userId            String
+  platformId        String
+  investmentUSD     Float
+  copyRatio         Float                @default(1.0)
+  stopLossPercent   Float                @default(10)
+  currentProfit     Float                @default(0)
+  totalProfit       Float                @default(0)
+  totalLoss         Float                @default(0)
+  tradesCount       Int                  @default(0)
+  winningTrades     Int                  @default(0)
+  losingTrades      Int                  @default(0)
+  brokerAccountId   String?
+  status            String               @default("ACTIVE")
+  startDate         DateTime             @default(now())
+  endDate           DateTime?
+  pausedAt          DateTime?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  platform          CopyTradingPlatform  @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  user              User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trades            CopyTrade[]
+  profitShares      ProfitShare[]
+
+  @@map("copy_trading_subscriptions")
+}
+
+model CopyTrade {
+  id             String                   @id @default(cuid())
+  platformId     String
+  subscriptionId String?
+  symbol         String
+  action         String
+  entryPrice     Float
+  exitPrice      Float?
+  lotSize        Float
+  profitLoss     Float                    @default(0)
+  status         String                   @default("OPEN")
+  openedAt       DateTime                 @default(now())
+  closedAt       DateTime?
+  notes          String?
+  createdAt      DateTime                 @default(now())
+  updatedAt      DateTime                 @updatedAt
+  platform       CopyTradingPlatform      @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  subscription   CopyTradingSubscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+
+  @@map("copy_trades")
+}
+
+model ProfitShare {
+  id             String                  @id @default(cuid())
+  platformId     String
+  subscriptionId String
+  amount         Float
+  percentage     Float
+  tradeProfit    Float
+  status         String                  @default("PENDING")
+  paidAt         DateTime?
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
+  platform       CopyTradingPlatform     @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  subscription   CopyTradingSubscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@map("profit_shares")
+}
+
+model AffiliateProgram {
+  id                String              @id @default(cuid())
+  userId            String              @unique
+  affiliateCode     String              @unique
+  fullName          String?
+  phone             String?
+  paymentMethod     String?
+  payoutDetails     Json?
+  tier              String              @default("BRONZE")
+  commissionRate    Float               @default(10)
+  totalEarnings     Float               @default(0)
+  pendingEarnings   Float               @default(0)
+  paidEarnings      Float               @default(0)
+  totalReferrals    Int                 @default(0)
+  isActive          Boolean             @default(true)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  referrals         AffiliateReferral[]
+  commissions       AffiliateCommission[]
+  payouts           AffiliatePayout[]
+
+  @@map("affiliate_programs")
+}
+
+model AffiliateReferral {
+  id               String           @id @default(cuid())
+  affiliateProgramId String
+  referredUserId   String
+  status           String           @default("PENDING")
+  conversionDate   DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  affiliateProgram AffiliateProgram @relation(fields: [affiliateProgramId], references: [id], onDelete: Cascade)
+  referredUser     User             @relation(fields: [referredUserId], references: [id], onDelete: Cascade)
+
+  @@map("affiliate_referrals")
+}
+
+model AffiliateCommission {
+  id                 String           @id @default(cuid())
+  affiliateProgramId String
+  referredUserId     String?
+  amount             Float
+  type               String
+  description        String?
+  status             String           @default("PENDING")
+  requiresVerification Boolean        @default(false)
+  verificationData   Json?
+  verifiedAt         DateTime?
+  verifiedBy         String?
+  rejectionReason    String?
+  relatedEntityType  String?
+  relatedEntityId    String?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  affiliateProgram   AffiliateProgram @relation(fields: [affiliateProgramId], references: [id], onDelete: Cascade)
+
+  @@map("affiliate_commissions")
+}
+
+model AffiliatePayout {
+  id                 String           @id @default(cuid())
+  affiliateProgramId String
+  amount             Float
+  method             String
+  status             String           @default("PENDING")
+  transactionId      String?
+  notes              String?
+  paidAt             DateTime?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  affiliateProgram   AffiliateProgram @relation(fields: [affiliateProgramId], references: [id], onDelete: Cascade)
+
+  @@map("affiliate_payouts")
+}
+
+model AdminFeature {
+  id          String   @id @default(cuid())
+  userId      String
+  feature     String
+  canView     Boolean  @default(false)
+  canCreate   Boolean  @default(false)
+  canEdit     Boolean  @default(false)
+  canDelete   Boolean  @default(false)
+  canExport   Boolean  @default(false)
+  canApprove  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, feature])
+  @@map("admin_features")
+}
+
+model MonthlyChallenge {
+  id                String   @id @default(cuid())
+  userId            String
+  month             String   // Format: "2025-10" for October 2025
+  referralCount     Int      @default(0)
+  qualifiedReferrals String[] // Array of user IDs who signed up and joined copy trading
+  rewardClaimed     Boolean  @default(false)
+  rewardAmount      Float    @default(1000)
+  claimedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, month])
+  @@map("monthly_challenges")
 }

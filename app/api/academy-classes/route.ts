@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { notifyNewAcademyClass } from '@/lib/user-notification-utils'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -74,13 +75,16 @@ export async function POST(request: NextRequest) {
       maxStudents,
       instructor,
       location,
+      deliveryMode = 'PHYSICAL',
+      scheduleType = 'ONE_TIME',
+      recurrencePattern,
       nextSession,
       status = 'UPCOMING',
       isPublished = true
     } = body
 
     // Validate required fields
-    if (!title || !description || !price || !duration || !level || !maxStudents || !instructor || !location || !nextSession) {
+    if (!title || !description || !duration || !level || !maxStudents || !instructor || !location || !nextSession) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -91,13 +95,16 @@ export async function POST(request: NextRequest) {
       data: {
         title,
         description,
-        price: parseFloat(price),
+        price: price ? parseFloat(price) : 0,
         currency,
         duration,
         level: level.toUpperCase(),
         maxStudents: parseInt(maxStudents),
         instructor,
         location,
+        deliveryMode: deliveryMode.toUpperCase(),
+        scheduleType: scheduleType.toUpperCase(),
+        recurrencePattern: recurrencePattern || null,
         nextSession: new Date(nextSession),
         status: status.toUpperCase(),
         isPublished
@@ -114,14 +121,32 @@ export async function POST(request: NextRequest) {
       }
     })
 
+    // Notify all users about new academy class
+    if (isPublished && status.toUpperCase() === 'UPCOMING') {
+      const sessionDate = new Date(nextSession).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+      await notifyNewAcademyClass(
+        title,
+        sessionDate,
+        `/academy`
+      )
+    }
+
     return NextResponse.json({
-      ...academyClass,
-      enrolledStudents: 0
+      message: 'Academy class created successfully',
+      class: academyClass
     }, { status: 201 })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error creating academy class:', error)
     return NextResponse.json(
-      { error: 'Failed to create academy class' },
+      { 
+        error: 'Failed to create academy class',
+        details: error.message || 'Unknown error',
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      },
       { status: 500 }
     )
   }
