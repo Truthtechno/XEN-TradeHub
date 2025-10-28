@@ -149,7 +149,9 @@ export default function AdminDashboard() {
         publishedSignals: 0,
         signalHitRate: 0,
         brokerRegistrations: 0,
-        verifiedRegistrations: 0
+        verifiedRegistrations: 0,
+        totalAffiliates: 0,
+        affiliateCommissions: 0
       })
       setLastUpdated(new Date())
     } finally {
