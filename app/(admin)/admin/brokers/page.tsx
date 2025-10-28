@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Plus, Edit, Trash2, ExternalLink, Users, ArrowUpDown, Download, Filter } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { FileUpload } from '@/components/ui/file-upload'
+import { RequirePermission } from '@/components/admin/require-permission'
 
 interface Broker {
   id: string
@@ -388,7 +389,8 @@ export default function BrokersAdminPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <RequirePermission feature="brokers">
+      <div className="container mx-auto p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -864,6 +866,7 @@ export default function BrokersAdminPage() {
           </form>
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

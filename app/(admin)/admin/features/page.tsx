@@ -27,7 +27,8 @@ import {
   Trash2,
   Download,
   CheckCircle,
-  RefreshCw
+  RefreshCw,
+  TrophyIcon
 } from 'lucide-react'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
@@ -41,12 +42,7 @@ interface AdminUser {
 
 interface FeaturePermission {
   feature: string
-  canView: boolean
-  canCreate: boolean
-  canEdit: boolean
-  canDelete: boolean
-  canExport: boolean
-  canApprove: boolean
+  canAccess: boolean  // Single permission: can access the page or not
 }
 
 interface UserPermissions {
@@ -61,24 +57,21 @@ const AVAILABLE_FEATURES = [
   { key: 'users', name: 'Users Management', icon: Users, description: 'Manage user accounts and profiles' },
   { key: 'brokers', name: 'Brokers', icon: Briefcase, description: 'Manage broker partnerships and accounts' },
   { key: 'copy_trading', name: 'Copy Trading', icon: Copy, description: 'Manage master traders and subscriptions' },
-  { key: 'signals', name: 'Trading Signals', icon: TrendingUp, description: 'Create and manage trading signals' },
-  { key: 'market_analysis', name: 'Market Analysis', icon: Activity, description: 'Publish market insights and forecasts' },
   { key: 'academy', name: 'Academy Classes', icon: GraduationCap, description: 'Manage training classes and sessions' },
   { key: 'affiliates', name: 'Affiliate Program', icon: DollarSign, description: 'Manage affiliate commissions and payouts' },
+  { key: 'monthly_challenge', name: 'Monthly Challenge', icon: TrophyIcon, description: 'Manage monthly trading challenges and rewards' },
   { key: 'enquiry', name: 'Live Enquiry', icon: MessageCircle, description: 'Handle customer inquiries and support' },
   { key: 'notifications', name: 'Notifications', icon: Bell, description: 'Send system notifications and banners' },
   { key: 'settings', name: 'System Settings', icon: Settings, description: 'Configure system-wide settings' },
   { key: 'reports', name: 'Reports & Analytics', icon: BarChart3, description: 'View and export system reports' }
 ]
 
-const PERMISSION_TYPES = [
-  { key: 'canView', label: 'View', icon: Eye, description: 'Can view and access the feature' },
-  { key: 'canCreate', label: 'Create', icon: Edit, description: 'Can create new records' },
-  { key: 'canEdit', label: 'Edit', icon: Edit, description: 'Can modify existing records' },
-  { key: 'canDelete', label: 'Delete', icon: Trash2, description: 'Can delete records' },
-  { key: 'canExport', label: 'Export', icon: Download, description: 'Can export data' },
-  { key: 'canApprove', label: 'Approve', icon: CheckCircle, description: 'Can approve/verify submissions' }
-]
+const PERMISSION_TYPE = {
+  key: 'canAccess',
+  label: 'Access',
+  icon: CheckCircle,
+  description: 'Can access this feature'
+}
 
 export default function FeaturesPage() {
   const [adminUsers, setAdminUsers] = useState<AdminUser[]>([])
@@ -124,7 +117,12 @@ export default function FeaturesPage() {
       const response = await fetch(`/api/admin/features/${userId}`)
       if (response.ok) {
         const data = await response.json()
-        setUserPermissions(data.permissions || [])
+        // Convert old format to new format (canView -> canAccess)
+        const convertedPermissions = (data.permissions || []).map((p: any) => ({
+          feature: p.feature,
+          canAccess: p.canView || false  // Use canView as canAccess for backward compatibility
+        }))
+        setUserPermissions(convertedPermissions)
       }
     } catch (error) {
       console.error('Failed to fetch user permissions:', error)
@@ -137,25 +135,20 @@ export default function FeaturesPage() {
     await fetchUserPermissions(user.id)
   }
 
-  const handlePermissionChange = (featureKey: string, permissionKey: string, value: boolean) => {
+  const handlePermissionChange = (featureKey: string, value: boolean) => {
     setHasChanges(true)
     setUserPermissions(prev => {
       const existing = prev.find(p => p.feature === featureKey)
       if (existing) {
         return prev.map(p => 
           p.feature === featureKey 
-            ? { ...p, [permissionKey]: value }
+            ? { ...p, canAccess: value }
             : p
         )
       } else {
         return [...prev, {
           feature: featureKey,
-          canView: permissionKey === 'canView' ? value : false,
-          canCreate: permissionKey === 'canCreate' ? value : false,
-          canEdit: permissionKey === 'canEdit' ? value : false,
-          canDelete: permissionKey === 'canDelete' ? value : false,
-          canExport: permissionKey === 'canExport' ? value : false,
-          canApprove: permissionKey === 'canApprove' ? value : false
+          canAccess: value
         }]
       }
     })
@@ -166,12 +159,23 @@ export default function FeaturesPage() {
     
     setIsSaving(true)
     try {
+      // Convert new format to old format (canAccess -> canView) for API compatibility
+      const permissionsForAPI = userPermissions.map(p => ({
+        feature: p.feature,
+        canView: p.canAccess,
+        canCreate: p.canAccess,  // Same as canView for now (simple system)
+        canEdit: p.canAccess,
+        canDelete: p.canAccess,
+        canExport: p.canAccess,
+        canApprove: p.canAccess
+      }))
+      
       const response = await fetch(`/api/admin/features/${selectedUser.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ permissions: userPermissions })
+        body: JSON.stringify({ permissions: permissionsForAPI })
       })
       
       if (response.ok) {
@@ -196,9 +200,9 @@ export default function FeaturesPage() {
     }
   }
 
-  const getPermissionValue = (featureKey: string, permissionKey: string): boolean => {
+  const getPermissionValue = (featureKey: string): boolean => {
     const feature = userPermissions.find(p => p.feature === featureKey)
-    return feature ? feature[permissionKey as keyof FeaturePermission] as boolean : false
+    return feature ? feature.canAccess : false
   }
 
   const filteredUsers = adminUsers.filter(user => 
@@ -358,14 +362,12 @@ export default function FeaturesPage() {
                         <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900 dark:text-white">
                           Feature
                         </th>
-                        {PERMISSION_TYPES.map(type => (
-                          <th key={type.key} className="text-center py-3 px-2 text-xs font-semibold text-gray-900 dark:text-white">
-                            <div className="flex flex-col items-center space-y-1">
-                              <type.icon className="h-4 w-4" />
-                              <span className="hidden sm:inline">{type.label}</span>
-                            </div>
-                          </th>
-                        ))}
+                        <th className="text-center py-3 px-4 text-sm font-semibold text-gray-900 dark:text-white">
+                          <div className="flex flex-col items-center space-y-1">
+                            <PERMISSION_TYPE.icon className="h-5 w-5" />
+                            <span>{PERMISSION_TYPE.label}</span>
+                          </div>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -391,18 +393,16 @@ export default function FeaturesPage() {
                               </div>
                             </div>
                           </td>
-                          {PERMISSION_TYPES.map(type => (
-                            <td key={type.key} className="text-center py-3 px-2">
-                              <label className="inline-flex items-center justify-center cursor-pointer">
-                                <input
-                                  type="checkbox"
-                                  checked={getPermissionValue(feature.key, type.key)}
-                                  onChange={(e) => handlePermissionChange(feature.key, type.key, e.target.checked)}
-                                  className="w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-purple-600 focus:ring-purple-500 cursor-pointer"
-                                />
-                              </label>
-                            </td>
-                          ))}
+                          <td className="text-center py-3 px-4">
+                            <label className="inline-flex items-center justify-center cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={getPermissionValue(feature.key)}
+                                onChange={(e) => handlePermissionChange(feature.key, e.target.checked)}
+                                className="w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-purple-600 focus:ring-purple-500 cursor-pointer"
+                              />
+                            </label>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -414,35 +414,31 @@ export default function FeaturesPage() {
                   {AVAILABLE_FEATURES.map(feature => (
                     <Card key={feature.key} className="bg-white dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600">
                       <CardHeader className="pb-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                            <feature.icon className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                              <feature.icon className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                            </div>
+                            <div>
+                              <CardTitle className="text-sm font-semibold text-gray-900 dark:text-white">
+                                {feature.name}
+                              </CardTitle>
+                              <CardDescription className="text-xs text-gray-600 dark:text-gray-400">
+                                {feature.description}
+                              </CardDescription>
+                            </div>
                           </div>
-                          <div>
-                            <CardTitle className="text-sm font-semibold text-gray-900 dark:text-white">
-                              {feature.name}
-                            </CardTitle>
-                            <CardDescription className="text-xs text-gray-600 dark:text-gray-400">
-                              {feature.description}
-                            </CardDescription>
-                          </div>
+                          <label className="inline-flex items-center space-x-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={getPermissionValue(feature.key)}
+                              onChange={(e) => handlePermissionChange(feature.key, e.target.checked)}
+                              className="w-5 h-5 rounded border-gray-300 dark:border-gray-600 text-purple-600 focus:ring-purple-500"
+                            />
+                            <span className="text-sm text-gray-900 dark:text-white">Access</span>
+                          </label>
                         </div>
                       </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-2 gap-3">
-                          {PERMISSION_TYPES.map(type => (
-                            <label key={type.key} className="flex items-center space-x-2 cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={getPermissionValue(feature.key, type.key)}
-                                onChange={(e) => handlePermissionChange(feature.key, type.key, e.target.checked)}
-                                className="w-4 h-4 rounded border-gray-300 dark:border-gray-600 text-purple-600 focus:ring-purple-500"
-                              />
-                              <span className="text-sm text-gray-900 dark:text-white">{type.label}</span>
-                            </label>
-                          ))}
-                        </div>
-                      </CardContent>
                     </Card>
                   ))}
                 </div>

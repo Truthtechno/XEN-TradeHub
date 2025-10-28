@@ -15,6 +15,7 @@ import { DollarSign, Users, TrendingUp, CheckCircle, Clock, XCircle, Phone, Wall
 import { toast } from 'react-hot-toast'
 import { Collapsible } from '@/components/ui/collapsible'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu'
+import { RequirePermission } from '@/components/admin/require-permission'
 
 interface AffiliateProgram {
   id: string
@@ -476,7 +477,8 @@ export default function AffiliatesAdminPage() {
   const totalReferrals = affiliates.reduce((sum, a) => sum + a.totalReferrals, 0)
 
   return (
-    <div className="container mx-auto p-4 md:p-6 space-y-6">
+    <RequirePermission feature="affiliates">
+      <div className="container mx-auto p-4 md:p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -1980,6 +1982,7 @@ export default function AffiliatesAdminPage() {
           </form>
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

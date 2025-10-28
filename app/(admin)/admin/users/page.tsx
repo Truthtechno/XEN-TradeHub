@@ -10,6 +10,7 @@ import { getCountryFromPhoneNumber } from '@/lib/country-utils'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
 import { useSession } from 'next-auth/react'
+import { RequirePermission } from '@/components/admin/require-permission'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -817,7 +818,8 @@ export default function UsersPage() {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6 max-w-full overflow-hidden">
+    <RequirePermission feature="users">
+      <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6 max-w-full overflow-hidden">
       {/* Header */}
       <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2 min-w-0 flex-1">
@@ -1624,6 +1626,7 @@ export default function UsersPage() {
         </DialogContent>
       </Dialog>
 
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

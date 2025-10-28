@@ -11,6 +11,7 @@ import { Switch } from '@/components/ui/switch'
 import { AlertCircle, Calendar, CheckCircle, Clock, Edit, Eye, EyeOff, Plus, Search, Trash2, Bell, Megaphone, Users, TrendingUp, BookOpen, Crown, MessageCircle, UserPlus, User, CreditCard } from 'lucide-react'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
+import { RequirePermission } from '@/components/admin/require-permission'
 
 interface Notification {
   id: string
@@ -389,7 +390,8 @@ export default function NotificationsPage() {
   )
 
   return (
-    <div className="space-y-4 sm:space-y-6 p-3 sm:p-6">
+    <RequirePermission feature="notifications">
+      <div className="space-y-4 sm:space-y-6 p-3 sm:p-6">
       {/* Header */}
       <div className="space-y-3 sm:space-y-4">
         <div>
@@ -738,6 +740,7 @@ export default function NotificationsPage() {
           </form>
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

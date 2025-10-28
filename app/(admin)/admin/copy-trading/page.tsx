@@ -14,6 +14,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Plus, Edit, Trash2, TrendingUp, TrendingDown, Users, ExternalLink } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { FileUpload } from '@/components/ui/file-upload'
+import { RequirePermission } from '@/components/admin/require-permission'
 
 interface CopyTradingPlatform {
   id: string
@@ -288,7 +289,8 @@ export default function CopyTradingAdminPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <RequirePermission feature="copy_trading">
+      <div className="container mx-auto p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -622,6 +624,7 @@ export default function CopyTradingAdminPage() {
           </form>
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

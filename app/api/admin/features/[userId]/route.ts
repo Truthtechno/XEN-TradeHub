@@ -13,12 +13,13 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Only SUPERADMIN can access features management
-    if (user.role !== 'SUPERADMIN') {
+    const { userId } = params
+
+    // Allow SUPERADMIN to fetch any user's permissions
+    // Allow users to fetch their own permissions
+    if (user.role !== 'SUPERADMIN' && user.id !== userId) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
-
-    const { userId } = params
 
     // Fetch user's permissions
     const permissions = await prisma.adminFeature.findMany({

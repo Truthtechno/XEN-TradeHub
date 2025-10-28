@@ -9,6 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Trophy, Users, DollarSign, CheckCircle2, Clock, TrendingUp, Search } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { Input } from '@/components/ui/input'
+import { RequirePermission } from '@/components/admin/require-permission'
 
 interface ChallengeParticipant {
   id: string
@@ -142,7 +143,8 @@ export default function AdminMonthlyChallengePagePage() {
   }
 
   return (
-    <div className="container mx-auto p-4 md:p-6 space-y-6">
+    <RequirePermission feature="monthly_challenge">
+      <div className="container mx-auto p-4 md:p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -326,6 +328,7 @@ export default function AdminMonthlyChallengePagePage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

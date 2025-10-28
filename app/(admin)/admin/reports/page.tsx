@@ -9,6 +9,7 @@ import { BarChart3, Calendar, DollarSign, Download, Eye, FileText, FileSpreadshe
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, Area, AreaChart } from 'recharts'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
+import { RequirePermission } from '@/components/admin/require-permission'
 
 interface ReportData {
   users: {
@@ -213,7 +214,8 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="space-y-6 sm:space-y-8 p-4 sm:p-6 lg:p-8">
+    <RequirePermission feature="reports">
+      <div className="space-y-6 sm:space-y-8 p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">
@@ -1208,6 +1210,7 @@ export default function ReportsPage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

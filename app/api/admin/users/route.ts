@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { getAuthenticatedUserSimple } from '@/lib/auth-simple'
+import { hasPermission } from '@/lib/admin-permissions'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -28,6 +29,15 @@ export async function GET(request: NextRequest) {
     if (!adminRoles.includes(user.role)) {
       console.log('Admin users API - User role not authorized:', user.role)
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    // Check feature-specific permissions for ADMIN role (SUPERADMIN bypasses)
+    if (user.role === 'ADMIN') {
+      const canViewUsers = await hasPermission(user.id, 'users', 'view')
+      if (!canViewUsers) {
+        console.log('Admin users API - User does not have permission to view users')
+        return NextResponse.json({ error: 'Insufficient permissions to view users' }, { status: 403 })
+      }
     }
 
     console.log('Admin users API - User authorized:', user.name, user.role)
@@ -125,6 +135,15 @@ export async function DELETE(request: NextRequest) {
     if (!adminRoles.includes(user.role)) {
       console.log('Admin users batch delete API - User role not authorized:', user.role)
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    // Check feature-specific permissions for ADMIN role (SUPERADMIN bypasses)
+    if (user.role === 'ADMIN') {
+      const canDeleteUsers = await hasPermission(user.id, 'users', 'delete')
+      if (!canDeleteUsers) {
+        console.log('Admin users API - User does not have permission to delete users')
+        return NextResponse.json({ error: 'Insufficient permissions to delete users' }, { status: 403 })
+      }
     }
 
     const body = await request.json()
@@ -228,6 +247,15 @@ export async function POST(request: NextRequest) {
     if (!adminRoles.includes(authenticatedUser.role)) {
       console.log('Admin users create API - User role not authorized:', authenticatedUser.role)
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    // Check feature-specific permissions for ADMIN role (SUPERADMIN bypasses)
+    if (authenticatedUser.role === 'ADMIN') {
+      const canCreateUsers = await hasPermission(authenticatedUser.id, 'users', 'create')
+      if (!canCreateUsers) {
+        console.log('Admin users API - User does not have permission to create users')
+        return NextResponse.json({ error: 'Insufficient permissions to create users' }, { status: 403 })
+      }
     }
 
     const body = await request.json()

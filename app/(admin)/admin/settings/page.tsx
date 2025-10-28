@@ -15,6 +15,7 @@ import { Collapsible } from '@/components/ui/collapsible'
 import { Tooltip } from '@/components/ui/tooltip'
 import { validateColorContrast, themePresets } from '@/lib/theme-config'
 import { TelegramGroupsSection } from './TelegramGroupsSection'
+import { RequirePermission } from '@/components/admin/require-permission'
 import { 
   Palette, 
   Type, 
@@ -249,7 +250,8 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="space-y-6 sm:space-y-8 p-4 sm:p-6 lg:p-8">
+    <RequirePermission feature="settings">
+      <div className="space-y-6 sm:space-y-8 p-4 sm:p-6 lg:p-8">
       <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl font-bold text-theme tracking-tight">Settings</h1>
@@ -1204,6 +1206,7 @@ export default function SettingsPage() {
           </div>
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }

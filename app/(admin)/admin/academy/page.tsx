@@ -9,6 +9,7 @@ import { Building, Calendar, CheckCircle, Clock, Download, Edit, Eye, Filter, Ma
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
 import { exportRegistrationsToExcel, RegistrationData } from '@/lib/excel-export'
+import { RequirePermission } from '@/components/admin/require-permission'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -521,7 +522,8 @@ export default function AcademyPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <RequirePermission feature="academy">
+      <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
@@ -1419,6 +1421,7 @@ export default function AcademyPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </RequirePermission>
   )
 }
