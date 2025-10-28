@@ -43,6 +43,7 @@ export async function GET(request: NextRequest) {
     console.log('📅 Start Date Calculated:', startDate.toISOString())
 
     // Get real data from database with date filtering
+    // Note: In XEN TradeHub, the only revenue-generating source is Academy class registrations
     const [
       totalUsers,
       newUsers,
@@ -54,8 +55,7 @@ export async function GET(request: NextRequest) {
       affiliatePrograms,
       affiliatePaidCommissions,
       affiliateTotalCommissions,
-      brokerAccounts,
-      totalRevenue
+      brokerAccounts
     ] = await Promise.all([
       prisma.user.count({
         where: { createdAt: { gte: startDate } }
@@ -109,17 +109,14 @@ export async function GET(request: NextRequest) {
       }).then(r => r._sum.amount || 0),
       prisma.brokerAccountOpening.count({
         where: { createdAt: { gte: startDate } }
-      }),
-      prisma.order.aggregate({
-        where: { 
-          status: 'COMPLETED',
-          createdAt: { gte: startDate }
-        },
-        _sum: { amount: true }
-      }).then(r => r._sum.amount || 0)
+      })
     ])
 
-    const totalRevenueAmount = totalRevenue + academyRevenue + affiliatePaidCommissions
+    // In XEN TradeHub, revenue comes only from Academy class registrations
+    // Copy trading subscriptions are user investments, not company revenue
+    // Broker account openings don't generate revenue
+    // Affiliate commissions are payouts to affiliates, not revenue
+    const totalRevenueAmount = academyRevenue
 
     const reportData = {
       users: {
@@ -130,7 +127,7 @@ export async function GET(request: NextRequest) {
       },
       revenue: {
         total: totalRevenueAmount,
-        monthly: academyRevenue,
+        monthly: totalRevenueAmount,
         growth: 0
       },
       copyTrading: {

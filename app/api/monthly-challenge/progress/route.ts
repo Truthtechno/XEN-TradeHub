@@ -14,7 +14,10 @@ export async function GET(request: NextRequest) {
     const now = new Date()
     const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
 
+    console.log(`[Monthly Challenge] Fetching progress for user ${user.id} for month ${currentMonth}`)
+
     // Get or create challenge progress for current month
+    // Note: Each month automatically gets its own record due to @@unique([userId, month]) constraint
     let progress = await prisma.monthlyChallenge.findUnique({
       where: {
         userId_month: {
@@ -25,7 +28,8 @@ export async function GET(request: NextRequest) {
     })
 
     if (!progress) {
-      // Create new progress record for this month
+      // Create new progress record for this month (starts at 0/3)
+      console.log(`[Monthly Challenge] Creating new progress for ${currentMonth} - starting fresh at 0/3`)
       progress = await prisma.monthlyChallenge.create({
         data: {
           userId: user.id,
@@ -36,6 +40,8 @@ export async function GET(request: NextRequest) {
           rewardAmount: 1000
         }
       })
+    } else {
+      console.log(`[Monthly Challenge] Found existing progress: ${progress.qualifiedReferrals.length}/3 qualified referrals`)
     }
 
     // Get details of qualified referrals

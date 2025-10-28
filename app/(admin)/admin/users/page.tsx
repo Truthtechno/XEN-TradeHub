@@ -100,8 +100,8 @@ export default function UsersPage() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [showEmailOptions, setShowEmailOptions] = useState(false)
-  const [emailSubject, setEmailSubject] = useState('CoreFX - Admin Communication')
-  const [emailBody, setEmailBody] = useState('Dear CoreFX User,\n\nThis is an important communication from the CoreFX admin team.\n\nBest regards,\nCoreFX Admin Team')
+  const [emailSubject, setEmailSubject] = useState('XEN TradeHub - Admin Communication')
+  const [emailBody, setEmailBody] = useState('Dear XEN TradeHub User,\n\nThis is an important communication from the XEN TradeHub admin team.\n\nBest regards,\nXEN TradeHub Admin Team')
 
   const fetchUsers = async (isRefresh = false) => {
     // Only show loading state on initial load, not on refreshes

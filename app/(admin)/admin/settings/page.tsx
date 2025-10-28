@@ -14,6 +14,7 @@ import { ThemeShowcase } from '@/components/theme-showcase'
 import { Collapsible } from '@/components/ui/collapsible'
 import { Tooltip } from '@/components/ui/tooltip'
 import { validateColorContrast, themePresets } from '@/lib/theme-config'
+import { TelegramGroupsSection } from './TelegramGroupsSection'
 import { 
   Palette, 
   Type, 
@@ -299,7 +300,7 @@ export default function SettingsPage() {
                     <Input
                       value={localSettings.siteName}
                       onChange={(e) => handleInputChange('siteName', e.target.value)}
-                      placeholder="CoreFX"
+                      placeholder="XEN TradeHub"
                     />
                   </div>
                   <div>
@@ -309,7 +310,7 @@ export default function SettingsPage() {
                     <Input
                       value={localSettings.siteUrl}
                       onChange={(e) => handleInputChange('siteUrl', e.target.value)}
-                      placeholder="https://corefx.com"
+                      placeholder="https://xentradehub.com"
                     />
                   </div>
                 </div>
@@ -348,7 +349,7 @@ export default function SettingsPage() {
                     <Input
                       value={localSettings.supportEmail}
                       onChange={(e) => handleInputChange('supportEmail', e.target.value)}
-                      placeholder="support@corefx.com"
+                      placeholder="support@xentradehub.com"
                     />
                   </div>
                   <div>
@@ -438,6 +439,9 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
 
+            {/* Telegram Groups Management */}
+            <TelegramGroupsSection />
+            
             {/* Brand Assets */}
             <Card>
               <CardHeader>

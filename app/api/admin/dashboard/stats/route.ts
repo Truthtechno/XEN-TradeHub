@@ -42,7 +42,9 @@ export async function GET(request: NextRequest) {
       totalSignals,
       publishedSignals30d,
       brokerRegistrations,
-      verifiedRegistrations
+      verifiedRegistrations,
+      totalAffiliates,
+      affiliateCommissions
     ] = await Promise.all([
       // Total users
       prisma.user.count(),
@@ -74,21 +76,20 @@ export async function GET(request: NextRequest) {
         }
       }),
       
-      // Monthly revenue
-      prisma.order.aggregate({
+      // Monthly revenue from copy trading subscriptions (investment amount)
+      prisma.copyTradingSubscription.aggregate({
         where: {
-          status: 'COMPLETED',
           createdAt: {
             gte: monthStart
           }
         },
         _sum: {
-          amount: true
+          investmentUSD: true
         }
       }),
       
-      // Active subscriptions
-      prisma.subscription.count({
+      // Active copy trading subscriptions
+      prisma.copyTradingSubscription.count({
         where: {
           status: 'ACTIVE'
         }
@@ -110,7 +111,22 @@ export async function GET(request: NextRequest) {
       prisma.brokerRegistration.count(),
       
       // Broker registrations (all are considered verified for now)
-      prisma.brokerRegistration.count()
+      prisma.brokerRegistration.count(),
+
+      // Total affiliates
+      prisma.affiliateProgram.count(),
+      
+      // Total affiliate commissions this month
+      prisma.affiliateCommission.aggregate({
+        where: {
+          createdAt: {
+            gte: monthStart
+          }
+        },
+        _sum: {
+          amount: true
+        }
+      })
     ])
 
     // Calculate signal hit rate (mock calculation for now)
@@ -121,14 +137,16 @@ export async function GET(request: NextRequest) {
       activeUsers,
       newUsers24h,
       newUsers7d,
-      totalRevenue: monthlyRevenue._sum.amount || 0,
-      monthlyRevenue: monthlyRevenue._sum.amount || 0,
+      totalRevenue: monthlyRevenue._sum.investmentUSD || 0,
+      monthlyRevenue: monthlyRevenue._sum.investmentUSD || 0,
       activeSubscriptions,
       totalSignals,
       publishedSignals: publishedSignals30d,
       signalHitRate,
       brokerRegistrations,
-      verifiedRegistrations
+      verifiedRegistrations,
+      totalAffiliates,
+      affiliateCommissions: affiliateCommissions._sum.amount || 0
     }
 
     return NextResponse.json({

@@ -81,6 +81,12 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
   const textHierarchy = useTextHierarchy()
+  
+  // Stats state
+  const [affiliateEarnings, setAffiliateEarnings] = useState(0)
+  const [copyTradingPlatformsCount, setCopyTradingPlatformsCount] = useState(0)
+  const [monthlyChallengeProgress, setMonthlyChallengeProgress] = useState({ referralCount: 0, qualifiedReferrals: 0 })
+  const [classesEnrolled, setClassesEnrolled] = useState(0)
 
   // Function to handle card clicks
   const handleCardClick = async (href: string) => {
@@ -116,8 +122,122 @@ export default function DashboardPage() {
     fetchUserData()
   }, [])
 
-  const handleRefresh = () => {
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        // Fetch affiliate earnings
+        try {
+          const affiliateResponse = await fetch('/api/affiliates/commissions')
+          if (affiliateResponse.ok) {
+            const affiliateData = await affiliateResponse.json()
+            const totalEarnings = affiliateData.commissions?.reduce((sum: number, commission: { amount: number }) => sum + commission.amount, 0) || 0
+            setAffiliateEarnings(totalEarnings)
+          }
+        } catch (error) {
+          console.error('Failed to fetch affiliate earnings:', error)
+        }
+
+        // Fetch copy trading platforms count
+        try {
+          const copyTradingResponse = await fetch('/api/copy-trading/my-subscriptions')
+          if (copyTradingResponse.ok) {
+            const copyTradingData = await copyTradingResponse.json()
+            setCopyTradingPlatformsCount(copyTradingData.subscriptions?.length || 0)
+          }
+        } catch (error) {
+          console.error('Failed to fetch copy trading subscriptions:', error)
+        }
+
+        // Fetch monthly challenge progress
+        // Note: Automatically resets to 0/3 each new month (see @@unique([userId, month]) in schema)
+        try {
+          const challengeResponse = await fetch('/api/monthly-challenge/progress')
+          if (challengeResponse.ok) {
+            const challengeData = await challengeResponse.json()
+            setMonthlyChallengeProgress({
+              referralCount: challengeData.progress?.referralCount || 0,
+              qualifiedReferrals: challengeData.progress?.qualifiedReferrals?.length || 0
+            })
+          }
+        } catch (error) {
+          console.error('Failed to fetch monthly challenge progress:', error)
+        }
+
+        // Fetch classes enrolled count
+        try {
+          const classRegResponse = await fetch('/api/my-academy-registrations')
+          if (classRegResponse.ok) {
+            const classRegData = await classRegResponse.json()
+            setClassesEnrolled(classRegData.count || 0)
+          }
+        } catch (error) {
+          console.error('Failed to fetch class registrations:', error)
+        }
+      } catch (error) {
+        console.error('Failed to fetch stats:', error)
+      }
+    }
+
+    if (!isLoading && user) {
+      fetchStats()
+    }
+  }, [isLoading, user])
+
+  const handleRefresh = async () => {
     setLastUpdated(new Date())
+    
+    // Re-fetch stats
+    try {
+      // Fetch affiliate earnings
+      try {
+        const affiliateResponse = await fetch('/api/affiliates/commissions')
+        if (affiliateResponse.ok) {
+          const affiliateData = await affiliateResponse.json()
+          const totalEarnings = affiliateData.commissions?.reduce((sum: number, commission: { amount: number }) => sum + commission.amount, 0) || 0
+          setAffiliateEarnings(totalEarnings)
+        }
+      } catch (error) {
+        console.error('Failed to fetch affiliate earnings:', error)
+      }
+
+      // Fetch copy trading platforms count
+      try {
+        const copyTradingResponse = await fetch('/api/copy-trading/my-subscriptions')
+        if (copyTradingResponse.ok) {
+          const copyTradingData = await copyTradingResponse.json()
+          setCopyTradingPlatformsCount(copyTradingData.subscriptions?.length || 0)
+        }
+      } catch (error) {
+        console.error('Failed to fetch copy trading subscriptions:', error)
+      }
+
+      // Fetch monthly challenge progress
+      try {
+        const challengeResponse = await fetch('/api/monthly-challenge/progress')
+        if (challengeResponse.ok) {
+          const challengeData = await challengeResponse.json()
+          setMonthlyChallengeProgress({
+            referralCount: challengeData.progress?.referralCount || 0,
+            qualifiedReferrals: challengeData.progress?.qualifiedReferrals?.length || 0
+          })
+        }
+      } catch (error) {
+        console.error('Failed to fetch monthly challenge progress:', error)
+      }
+
+      // Fetch classes enrolled count
+      try {
+        const classRegResponse = await fetch('/api/my-academy-registrations')
+        if (classRegResponse.ok) {
+          const classRegData = await classRegResponse.json()
+          setClassesEnrolled(classRegData.count || 0)
+        }
+      } catch (error) {
+        console.error('Failed to fetch class registrations:', error)
+      }
+    } catch (error) {
+      console.error('Failed to refresh stats:', error)
+    }
   }
 
   // Get display name based on user role and profile
@@ -280,46 +400,56 @@ export default function DashboardPage() {
       <div className="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <Card className={`transition-colors duration-200 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Active Signals</CardTitle>
-            <TrendingUp className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
+            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Copy Trading</CardTitle>
+            <Copy className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
           </CardHeader>
           <CardContent>
-            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>3</div>
-            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>+2 from yesterday</p>
+            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{copyTradingPlatformsCount}</div>
+            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>
+              {copyTradingPlatformsCount === 1 ? 'platform joined' : copyTradingPlatformsCount === 0 ? 'No platforms yet' : 'platforms joined'}
+            </p>
           </CardContent>
         </Card>
 
         <Card className={`transition-colors duration-200 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Courses Completed</CardTitle>
+            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Classes Enrolled</CardTitle>
             <GraduationCap className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
           </CardHeader>
           <CardContent>
-            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>1</div>
-            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>2 courses in progress</p>
+            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{classesEnrolled}</div>
+            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>
+              {classesEnrolled === 1 ? 'class enrolled' : classesEnrolled === 0 ? 'No classes yet' : 'classes enrolled'}
+            </p>
           </CardContent>
         </Card>
 
         <Card className={`transition-colors duration-200 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Total Earnings</CardTitle>
-            <Trophy className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
+            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Affiliate Earnings</CardTitle>
+            <DollarSign className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
           </CardHeader>
          
           <CardContent>
-            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>$0</div>
-            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>Start trading to earn</p>
+            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>${affiliateEarnings.toFixed(2)}</div>
+            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>
+              Total commissions earned
+            </p>
           </CardContent>
         </Card>
 
         <Card className={`transition-colors duration-200 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Subscription</CardTitle>
-            <Shield className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
+            <CardTitle className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Monthly Challenge</CardTitle>
+            <Trophy className={`h-4 w-4 transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`} />
           </CardHeader>
           <CardContent>
-            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Active</div>
-            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>Signals plan</p>
+            <div className={`text-xl sm:text-2xl font-bold transition-colors duration-200 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              {monthlyChallengeProgress.qualifiedReferrals}/3
+            </div>
+            <p className={`text-xs transition-colors duration-200 ${isDarkMode ? 'text-gray-400' : 'text-muted-foreground'}`}>
+              Qualified referrals
+            </p>
           </CardContent>
         </Card>
       </div>

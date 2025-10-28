@@ -21,6 +21,8 @@ interface DashboardStats {
   signalHitRate: number
   brokerRegistrations: number
   verifiedRegistrations: number
+  totalAffiliates: number
+  affiliateCommissions: number
 }
 
 interface AdminUser {
@@ -46,7 +48,9 @@ export default function AdminDashboard() {
     publishedSignals: 0,
     signalHitRate: 0,
     brokerRegistrations: 0,
-    verifiedRegistrations: 0
+    verifiedRegistrations: 0,
+    totalAffiliates: 0,
+    affiliateCommissions: 0
   })
   const [loading, setLoading] = useState(false) // Start with false to prevent infinite loading
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
@@ -76,7 +80,9 @@ export default function AdminDashboard() {
           publishedSignals: 0,
           signalHitRate: 0,
           brokerRegistrations: 0,
-          verifiedRegistrations: 0
+          verifiedRegistrations: 0,
+          totalAffiliates: 0,
+          affiliateCommissions: 0
         })
         setLastUpdated(new Date())
         setLoading(false)
@@ -122,7 +128,9 @@ export default function AdminDashboard() {
           publishedSignals: 0,
           signalHitRate: 0,
           brokerRegistrations: 0,
-          verifiedRegistrations: 0
+          verifiedRegistrations: 0,
+          totalAffiliates: 0,
+          affiliateCommissions: 0
         })
         setLastUpdated(new Date())
       }
@@ -344,31 +352,31 @@ export default function AdminDashboard() {
             {/* Total Users */}
             <Card className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Users</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Total Users</CardTitle>
                 <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                   <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 </div>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{formatNumber(stats.totalUsers)}</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">{formatNumber(stats.totalUsers)}</div>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                   +{formatNumber(stats.newUsers7d)} from last week
                 </p>
               </CardContent>
             </Card>
 
-            {/* Active Users */}
+            {/* Affiliates */}
             <Card className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Users</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Affiliates</CardTitle>
                 <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                  <Activity className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
                 </div>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{formatNumber(stats.activeUsers)}</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">{formatNumber(stats.totalAffiliates)}</div>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  +{formatNumber(stats.newUsers24h)} today
+                  {formatCurrency(stats.affiliateCommissions)} this month
                 </p>
               </CardContent>
             </Card>
@@ -376,31 +384,31 @@ export default function AdminDashboard() {
             {/* Monthly Revenue */}
             <Card className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Monthly Revenue</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Monthly Investments</CardTitle>
                 <div className="p-2 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
                   <DollarSign className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 </div>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{formatCurrency(stats.monthlyRevenue)}</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">{formatCurrency(stats.monthlyRevenue)}</div>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  {formatNumber(stats.activeSubscriptions)} active subscriptions
+                  This month's new investments
                 </p>
               </CardContent>
             </Card>
 
-            {/* Signal Hit Rate */}
+            {/* Copy Trading Subscriptions */}
             <Card className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Signal Hit Rate</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400">Copy Trading</CardTitle>
                 <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                  <TrendingUp className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                  <Copy className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                 </div>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{stats.signalHitRate.toFixed(1)}%</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">{formatNumber(stats.activeSubscriptions)}</div>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  {formatNumber(stats.publishedSignals)} signals published
+                  Active subscriptions
                 </p>
               </CardContent>
             </Card>

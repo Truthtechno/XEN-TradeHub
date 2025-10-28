@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { AlertCircle, ArrowLeft, Bell, Calendar, CheckCircle, Clock, Eye, EyeOff, Filter, Gift, Info, Loader2, MoreVertical, RefreshCw, Search, Shield } from 'lucide-react'
+import { AlertCircle, ArrowLeft, Bell, Calendar, CheckCircle, Clock, Eye, EyeOff, Filter, Gift, Info, Loader2, MessageCircle, MoreVertical, RefreshCw, Search, Shield, ExternalLink } from 'lucide-react'
 import { useTheme } from '@/lib/optimized-theme-context'
 import { useTextHierarchy } from '@/lib/text-hierarchy'
 import { useNotifications, Notification } from '@/lib/notifications-context'
@@ -28,9 +28,31 @@ export default function NotificationsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [filterType, setFilterType] = useState('all')
   const [filterStatus, setFilterStatus] = useState('all')
+  const [telegramGroups, setTelegramGroups] = useState<any[]>([])
+  const [isLoadingGroups, setIsLoadingGroups] = useState(true)
 
   // Track page view to remove NEW badge
   usePageViewTracking('/notifications')
+
+  // Fetch telegram groups
+  useEffect(() => {
+    const fetchGroups = async () => {
+      try {
+        setIsLoadingGroups(true)
+        const response = await fetch('/api/telegram-groups')
+        const data = await response.json()
+        setTelegramGroups(data.groups || [])
+      } catch (error) {
+        console.error('Error fetching telegram groups:', error)
+      } finally {
+        setIsLoadingGroups(false)
+      }
+    }
+    
+    if (!isAdmin) {
+      fetchGroups()
+    }
+  }, [isAdmin])
 
   // Get icon for notification type
   const getNotificationIcon = (type: string) => {
@@ -56,6 +78,8 @@ export default function NotificationsPage() {
         return Calendar
       case 'PAYMENT':
         return CheckCircle
+      case 'NEW_ACADEMY_CLASS':
+        return Calendar
       // Admin notification types
       case 'STUDENT_PURCHASE':
         return Gift
@@ -121,6 +145,7 @@ export default function NotificationsPage() {
       case 'COURSE': return 'outline'
       case 'BOOKING': return 'outline'
       case 'PAYMENT': return 'default'
+      case 'NEW_ACADEMY_CLASS': return 'outline'
       // Admin notification types
       case 'STUDENT_PURCHASE': return 'secondary'
       case 'STUDENT_ENROLLMENT': return 'default'
@@ -145,6 +170,7 @@ export default function NotificationsPage() {
       case 'COURSE': return 'text-theme-info' // Info for course notifications
       case 'BOOKING': return 'text-theme-info' // Info for booking notifications
       case 'PAYMENT': return 'text-theme-success' // Success for payment notifications
+      case 'NEW_ACADEMY_CLASS': return 'text-theme-info' // Info for new academy classes
       // Admin notification types
       case 'STUDENT_PURCHASE': return 'text-theme-accent' // Accent for student purchases
       case 'STUDENT_ENROLLMENT': return 'text-theme-success' // Success for enrollments
@@ -182,8 +208,8 @@ export default function NotificationsPage() {
               </h1>
               <p className={`${textHierarchy.subheading()} mt-2`}>
                 {isAdmin 
-                  ? 'Monitor student activities, enrollments, and purchases'
-                  : 'Stay updated with new courses, resources, events, and signals'
+                  ? 'Monitor user activities, enrollments, and purchases'
+                  : 'Stay updated with new academy classes and features'
                 }
               </p>
             </div>
@@ -211,6 +237,63 @@ export default function NotificationsPage() {
             </div>
           </div>
         </div>
+
+        {/* Telegram Groups Section - Only for students */}
+        {!isAdmin && telegramGroups.length > 0 && (
+          <Card className={`mb-8 ${isDarkMode ? 'bg-gradient-to-br from-blue-900/20 to-purple-900/20 border-blue-500/30' : 'bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200'}`}>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <MessageCircle className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                Join Our Telegram Groups
+              </CardTitle>
+              <CardDescription>
+                Join our Telegram groups to receive signal alerts, updates, and engage with our community
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {telegramGroups.map((group) => (
+                  <a
+                    key={group.id}
+                    href={group.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group p-4 rounded-lg border-2 transition-all duration-200 hover:shadow-lg ${
+                      isDarkMode
+                        ? 'border-gray-700 hover:border-blue-500 bg-gray-800/50'
+                        : 'border-gray-200 hover:border-blue-400 bg-white'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {group.name}
+                          </h4>
+                          {group.category && (
+                            <Badge variant="outline" className="text-xs">
+                              {group.category}
+                            </Badge>
+                          )}
+                        </div>
+                        {group.description && (
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                            {group.description}
+                          </p>
+                        )}
+                      </div>
+                      <ExternalLink className="h-5 w-5 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 font-medium">
+                      <MessageCircle className="h-4 w-4" />
+                      Join Group
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

@@ -6,7 +6,7 @@ export interface Notification {
   id: string
   title: string
   message: string
-  type: 'LOGIN' | 'WELCOME' | 'SYSTEM' | 'UPDATE' | 'SECURITY' | 'PROMOTION' | 'SIGNAL' | 'COURSE' | 'BOOKING' | 'PAYMENT' | 'STUDENT_PURCHASE' | 'STUDENT_ENROLLMENT' | 'STUDENT_REGISTRATION' | 'STUDENT_ENQUIRY' | 'STUDENT_ACTIVITY'
+  type: 'LOGIN' | 'WELCOME' | 'SYSTEM' | 'UPDATE' | 'SECURITY' | 'PROMOTION' | 'SIGNAL' | 'COURSE' | 'BOOKING' | 'PAYMENT' | 'NEW_ACADEMY_CLASS' | 'STUDENT_PURCHASE' | 'STUDENT_ENROLLMENT' | 'STUDENT_REGISTRATION' | 'STUDENT_ENQUIRY' | 'STUDENT_ACTIVITY'
   isRead: boolean
   createdAt: string
   actionUrl?: string
